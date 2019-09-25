@@ -1,0 +1,20 @@
+.hidden {
+    display: none!important;
+}
+
+.tooltip {
+    position: relative;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    color: #fff;
+    text-align: center;
+    width: 100%!important;
+    /* Position the tooltip */
+    position: absolute;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}

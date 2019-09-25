@@ -1,0 +1,42 @@
+{
+    "manifest_version": 2,
+    "version": "0.1.0",
+    "name": "__MSG_extensionName__",
+    "short_name": "__MSG_extensionShortName__",
+    "description": "__MSG_extensionDescription__",
+    "author": "Maxime DOLORES - mdolr",
+    "default_locale": "en",
+    "permissions": [
+        "activeTab",
+        "tabs",
+        "http://*/*",
+        "https://*/*",
+        "file:///*/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*",
+                "file:///*/*"
+            ],
+            "js": [
+                "js/core.js",
+                "js/templates/base.js",
+                "js/templates/reddit.js",
+                "js/utils/reddit-comment-embed.js"
+            ],
+            "css": [
+                "css/base.css"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "background": {
+        "scripts": []
+    },
+    "browser_action": {
+        "default_title": "Survol",
+        "default_popup": ""
+    }
+}
