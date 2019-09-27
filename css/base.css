@@ -2,19 +2,21 @@
     display: none!important;
 }
 
-.tooltip {
-    position: relative;
-}
+
+/* Don't even try hiding my tooltip <https://stackoverflow.com/questions/491052/minimum-and-maximum-value-of-z-index> */
 
 .tooltip .tooltiptext {
     visibility: hidden;
     color: #fff;
     text-align: center;
     width: 100%!important;
+    padding-right: 10px!important;
     /* Position the tooltip */
     position: absolute;
+    z-index: 16777271!important;
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
+    z-index: 16777271!important;
 }
