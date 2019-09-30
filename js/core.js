@@ -27,7 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
 
-    /* Returns the adequate hover element for a given link
+    /* Node is a DOM Node 
+     * domain is a string
+     * Description: Returns the correct hover CLass for a given domain.
+     */
+    function getPotentialHover(node, domain) {
+        switch (domain) {
+            case 'reddit.com':
+                return new RedditHover(node, getDomain(CURRENT_TAB));
+            default:
+                return null;
+                //return new BaseHover(node);
+        }
+    }
+
+    /* Checks if the hover class is working with the given link and deletes it if it's not.
      * takes 
      * {Node} node
      * {String} link
@@ -35,18 +49,27 @@ document.addEventListener('DOMContentLoaded', () => {
     function dispatcher(node, link) {
         let domain = getDomain(link);
 
-        switch (domain) {
-            case 'reddit.com':
-                return new RedditHover(node);
-            default:
-                break;
-                //return new BaseHover(node);
+        let potentialHover = getPotentialHover(node, domain);
+
+        /* If we do not support the domain we might not get anything in return of getPotentialHover */
+        if (potentialHover) {
+            /* If the potentialHover can't handle the link feed it to the garbage collector */
+            if (potentialHover.checkLinkType() == 'unknown') {
+                potentialHover = null;
+            }
+
+            /* Else bind it */
+            else {
+                potentialHover.bindToNode();
+            }
         }
     }
 
     /* Retrieves every <a> element on the page
      * it is separated as some sites need to reload displayed elements (ex: Twitter deletes nodes out of the screen)
      * resolves a Nodelist see <https://developer.mozilla.org/fr/docs/Web/API/Document/querySelectorAll>
+     * 
+     * TODO : Find a way to search for nodes in some sections only on certain known sites ?
      */
     function gatherHrefs() {
         return new Promise((resolve, reject) => {
@@ -54,7 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* Takes a nodelist as an argument */
+    /* Takes a nodelist as an argument 
+     * TODO: Once done, resolve / reject 
+     * In case of success, go to another function displaying the number of previews on the page ?
+     */
     function equipNodes(nodes) {
         return new Promise((resolve, reject) => {
             nodes.forEach((node) => {
