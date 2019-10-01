@@ -6,13 +6,7 @@
     "description": "__MSG_extensionDescription__",
     "author": "Maxime DOLORES - mdolr",
     "default_locale": "en",
-    "permissions": [
-        "activeTab",
-        "tabs",
-        "http://*/*",
-        "https://*/*",
-        "file:///*/*"
-    ],
+    "permissions": [],
     "content_scripts": [
         {
             "matches": [
