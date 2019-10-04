@@ -6,7 +6,13 @@
     "description": "__MSG_extensionDescription__",
     "author": "Maxime DOLORES - mdolr",
     "default_locale": "en",
-    "permissions": [],
+    "permissions": [
+        "https://*/*",
+        "http://*/*",
+        "file:///*",
+        "tabs",
+        "activeTab"
+      ],
     "content_scripts": [
         {
             "matches": [
@@ -15,10 +21,13 @@
                 "file:///*/*"
             ],
             "js": [
-                "js/core.js",
+                "js/utils/reddit-comment-embed.js",
                 "js/templates/base.js",
                 "js/templates/reddit.js",
-                "js/utils/reddit-comment-embed.js"
+                "js/templates/twitter.js",
+                "js/core.js",
+                "js/utils/twitter-tweet-embed.js",
+                "js/utils/twitter-load.js"
             ],
             "css": [
                 "css/base.css"
