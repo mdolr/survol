@@ -35,6 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
         switch (domain) {
             case 'reddit.com':
                 return new RedditHover(node, getDomain(CURRENT_TAB));
+            case 'wikipedia.org':
+                return new WikipediaHover(node, getDomain(CURRENT_TAB));
             default:
                 return null;
                 //return new BaseHover(node);
