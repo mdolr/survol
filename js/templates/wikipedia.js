@@ -31,8 +31,6 @@ class WikipediaHover {
             fetch(`https://${this.redirectLink.split('.wikipedia.org')[0].split('//')[1]}.wikipedia.org/api/rest_v1/page/summary/${this.redirectLink.split('/wiki/')[1]}`)
                 .then((res) => { return res.json(); })
                 .then((res) => {
-                    console.log(res);
-
                     let container = document.createElement('div');
                     container.className = 'tooltiptext';
 
