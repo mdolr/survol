@@ -21,7 +21,9 @@
                 "file:///*/*"
             ],
             "js": [
+                "js/core.js",
                 "js/utils/reddit-comment-embed.js",
+                "js/templates/wikipedia.js",
                 "js/templates/base.js",
                 "js/templates/reddit.js",
                 "js/templates/twitter.js",
@@ -30,7 +32,8 @@
                 "js/utils/twitter-load.js"
             ],
             "css": [
-                "css/base.css"
+                "css/base.css",
+                "css/templates/wikipedia.css"
             ],
             "run_at": "document_start"
         }
