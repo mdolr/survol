@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "0.1.0",
+    "version": "0.3.0",
     "name": "__MSG_extensionName__",
     "short_name": "__MSG_extensionShortName__",
     "description": "__MSG_extensionDescription__",
@@ -27,6 +27,7 @@
                 "js/templates/base.js",
                 "js/templates/reddit.js",
                 "js/templates/twitter.js",
+                "js/templates/youtube.js",
                 "js/core.js",
                 "js/utils/twitter-tweet-embed.js",
                 "js/utils/twitter-load.js"
