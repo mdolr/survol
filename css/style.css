@@ -1,0 +1,47 @@
+/* Hi!, hi, this is the line of 
+css code that I have tidied up 
+and changed it for the better*/
+
+body{
+    background: gray;
+    margin: 0;
+    padding: 0;
+}
+
+/*div class="position"*/ 
+.position{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 10px 60px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 60px;
+    transform: translate(-50%, -50%);
+}
+/*Ends div class="position"*/
+
+/* Tag "<a></a>" */
+a{
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    border-radius: 60px;
+    box-shadow: 2px 4px 0px 0px #fff;
+    transition: all 0.2s;
+}
+
+a:link, a:visited {
+    background-color: #f44336;
+    color: white;
+    padding: 15px 25px;
+    text-align: center;
+    text-decoration: none;
+  }
+  
+a:hover, a:active {
+    background-color: red;
+    top: calc(50% + 5px);
+    box-shadow: 0px 0px 0px 0px #000;
+}
+/* Ends Tag "<a></a>" */
