@@ -1,0 +1,54 @@
+* {
+    font-family: Raleway;
+    color: azure;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    text-align: center;
+}
+
+html, body {
+    height: 100%;
+}
+
+footer {
+    background-color: black;
+}
+
+.navbar-nav {
+    font-size: 1rem;
+}
+
+.navbar {
+    background-color: #0F0F0F !important;
+}
+
+.text {
+    font-size: 1.2rem;
+}
+
+.section-light {
+    background-color: #2F2F2F;
+    padding: 10rem 0;
+}
+
+.section-dark {
+    background-color: #1F1F1F;
+    padding: 10rem 0;
+}
+
+.blank {
+    height: 1rem;
+}
+
+hr {
+    background-color: azure;
+}
+
+.card {
+    background: #1F1F1F;
+}
+
+a {
+    color: azure;
+}
