@@ -32,27 +32,27 @@ class WikipediaHover {
                 .then((res) => { return res.json(); })
                 .then((res) => {
                     let container = document.createElement('div');
-                    container.className = 'tooltiptext';
+                    container.className = 'survol-tooltiptext';
 
                     let wikipediaContainer = document.createElement('div');
-                    wikipediaContainer.className = 'wikipedia-container';
+                    wikipediaContainer.className = 'survol-wikipedia-container';
 
                     /* If there is a thumbnail */
                     if (res.thumbnail) {
                         let wikipediaImageContainer = document.createElement('div');
-                        wikipediaImageContainer.className = 'wikipedia-image-container';
+                        wikipediaImageContainer.className = 'survol-wikipedia-image-container';
 
 
                         let image = document.createElement('img');
                         image.src = res.thumbnail.source;
-                        image.className = 'wikipedia-image';
+                        image.className = 'survol-wikipedia-image';
 
                         wikipediaImageContainer.appendChild(image);
                         wikipediaContainer.appendChild(wikipediaImageContainer);
                     }
 
                     let textContainer = document.createElement('div');
-                    textContainer.className = 'wikipedia-text';
+                    textContainer.className = 'survol-wikipedia-text';
 
                     let text = document.createElement('p');
                     text.appendChild(document.createTextNode(res.extract));
@@ -60,7 +60,7 @@ class WikipediaHover {
                     textContainer.appendChild(text);
                     wikipediaContainer.appendChild(textContainer);
 
-                    this.boundNode.classList.add('tooltip');
+                    this.boundNode.classList.add('survol-tooltip');
 
                     container.appendChild(wikipediaContainer);
                     this.boundNode.appendChild(container);

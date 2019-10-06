@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
         let domain = getDomain(link);
 
         let potentialHover = getPotentialHover(node, domain);
-        /* If we do not support the domain we might not get anything in return of getPotentialHover */
+        console.log(potentialHover)
+            /* If we do not support the domain we might not get anything in return of getPotentialHover */
         if (potentialHover) {
             /* If the potentialHover can't handle the link feed it to the garbage collector */
             if (potentialHover.checkLinkType() == 'unknown') {

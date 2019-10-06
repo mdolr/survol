@@ -5,7 +5,7 @@
 
 /* Don't even try hiding my tooltip <https://stackoverflow.com/questions/491052/minimum-and-maximum-value-of-z-index> */
 
-.tooltip .tooltiptext {
+.survol-tooltip .survol-tooltiptext {
     visibility: hidden!important;
     color: #fff;
     text-align: center;
@@ -15,12 +15,12 @@
     z-index: 16777271!important;
 }
 
-.tooltiptext-youtube {
+.survol-tooltiptext-youtube {
     width: 560px!important;
     height: 315px!important;
 }
 
-.tooltip:hover .tooltiptext {
+.survol-tooltip:hover .survol-tooltiptext {
     visibility: visible!important;
     z-index: 16777271!important;
 }
