@@ -19,8 +19,24 @@ class YoutubeHover {
             }
 
             return 'video';
+        } else if(this.redirectLink.includes('channel')) {
+            return 'channel';
         } else {
             return 'unknown';
+        }
+    }
+
+    getIframeSrc() {
+        if (this.linkType === 'channel') {
+            const channelId = this.redirectLink.split('/')
+                                    .filter(part=> part.includes('UC'))
+                                    .pop();
+
+            // Need to replace UC in channelId with UU to get the proper embedded link
+            return `https://www.youtube-nocookie.com/embed?list=${channelId.replace('UC', 'UU')}`;
+        }
+        if (this.linkType === 'video') {
+            return `https://www.youtube-nocookie.com/embed/${this.redirectLink.split('watch?v=')[1].split('&')[0]}?rel=0`;
         }
     }
 
@@ -31,14 +47,14 @@ class YoutubeHover {
          * - Set a some sort of div you can always click to stop playing the video / stop playing video when not hovering      
          */
 
-        if (this.linkType == 'video') {
+        if (this.linkType == 'video' || this.linkType === 'channel') {
             let container = document.createElement('div');
             container.className = 'tooltiptext tooltiptext-youtube';
 
             let iframe = document.createElement('iframe');
             iframe.setAttribute('width', '560');
             iframe.setAttribute('height', '315');
-            iframe.setAttribute('src', `https://www.youtube-nocookie.com/embed/${this.redirectLink.split('watch?v=')[1].split('&')[0]}?rel=0`)
+            iframe.setAttribute('src', this.getIframeSrc());
             iframe.setAttribute('frameborder', '0');
             iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
             iframe.setAttribute('allowfullscreen', true);
