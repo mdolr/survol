@@ -27,8 +27,13 @@ class RedditHover {
             return 'post';
         } else */
 
-        if (this.redirectLink.replace('https://', '').split('/').length == 8 && !this.boundNode.classList.length && !this.redirectLink.includes('#')) {
+        /* Split by '/', but remove final empty string */
+        const urlChunks = this.redirectLink.replace('https://', '').split('/').filter(e => e !== '');
+        /* Comments have a 7-character unique ID, which is the last slash enclosed path part */
+        if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
             return 'comment';
+        } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
+            return 'post'
         } else {
             return 'unknown';
         }
@@ -72,6 +77,20 @@ class RedditHover {
 
             this.boundNode.classList.add('tooltip');
             comment.classList.add('tooltiptext');
+        } else if (this.linkType === 'post') {
+            let postContainer = document.createElement('div');
+            postContainer.className = 'tooltiptext tooltiptext-reddit-post';
+
+            let postEmbed = document.createElement('blockquote');
+            postEmbed.classList.add('reddit-card');
+            let postLink = document.createElement('a');
+            postLink.setAttribute('href', this.redirectLink);
+
+            postEmbed.appendChild(postLink);
+            postContainer.appendChild(postEmbed);
+            this.boundNode.appendChild(postContainer);
+
+            this.boundNode.classList.add('tooltip');
         }
     }
 }

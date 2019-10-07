@@ -7,12 +7,19 @@
 
 .tooltip .tooltiptext {
     visibility: hidden!important;
+    display: none!important;
     color: #fff;
     text-align: center;
     padding-right: 10px!important;
     /* Position the tooltip */
     position: absolute!important;
     z-index: 16777271!important;
+}
+
+.tooltiptext-reddit-post {
+    background-color: white;
+    max-width: 350px;
+    height: auto;
 }
 
 .tooltiptext-youtube {
@@ -22,5 +29,6 @@
 
 .tooltip:hover .tooltiptext {
     visibility: visible!important;
+    display: initial!important;
     z-index: 16777271!important;
 }
