@@ -10,7 +10,7 @@
     display: none!important;
     color: #fff;
     text-align: center;
-    padding-right: 10px!important;
+    padding-right: 20px!important;
     /* Position the tooltip */
     position: absolute!important;
     z-index: 16777271!important;
@@ -27,8 +27,14 @@
     height: auto;
 }
 
+.survol-tooltip:hover {
+    position: relative!important;
+}
+
 .survol-tooltip:hover .survol-tooltiptext {
     visibility: visible!important;
     display: initial!important;
     z-index: 16777271!important;
+    top: 22px!important;
+    left:0px!important;
 }
