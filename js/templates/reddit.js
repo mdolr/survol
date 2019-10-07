@@ -15,11 +15,11 @@ class RedditHover {
      * it can also delete the whole class if there is no point in having an embed.
      */
     checkLinkType() {
-
         /* As comments are the only thing implemented for now let's ignore the rest
         TODO : 
         - Implement users when on other sites
         - Implement discussions (couldn't get discussion embed code from reddit when I tried (bug?))
+        - Improve link detection for comments
         
         if (this.redirectLink.includes('/user/')) {
             return 'user';
@@ -47,7 +47,7 @@ class RedditHover {
              */
 
             let commentContainer = document.createElement('div');
-            commentContainer.className = 'tooltiptext';
+            commentContainer.className = 'survol-tooltiptext';
 
             /* This is a reconstitution of the reddit embed code when sharing a comment.*/
             let comment = document.createElement('div');
@@ -75,11 +75,10 @@ class RedditHover {
             /* Because for some reason embed code doesn't init itself directly when added dynamically, depends directly of reddit-comment-embed.js */
             window.rembeddit.init();
 
-            this.boundNode.classList.add('tooltip');
-            comment.classList.add('tooltiptext');
+            this.boundNode.classList.add('survol-tooltip');
         } else if (this.linkType === 'post') {
             let postContainer = document.createElement('div');
-            postContainer.className = 'tooltiptext tooltiptext-reddit-post';
+            postContainer.className = 'survol-tooltiptext tooltiptext-reddit-post';
 
             let postEmbed = document.createElement('blockquote');
             postEmbed.classList.add('reddit-card');
@@ -90,7 +89,7 @@ class RedditHover {
             postContainer.appendChild(postEmbed);
             this.boundNode.appendChild(postContainer);
 
-            this.boundNode.classList.add('tooltip');
+            this.boundNode.classList.add('survol-tooltip');
         }
     }
 }
