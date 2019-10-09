@@ -20,8 +20,7 @@
                 "js/templates/base.js",
                 "js/templates/reddit.js",
                 "js/templates/youtube.js",
-                "js/utils/reddit-comment-embed.js",
-                "js/utils/embedly-loader.js"
+                "js/utils/reddit-comment-embed.js"
             ],
             "css": [
                 "css/base.css",
