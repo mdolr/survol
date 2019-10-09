@@ -1,12 +1,23 @@
 .survol-reddit-container {
     box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
-    
+    height: auto;
+    text-align: center;
+    /* Remove if you remove the padding-right on the container above */
+    width: calc(100% + 20px);
+}
+
+.survol-reddit-top, .survol-reddit-sublink {
+    color: grey;
+    text-align: center;
 }
 
 .survol-reddit-image {
-    width: 90%;
-    height: auto;
+    max-height: 150px;
+    width: auto;
     margin: auto;
+    display: block;
+    padding: 8px;
+    border-radius: 10px;
 }
 
 .survol-reddit-text {

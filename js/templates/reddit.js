@@ -113,20 +113,39 @@ class RedditHover {
             score: postData.score,
             numComments: postData.num_comments
         };
+        const subReddit = postData.subreddit_name_prefixed;
         /* Build embed HTML */
         const container = document.createElement('div');
         container.classList.add('survol-reddit-container');
+        /* Header - author and points */
+        const header = document.createElement('div');
+        header.className = 'survol-reddit-top';
+        header.innerText = `${postAuthor} --- ${stats.score} pts.`
         /* post title / link */
-        const header = document.createElement('a');
-        header.innerText = postTitle;
-        header.setAttribute('href', postLink);
+        const link = document.createElement('a');
+        link.className = 'survol-reddit-link';
+        link.innerText = postTitle;
+        link.setAttribute('href', postLink);
+        /* Image */
         const image = document.createElement('img');
         image.classList.add('survol-reddit-image');
         image.setAttribute('src', imageUrl);
+        /* divider */
+        const divider = document.createElement('div');
+        divider.className = 'survol-divider';
+        /* Subreddit link */
+        const subredditLink = document.createElement('a');
+        subredditLink.className = 'survol-reddit-sublink';
+        subredditLink.setAttribute('href', `https://www.reddit.com/${subredditLink}`);
+        subredditLink.innerText = `${subReddit}`;
+        /* Build */
         container.appendChild(header);
+        container.appendChild(link);
         if (hasImage) {
             container.appendChild(image);
         }
+        container.appendChild(divider);
+        container.appendChild(subredditLink);
         return container;
     }
 }
