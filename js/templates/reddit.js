@@ -90,6 +90,55 @@ class RedditHover {
             this.boundNode.appendChild(postContainer);
 
             this.boundNode.classList.add('survol-tooltip');
+
+            // We need the specific post ID to get JSON
+            // Post ID should be, at least, 6 character alpha-numeric
+            const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
+            fetch(`https://api.reddit.com/api/info/?id=t3_${postId}`)
+                .then((res) => res.json())
+                .then((json) => {
+                    console.log(json)
+                    const generatedEmbed = RedditHover.redditJsonToHoverElem(json);
+                    console.log(generatedEmbed);
+                    let postContainer = document.createElement('div');
+                    postContainer.className = 'survol-tooltiptext tooltiptext-reddit-post';
+                    postContainer.appendChild(generatedEmbed);
+                });
         }
+    }
+
+    static redditJsonToHoverElem(redditJson) {
+        let hasImage = false;
+        let imageUrl = '';
+        // Actual post metadata should be first element
+        const postData = redditJson[0].data.children[0].data;
+        /* Extract image info */
+        if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
+            hasImage = true;
+            imageUrl = postData.thumbnail;
+        }
+        /* Extract regular details */
+        const postTitle = postData.title;
+        const postLink = `https://www.reddit.com/${postData.permalink}`;
+        const postAuthor = postData.author;
+        const stats = {
+            score: postData.score,
+            numComments: postData.num_comments
+        };
+        /* Build embed HTML */
+        const container = document.createElement('div');
+        container.classList.add('survol-reddit-container');
+        /* post title / link */
+        const header = document.createElement('a');
+        header.innerText = postTitle;
+        header.setAttribute('href', postLink);
+        const image = document.createElement('img');
+        image.classList.add('survol-reddit-image');
+        image.setAttribute('src', imageUrl);
+        container.appendChild(header);
+        if (hasImage) {
+            container.appendChild(image);
+        }
+        return container;
     }
 }
