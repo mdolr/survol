@@ -1,0 +1,22 @@
+.survol-reddit-container {
+    box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+    
+}
+
+.survol-reddit-image {
+    width: 90%;
+    height: auto;
+    margin: auto;
+}
+
+.survol-reddit-text {
+    padding: 16px!important;
+    min-height: 40px;
+}
+
+.survol-reddit-text p {
+    margin: 8px;
+    color: rgb(0, 0, 0)!important;
+    text-align: justify!important;
+    text-justify: auto!important;
+}
