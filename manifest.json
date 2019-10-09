@@ -20,12 +20,12 @@
                 "js/templates/base.js",
                 "js/templates/reddit.js",
                 "js/templates/youtube.js",
-                "js/utils/reddit-comment-embed.js",
-                "js/utils/embedly-loader.js"
+                "js/utils/reddit-comment-embed.js"
             ],
             "css": [
                 "css/base.css",
-                "css/templates/wikipedia.css"
+                "css/templates/wikipedia.css",
+                "css/templates/reddit.css"
             ],
             "run_at": "document_start"
         }

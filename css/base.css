@@ -38,3 +38,10 @@
     top: 22px!important;
     left:0px!important;
 }
+
+.survol-divider {
+    background-color: grey;
+    width: 100%;
+    height: 1px;
+    margin-bottom: 4px;
+}
