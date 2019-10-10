@@ -27,8 +27,13 @@ class RedditHover {
             return 'post';
         } else */
 
-        if (this.redirectLink.replace('https://', '').split('/').length == 8 && (this.CURRENT_TAB == 'reddit.com' && !this.boundNode.classList.length || this.CURRENT_TAB != 'reddit.com') && !this.redirectLink.includes('#')) {
+        /* Split by '/', but remove final empty string */
+        const urlChunks = this.redirectLink.replace('https://', '').split('/').filter(e => e !== '');
+        /* Comments have a 7-character unique ID, which is the last slash enclosed path part */
+        if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
             return 'comment';
+        } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
+            return 'post'
         } else {
             return 'unknown';
         }
@@ -71,6 +76,76 @@ class RedditHover {
             window.rembeddit.init();
 
             this.boundNode.classList.add('survol-tooltip');
+        } else if (this.linkType === 'post') {
+            /* We need the specific post ID to get JSON */
+            /* Post ID should be 6 character alpha-numeric (base36) */
+            const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
+            fetch(`https://api.reddit.com/api/info/?id=t3_${postId}`)
+                .then((res) => res.json())
+                .catch(err => console.warn('Could not parse Reddit JSON'))
+                .then((json) => {
+                    const generatedEmbed = RedditHover.redditJsonToHoverElem(json);
+                    let postContainer = document.createElement('div');
+                    postContainer.className = 'survol-tooltiptext tooltiptext-reddit-post';
+                    postContainer.appendChild(generatedEmbed);
+                    this.boundNode.appendChild(postContainer);
+                    this.boundNode.classList.add('survol-tooltip');
+                });
         }
+    }
+
+    /* Parse Reddit API JSON and construct preview embed */
+    static redditJsonToHoverElem(redditJson) {
+        let hasImage = false;
+        let imageUrl = '';
+        /* Actual post metadata should be first element */
+        const postData = redditJson.data.children[0].data;
+        /* Extract image info */
+        if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
+            hasImage = true;
+            imageUrl = postData.thumbnail;
+        }
+        /* Extract regular details */
+        const postTitle = postData.title;
+        const postLink = `https://www.reddit.com/${postData.permalink}`;
+        const postAuthor = postData.author;
+        const stats = {
+            score: postData.score,
+            numComments: postData.num_comments
+        };
+        const subReddit = postData.subreddit_name_prefixed;
+        /* Build embed HTML */
+        const container = document.createElement('div');
+        container.classList.add('survol-reddit-container');
+        /* Header - author and points */
+        const header = document.createElement('div');
+        header.className = 'survol-reddit-top';
+        header.innerText = `${postAuthor} --- ${stats.score} pts.`
+        /* post title / link */
+        const link = document.createElement('a');
+        link.className = 'survol-reddit-link';
+        link.innerText = postTitle;
+        link.setAttribute('href', postLink);
+        /* Image */
+        const image = document.createElement('img');
+        image.classList.add('survol-reddit-image');
+        image.setAttribute('src', imageUrl);
+        /* divider */
+        const divider = document.createElement('div');
+        divider.className = 'survol-divider';
+        /* Subreddit link */
+        const subredditLink = document.createElement('a');
+        subredditLink.className = 'survol-reddit-sublink';
+        subredditLink.setAttribute('href', `https://www.reddit.com/${subredditLink}`);
+        subredditLink.innerText = `${subReddit}`;
+        /* Build */
+        container.appendChild(header);
+        container.appendChild(link);
+        if (hasImage) {
+            container.appendChild(image);
+        }
+        container.appendChild(divider);
+        container.appendChild(subredditLink);
+        return container;
     }
 }
