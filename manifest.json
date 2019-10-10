@@ -31,7 +31,7 @@
         }
     ],
     "background": {
-        "scripts": []
+        "scripts": ["js/background/auxiliary.js"]
     },
     "browser_action": {
         "default_title": "Survol",

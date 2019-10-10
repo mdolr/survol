@@ -24,7 +24,10 @@ class WikipediaHover {
 
     bindToNode() {
 
-        /* TODO: Set a way to always try a certain language and then try the original language of the link */
+        /* TODO:
+         *  - Set a way to always try a certain language and then try the original language of the link 
+         *  - We're magically not affected by CORS but we should use the survolBackgroundRequest function to avoid them with the manifest V3 changes
+         */
 
         if (this.linkType == 'article') {
 

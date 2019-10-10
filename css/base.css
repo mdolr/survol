@@ -21,7 +21,7 @@
     height: 315px!important;
 }
 
-.tooltiptext-reddit-post {
+.survol-tooltiptext-reddit-post {
     background-color: white;
     max-width: 350px;
     height: auto;
@@ -36,7 +36,7 @@
     display: initial!important;
     z-index: 16777271!important;
     top: 22px!important;
-    left:0px!important;
+    left: 0px!important;
 }
 
 .survol-divider {

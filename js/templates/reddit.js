@@ -80,16 +80,18 @@ class RedditHover {
             /* We need the specific post ID to get JSON */
             /* Post ID should be 6 character alpha-numeric (base36) */
             const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
-            fetch(`https://api.reddit.com/api/info/?id=t3_${postId}`)
-                .then((res) => res.json())
-                .catch(err => console.warn('Could not parse Reddit JSON'))
-                .then((json) => {
-                    const generatedEmbed = RedditHover.redditJsonToHoverElem(json);
+
+            window.survolBackgroundRequest(`https://api.reddit.com/api/info/?id=t3_${postId}`)
+                .then((res) => {
+                    const generatedEmbed = RedditHover.redditJsonToHoverElem(res.data);
                     let postContainer = document.createElement('div');
-                    postContainer.className = 'survol-tooltiptext tooltiptext-reddit-post';
+                    postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
                     postContainer.appendChild(generatedEmbed);
                     this.boundNode.appendChild(postContainer);
                     this.boundNode.classList.add('survol-tooltip');
+                })
+                .catch((error) => {
+                    console.error('SURVOL - Background request failed', error);
                 });
         }
     }
@@ -98,8 +100,9 @@ class RedditHover {
     static redditJsonToHoverElem(redditJson) {
         let hasImage = false;
         let imageUrl = '';
+
         /* Actual post metadata should be first element */
-        const postData = redditJson.data.children[0].data;
+        const postData = redditJson.children[0].data;
         /* Extract image info */
         if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
             hasImage = true;
@@ -121,7 +124,7 @@ class RedditHover {
         const header = document.createElement('div');
         header.className = 'survol-reddit-top';
         header.innerText = `${postAuthor} --- ${stats.score} pts.`
-        /* post title / link */
+            /* post title / link */
         const link = document.createElement('a');
         link.className = 'survol-reddit-link';
         link.innerText = postTitle;

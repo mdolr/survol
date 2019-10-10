@@ -18,6 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
         CURRENT_TAB = document.location.href;
     };
 
+    /* <https://www.chromium.org/Home/chromium-security/extension-content-script-fetches>
+     * "Later in 2019, Extension Manifest V3 will become available, requiring cross-origin requests to occur in background pages rather than content scripts.  This new manifest version will have its own migration period, before support for Extension Manifest V2 is eventually removed from Chrome."
+     * Using the background script to pull data from APIs safely, i.e forwarding request from the content script to the background script
+     */
+    const background = chrome.runtime.connect();
+
+    window.survolBackgroundRequest = (url) => {
+        return new Promise((resolve, reject) => {
+            background.postMessage({ action: 'request', data: { url } });
+
+            background.onMessage.addListener((res) => {
+                (res.status.toLowerCase() != 'error') ? resolve(res.data): reject(res.data);
+            });
+        });
+    };
+
     /* Takes {String} link
      * Returns {String} link
      * Description: Returns the domain name associated to a full link
@@ -55,8 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let domain = getDomain(link);
 
         let potentialHover = getPotentialHover(node, domain);
-        console.log(potentialHover)
-            /* If we do not support the domain we might not get anything in return of getPotentialHover */
+        /* If we do not support the domain we might not get anything in return of getPotentialHover */
         if (potentialHover) {
             /* If the potentialHover can't handle the link feed it to the garbage collector */
             if (potentialHover.checkLinkType() == 'unknown') {

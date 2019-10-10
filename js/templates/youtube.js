@@ -40,7 +40,7 @@ class YoutubeHover {
             iframe.setAttribute('height', '315');
             iframe.setAttribute('src', `https://www.youtube-nocookie.com/embed/${this.redirectLink.split('watch?v=')[1].split('&')[0]}?rel=0`)
             iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+            iframe.setAttribute('allow', 'accelerometer; encrypted-media; gyroscope; picture-in-picture');
             iframe.setAttribute('allowfullscreen', true);
 
             container.appendChild(iframe);
