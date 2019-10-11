@@ -34,13 +34,14 @@
             ],
             "css": [
                 "css/base.css",
-                "css/templates/wikipedia.css"
+                "css/templates/wikipedia.css",
+                "css/templates/reddit.css"
             ],
             "run_at": "document_start"
         }
     ],
     "background": {
-        "scripts": []
+        "scripts": ["js/background/auxiliary.js"]
     },
     "browser_action": {
         "default_title": "Survol",

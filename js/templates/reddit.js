@@ -15,11 +15,11 @@ class RedditHover {
      * it can also delete the whole class if there is no point in having an embed.
      */
     checkLinkType() {
-
         /* As comments are the only thing implemented for now let's ignore the rest
         TODO : 
         - Implement users when on other sites
         - Implement discussions (couldn't get discussion embed code from reddit when I tried (bug?))
+        - Improve link detection for comments
         
         if (this.redirectLink.includes('/user/')) {
             return 'user';
@@ -27,8 +27,13 @@ class RedditHover {
             return 'post';
         } else */
 
-        if (this.redirectLink.replace('https://', '').split('/').length == 8 && !this.boundNode.classList.length && !this.redirectLink.includes('#')) {
+        /* Split by '/', but remove final empty string */
+        const urlChunks = this.redirectLink.replace('https://', '').split('/').filter(e => e !== '');
+        /* Comments have a 7-character unique ID, which is the last slash enclosed path part */
+        if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
             return 'comment';
+        } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
+            return 'post'
         } else {
             return 'unknown';
         }
@@ -42,7 +47,7 @@ class RedditHover {
              */
 
             let commentContainer = document.createElement('div');
-            commentContainer.className = 'tooltiptext';
+            commentContainer.className = 'survol-tooltiptext';
 
             /* This is a reconstitution of the reddit embed code when sharing a comment.*/
             let comment = document.createElement('div');
@@ -70,8 +75,80 @@ class RedditHover {
             /* Because for some reason embed code doesn't init itself directly when added dynamically, depends directly of reddit-comment-embed.js */
             window.rembeddit.init();
 
-            this.boundNode.classList.add('tooltip');
-            comment.classList.add('tooltiptext');
+            this.boundNode.classList.add('survol-tooltip');
+        } else if (this.linkType === 'post') {
+            /* We need the specific post ID to get JSON */
+            /* Post ID should be 6 character alpha-numeric (base36) */
+            const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
+
+            window.survolBackgroundRequest(`https://api.reddit.com/api/info/?id=t3_${postId}`)
+                .then((res) => {
+                    const generatedEmbed = RedditHover.redditJsonToHoverElem(res.data);
+                    let postContainer = document.createElement('div');
+                    postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
+                    postContainer.appendChild(generatedEmbed);
+                    this.boundNode.appendChild(postContainer);
+                    this.boundNode.classList.add('survol-tooltip');
+                })
+                .catch((error) => {
+                    console.error('SURVOL - Background request failed', error);
+                });
         }
+    }
+
+    /* Parse Reddit API JSON and construct preview embed */
+    static redditJsonToHoverElem(redditJson) {
+        let hasImage = false;
+        let imageUrl = '';
+
+        /* Actual post metadata should be first element */
+        const postData = redditJson.children[0].data;
+        /* Extract image info */
+        if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
+            hasImage = true;
+            imageUrl = postData.thumbnail;
+        }
+        /* Extract regular details */
+        const postTitle = postData.title;
+        const postLink = `https://www.reddit.com/${postData.permalink}`;
+        const postAuthor = postData.author;
+        const stats = {
+            score: postData.score,
+            numComments: postData.num_comments
+        };
+        const subReddit = postData.subreddit_name_prefixed;
+        /* Build embed HTML */
+        const container = document.createElement('div');
+        container.classList.add('survol-reddit-container');
+        /* Header - author and points */
+        const header = document.createElement('div');
+        header.className = 'survol-reddit-top';
+        header.innerText = `${postAuthor} --- ${stats.score} pts.`
+            /* post title / link */
+        const link = document.createElement('a');
+        link.className = 'survol-reddit-link';
+        link.innerText = postTitle;
+        link.setAttribute('href', postLink);
+        /* Image */
+        const image = document.createElement('img');
+        image.classList.add('survol-reddit-image');
+        image.setAttribute('src', imageUrl);
+        /* divider */
+        const divider = document.createElement('div');
+        divider.className = 'survol-divider';
+        /* Subreddit link */
+        const subredditLink = document.createElement('a');
+        subredditLink.className = 'survol-reddit-sublink';
+        subredditLink.setAttribute('href', `https://www.reddit.com/${subredditLink}`);
+        subredditLink.innerText = `${subReddit}`;
+        /* Build */
+        container.appendChild(header);
+        container.appendChild(link);
+        if (hasImage) {
+            container.appendChild(image);
+        }
+        container.appendChild(divider);
+        container.appendChild(subredditLink);
+        return container;
     }
 }

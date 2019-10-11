@@ -33,20 +33,19 @@ class YoutubeHover {
 
         if (this.linkType == 'video') {
             let container = document.createElement('div');
-            container.className = 'tooltiptext tooltiptext-youtube';
+            container.className = 'survol-tooltiptext survol-tooltiptext-youtube';
 
             let iframe = document.createElement('iframe');
             iframe.setAttribute('width', '560');
             iframe.setAttribute('height', '315');
             iframe.setAttribute('src', `https://www.youtube-nocookie.com/embed/${this.redirectLink.split('watch?v=')[1].split('&')[0]}?rel=0`)
             iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture');
+            iframe.setAttribute('allow', 'accelerometer; encrypted-media; gyroscope; picture-in-picture');
             iframe.setAttribute('allowfullscreen', true);
-            //youtube.innerHTML = `<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/${this.redirectLink.split('watch?v=')[1].split('&')[0]}?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 
             container.appendChild(iframe);
 
-            this.boundNode.classList.add('tooltip');
+            this.boundNode.classList.add('survol-tooltip');
             this.boundNode.appendChild(container);
         }
     }
