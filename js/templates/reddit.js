@@ -33,7 +33,7 @@ class RedditHover {
         if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
             return 'comment';
         } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
-            return 'post'
+            return 'post';
         } else {
             return 'unknown';
         }
@@ -81,7 +81,8 @@ class RedditHover {
             /* Post ID should be 6 character alpha-numeric (base36) */
             const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
 
-            window.survolBackgroundRequest(`https://api.reddit.com/api/info/?id=t3_${postId}`)
+            window
+                .survolBackgroundRequest(`https://api.reddit.com/api/info/?id=t3_${postId}`)
                 .then((res) => {
                     const generatedEmbed = RedditHover.redditJsonToHoverElem(res.data);
                     let postContainer = document.createElement('div');
@@ -102,7 +103,7 @@ class RedditHover {
         let imageUrl = '';
 
         /* Actual post metadata should be first element */
-        const postData = redditJson.children[0].data;
+        const postData = redditJson.data.children[0].data;
         /* Extract image info */
         if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
             hasImage = true;

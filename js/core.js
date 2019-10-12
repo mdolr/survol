@@ -21,15 +21,12 @@ document.addEventListener('DOMContentLoaded', () => {
     /* <https://www.chromium.org/Home/chromium-security/extension-content-script-fetches>
      * "Later in 2019, Extension Manifest V3 will become available, requiring cross-origin requests to occur in background pages rather than content scripts.  This new manifest version will have its own migration period, before support for Extension Manifest V2 is eventually removed from Chrome."
      * Using the background script to pull data from APIs safely, i.e forwarding request from the content script to the background script
+     * Direct asynchronous messaging, making it as a function to avoid having some request code across every file
      */
-    const background = chrome.runtime.connect();
-
     window.survolBackgroundRequest = (url) => {
         return new Promise((resolve, reject) => {
-            background.postMessage({ action: 'request', data: { url } });
-
-            background.onMessage.addListener((res) => {
-                (res.status.toLowerCase() != 'error') ? resolve(res.data): reject(res.data);
+            chrome.runtime.sendMessage({ action: 'request', data: { url } }, (res) => {
+                (res.status == 'OK') ? resolve(res): reject(res);
             });
         });
     };
@@ -56,6 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'youtube.com':
             case 'youtu.be':
                 return new YoutubeHover(node, getDomain(CURRENT_TAB));
+            case 'twitter.com':
+                return new TwitterHover(node, getDomain(CURRENT_TAB));
             default:
                 return null;
                 //return new BaseHover(node);

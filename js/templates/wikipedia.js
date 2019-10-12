@@ -31,8 +31,8 @@ class WikipediaHover {
 
         if (this.linkType == 'article') {
 
-            fetch(`https://${this.redirectLink.split('.wikipedia.org')[0].split('//')[1]}.wikipedia.org/api/rest_v1/page/summary/${this.redirectLink.split('/wiki/')[1]}`)
-                .then((res) => { return res.json(); })
+            window
+                .survolBackgroundRequest(`https://${this.redirectLink.split('.wikipedia.org')[0].split('//')[1]}.wikipedia.org/api/rest_v1/page/summary/${this.redirectLink.split('/wiki/')[1]}`)
                 .then((res) => {
                     let container = document.createElement('div');
                     container.className = 'survol-tooltiptext';
@@ -41,13 +41,13 @@ class WikipediaHover {
                     wikipediaContainer.className = 'survol-wikipedia-container';
 
                     /* If there is a thumbnail */
-                    if (res.thumbnail) {
+                    if (res.data.thumbnail) {
                         let wikipediaImageContainer = document.createElement('div');
                         wikipediaImageContainer.className = 'survol-wikipedia-image-container';
 
 
                         let image = document.createElement('img');
-                        image.src = res.thumbnail.source;
+                        image.src = res.data.thumbnail.source;
                         image.className = 'survol-wikipedia-image';
 
                         wikipediaImageContainer.appendChild(image);
@@ -58,7 +58,7 @@ class WikipediaHover {
                     textContainer.className = 'survol-wikipedia-text';
 
                     let text = document.createElement('p');
-                    text.appendChild(document.createTextNode(res.extract));
+                    text.appendChild(document.createTextNode(res.data.extract));
 
                     textContainer.appendChild(text);
                     wikipediaContainer.appendChild(textContainer);
@@ -68,8 +68,8 @@ class WikipediaHover {
                     container.appendChild(wikipediaContainer);
                     this.boundNode.appendChild(container);
                 })
-                .catch((error) => {
-                    console.log('[Error] Survol - Wikipedia.js - Can\'t fetch API.', this, error);
+                .catch((res) => {
+                    console.log('[Error] Survol - Wikipedia.js - Can\'t fetch API.', res);
                 });
         }
     }
