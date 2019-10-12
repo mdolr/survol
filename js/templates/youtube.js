@@ -13,7 +13,9 @@ class YoutubeHover {
      * it can also delete the whole class if there is no point in having an embed.
      */
     checkLinkType() {
-        if (this.CURRENT_TAB != 'youtube.com' && (this.redirectLink.includes('/watch?v=') || this.redirectLink.includes('youtu.be'))) {
+
+        if ((this.CURRENT_TAB != 'youtube.com' && (this.redirectLink.includes('/watch?v=')) || (this.CURRENT_TAB != 'youtube.com' && this.redirectLink.includes('youtu.be')))) {
+
             if (this.redirectLink.includes('youtu.be')) {
                 this.redirectLink = `https://youtube.com/watch?v=${this.redirectLink.split('youtu.be/')[1].replace('?','&')}`
             }
