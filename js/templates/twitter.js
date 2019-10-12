@@ -6,6 +6,7 @@ class TwitterHover {
         this.redirectLink = node.href;
         this.CURRENT_TAB = CURRENT_TAB;
         this.linkType = this.checkLinkType();
+        this.parser = new DOMParser();
     }
 
     /* Description: This function is unique to every Hover class,
@@ -22,7 +23,6 @@ class TwitterHover {
 
             /* TODO :
              * - Handle embeds
-             * - Add tweet date
              * - Get a way to display profile picture etc (i.e: generate tweet like a normal embed would do)
              * - Clean the CSS to make
              */
@@ -34,6 +34,11 @@ class TwitterHover {
                     const { author_name: tweetAuthorName, author_url, html } = data;
                     const tweetAuthorUsername = author_url.split('twitter.com/')[1];
                     const tweetContent = html.split('dir="ltr">')[1].split('</p>')[0];
+                    const htmlDoc = this.parser.parseFromString(html, 'text/html');
+
+                    // Get the date and converting it to default locale date (depending on user's computer locale)
+                    const htmlDocDate = htmlDoc.getElementsByTagName('a')[1].text;
+                    const tweetDate = new Date(htmlDocDate).toLocaleDateString(undefined, {dateStyle: 'long'});
 
                     // Create div content
                     let tweetContainer = document.createElement('div');
@@ -61,6 +66,10 @@ class TwitterHover {
                     let linkContainer = document.createElement('div');
                     linkContainer.className = 'survol-twitter-source';
 
+                    let date = document.createElement('span');
+                    date.className = 'survol-twitter-date';
+                    date.appendChild(document.createTextNode(tweetDate)); 
+
                     let link = document.createElement('a');
                     link.setAttribute('src', this.redirectLink);
                     link.appendChild(document.createTextNode('Tweet on twitter.com'));
@@ -69,6 +78,7 @@ class TwitterHover {
 
                     container.appendChild(author);
                     container.appendChild(content);
+                    container.appendChild(date);
                     container.appendChild(linkContainer);
 
                     this.boundNode.classList.add('survol-tooltip');
