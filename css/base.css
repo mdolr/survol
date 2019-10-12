@@ -22,7 +22,6 @@
 }
 
 .survol-tooltiptext-reddit-post {
-    background-color: white;
     max-width: 350px;
     height: auto;
 }
@@ -40,7 +39,7 @@
 }
 
 .survol-divider {
-    background-color: grey;
+    background-color:lightgrey;
     width: 100%;
     height: 1px;
     margin-bottom: 4px;

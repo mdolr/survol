@@ -2,13 +2,68 @@
     box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
     height: auto;
     text-align: center;
+    background-color: white;
     /* Remove if you remove the padding-right on the container above */
-    width: calc(100% + 20px);
+    width: calc(100% + 80px);
+    padding-top: 5%;  
 }
 
-.survol-reddit-top, .survol-reddit-sublink {
+p {
+    padding-bottom: 20px;
+    text-align: left;
+    display: block;
+}
+
+.survol-reddit-top, .survol-reddit-post-details {
+    padding-top: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 20px;
     color: grey;
-    text-align: center;
+    display: inline;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    font-size: 11px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+}
+
+.survol-reddit-footer-element{
+    padding-top: 20px;
+    color: black;
+    text-decoration: none;
+    vertical-align: top;
+}
+
+.survol-reddit-post-title{
+    color: black;
+    text-align: justify;
+    font-size: 17px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+} 
+
+.survol-reddit-author{
+    padding-left: 5px;
+    font-size: 13px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.survol-reddit-logo {
+    padding-left: 10px;
+    width: 45px;
+    height: 45px;
+    float: left;
+    vertical-align: text-top;
+}
+
+.survol-reddit-dot{
+    height: 3px;
+    width: 3px;
+    background-color: grey;
+    border-radius: 50%;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .survol-reddit-image {
@@ -16,7 +71,7 @@
     width: auto;
     margin: auto;
     display: block;
-    padding: 8px;
+    padding: 15px;
     border-radius: 10px;
 }
 
@@ -25,7 +80,7 @@
     min-height: 40px;
 }
 
-.survol-reddit-text p {
+.survol-reddit-text {
     margin: 8px;
     color: rgb(0, 0, 0)!important;
     text-align: justify!important;
