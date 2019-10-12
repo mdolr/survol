@@ -6,8 +6,8 @@ class RedditHover {
     constructor(node, CURRENT_TAB) {
         this.boundNode = node;
         this.redirectLink = node.href;
-        this.linkType = this.checkLinkType();
         this.CURRENT_TAB = CURRENT_TAB;
+        this.linkType = this.checkLinkType();
     }
 
     /* Description: This function is unique to every Hover class,
@@ -16,24 +16,26 @@ class RedditHover {
      */
     checkLinkType() {
         /* As comments are the only thing implemented for now let's ignore the rest
-        TODO : 
-        - Implement users when on other sites
-        - Implement discussions (couldn't get discussion embed code from reddit when I tried (bug?))
-        - Improve link detection for comments
-        
-        if (this.redirectLink.includes('/user/')) {
-            return 'user';
-        } else if (this.redirectLink.replace('https://', '').split('/').length == 7 && !this.boundNode.classList.length && !this.redirectLink.includes('#')) {
-            return 'post';
-        } else */
+         * TODO : 
+         * - Implement users when on other sites
+         * - Implement discussions (couldn't get discussion embed code from reddit when I tried (bug?))
+         * - Improve link detection for comments
+         */
 
-        /* Split by '/', but remove final empty string */
-        const urlChunks = this.redirectLink.replace('https://', '').split('/').filter(e => e !== '');
-        /* Comments have a 7-character unique ID, which is the last slash enclosed path part */
-        if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
-            return 'comment';
-        } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
-            return 'post';
+        /* Due to lags because of the number of self referencing links on reddit */
+        if ((this.CURRENT_TAB == 'reddit.com' && this.boundNode.classList.length == 0 && !this.boundNode.href.includes('#')) || this.CURRENT_TAB != 'reddit.com') {
+
+            /* Split by '/', but remove final empty string */
+            const urlChunks = this.redirectLink.replace('https://', '').split('/').filter(e => e !== '');
+            /* Comments have a 7-character unique ID, which is the last slash enclosed path part */
+            if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
+                return 'comment';
+            } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
+                return 'post';
+            } else {
+                return 'unknown';
+            }
+
         } else {
             return 'unknown';
         }
