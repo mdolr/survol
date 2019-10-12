@@ -23,19 +23,42 @@ class TwitterHover {
     bindToNode() {
         if (this.linkType == 'tweet') {
 
-            let tweetContainer = document.createElement('div');
-            tweetContainer.className = 'tooltiptext';
+            /* TODO :
+             * - Handle embeds
+             * - Add tweet date
+             * - Get a way to display profile picture etc (i.e: generate tweet like a normal embed would do)
+             * - Clean the CSS to make
+             */
 
-            let tweet = document.createElement('div');
-            tweet.innerHTML = `<blockquote class="twitter-tweet"><p lang="fr" dir="ltr"></p>&mdash; (@${this.redirectLink.split('/')[3]}) <a href="${this.redirectLink}"></a></blockquote>`;
+            window
+                .survolBackgroundRequest(`https://publish.twitter.com/oembed?url=${this.redirectLink}`)
+                .then((res) => {
+                    let tweetContainer = document.createElement('div');
+                    tweetContainer.className = 'survol-tooltiptext survol-tweet';
 
-            this.boundNode.classList.add('tooltip');
+                    let container = document.createElement('blockquote');
+                    container.className = 'twitter-tweet';
 
-            tweetContainer.appendChild(tweet);
-            this.boundNode.appendChild(tweetContainer);
+                    let tweetContent = document.createElement('p');
+                    tweetContent.setAttribute('lang', 'en');
+                    tweetContent.setAttribute('dir', 'ltr');
+                    tweetContent.appendChild(document.createTextNode(res.data.html.split('dir="ltr">')[1].split('</p>')[0]));
 
-            /* Can't find a way to load tweets that works while using twttr lib as a content script for now */
+                    /*let link = document.createElement('a');
+                    link.setAttribute('src', this.redirectLink);
+                    link.appendChild(document.createTextNode('date));*/
+
+                    container.appendChild(tweetContent);
+                    container.appendChild(document.createTextNode(`${res.data.author_name} - (@${res.data.author_url.split('twitter.com/')[1]})`));
+                    //container.appendChild(link);
+
+                    this.boundNode.classList.add('survol-tooltip');
+
+                    tweetContainer.appendChild(container);
+                    this.boundNode.appendChild(tweetContainer);
+                })
+                .catch(console.error);
+
         }
-
     }
 }
