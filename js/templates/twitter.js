@@ -4,8 +4,8 @@ class TwitterHover {
     constructor(node, CURRENT_TAB) {
         this.boundNode = node;
         this.redirectLink = node.href;
-        this.linkType = this.checkLinkType();
         this.CURRENT_TAB = CURRENT_TAB;
+        this.linkType = this.checkLinkType();
     }
 
     /* Description: This function is unique to every Hover class,
@@ -13,11 +13,8 @@ class TwitterHover {
      * it can also delete the whole class if there is no point in having an embed.
      */
     checkLinkType() {
-        if (this.CURRENT_TAB == 'twitter.com') {
-            return 'unknown';
-        } else if (this.redirectLink.includes('/status/')) {
-            return 'tweet';
-        }
+        if (this.CURRENT_TAB == 'twitter.com') return 'unknown';
+        else if (this.redirectLink.includes('/status/')) return 'tweet';
     }
 
     bindToNode() {
@@ -32,25 +29,47 @@ class TwitterHover {
 
             window
                 .survolBackgroundRequest(`https://publish.twitter.com/oembed?url=${this.redirectLink}`)
-                .then((res) => {
+                .then(({ data }) => {
+                    // Get and clean 
+                    const { author_name: tweetAuthorName, author_url, html } = data;
+                    const tweetAuthorUsername = author_url.split('twitter.com/')[1];
+                    const tweetContent = html.split('dir="ltr">')[1].split('</p>')[0];
+
+                    // Create div content
                     let tweetContainer = document.createElement('div');
-                    tweetContainer.className = 'survol-tooltiptext survol-tweet';
+                    tweetContainer.className = 'survol-tooltiptext';
 
-                    let container = document.createElement('blockquote');
-                    container.className = 'twitter-tweet';
+                    let container = document.createElement('div');
+                    container.className = 'survol-twitter-container';
 
-                    let tweetContent = document.createElement('p');
-                    tweetContent.setAttribute('lang', 'en');
-                    tweetContent.setAttribute('dir', 'ltr');
-                    tweetContent.appendChild(document.createTextNode(res.data.html.split('dir="ltr">')[1].split('</p>')[0]));
+                    let name = document.createElement('b');
+                    name.appendChild(document.createTextNode(tweetAuthorName));
 
-                    /*let link = document.createElement('a');
+                    let twitterAt = document.createElement('span');
+                    twitterAt.className = 'survol-twitter-at';
+                    twitterAt.appendChild(document.createTextNode(` @${tweetAuthorUsername}`));
+
+                    let author = document.createElement('div');
+                    author.className = 'survol-twitter-author';
+                    author.appendChild(name);
+                    author.appendChild(twitterAt);
+
+                    let content = document.createElement('div');
+                    content.className = 'survol-twitter-content';
+                    content.appendChild(document.createTextNode(tweetContent));
+
+                    let linkContainer = document.createElement('div');
+                    linkContainer.className = 'survol-twitter-source';
+
+                    let link = document.createElement('a');
                     link.setAttribute('src', this.redirectLink);
-                    link.appendChild(document.createTextNode('date));*/
+                    link.appendChild(document.createTextNode('Tweet on twitter.com'));
 
-                    container.appendChild(tweetContent);
-                    container.appendChild(document.createTextNode(`${res.data.author_name} - (@${res.data.author_url.split('twitter.com/')[1]})`));
-                    //container.appendChild(link);
+                    linkContainer.appendChild(link);
+
+                    container.appendChild(author);
+                    container.appendChild(content);
+                    container.appendChild(linkContainer);
 
                     this.boundNode.classList.add('survol-tooltip');
 
