@@ -2,3 +2,14 @@
     background-color: rgba(21, 32, 43, 1);
     border-radius: 10px;
 }
+#tweeter{
+    max-width: 520px;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    border-radius: 5px;
+    font: normal normal 16px/1.4 Helvetica,Roboto,"Segoe UI",Calibri,sans-serif;
+    color: #1c2022;
+    white-space: initial;
+}

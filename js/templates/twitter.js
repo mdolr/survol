@@ -35,21 +35,26 @@ class TwitterHover {
                 .then((res) => {
                     let tweetContainer = document.createElement('div');
                     tweetContainer.className = 'survol-tooltiptext survol-tweet';
-
+                    tweetContainer.id = "tweeter"
                     let container = document.createElement('blockquote');
                     container.className = 'twitter-tweet';
 
                     let tweetContent = document.createElement('p');
                     tweetContent.setAttribute('lang', 'en');
                     tweetContent.setAttribute('dir', 'ltr');
-                    tweetContent.appendChild(document.createTextNode(res.data.html.split('dir="ltr">')[1].split('</p>')[0]));
+                    // tweetContent.appendChild(document.createTextNode(res.data.html.split('dir="ltr">')[1].split('</p>')[0]));
+                    
+                    // innerHTML to make a tag as link
+                    tweetContent.innerHTML=res.data.html.split('dir="ltr">')[1].split('</p>')[0];
 
                     /*let link = document.createElement('a');
                     link.setAttribute('src', this.redirectLink);
                     link.appendChild(document.createTextNode('date));*/
 
                     container.appendChild(tweetContent);
-                    container.appendChild(document.createTextNode(`${res.data.author_name} - (@${res.data.author_url.split('twitter.com/')[1]})`));
+                    // container.appendChild(document.createTextNode(`${res.data.author_name} - (@${res.data.author_url.split('twitter.com/')[1]})`));
+                    
+                    container.insertAdjacentHTML('beforeend',`${res.data.author_name} - (@${res.data.author_url.split('twitter.com/')[1]})` )
                     //container.appendChild(link);
 
                     this.boundNode.classList.add('survol-tooltip');
