@@ -11,12 +11,10 @@ document.addEventListener('DOMContentLoaded', () => {
      * embed shown while hovering on certain site as some already have hovering functions for profiles 
      * (ex: reddit profiles on reddit)
      */
-    var CURRENT_TAB = document.location.href;
+    let CURRENT_TAB = document.location.href;
 
     /* Just in case some sites use the pushState js function to navigate across pages. */
-    window.onpopstate = () => {
-        CURRENT_TAB = document.location.href;
-    };
+    window.onpopstate = () => CURRENT_TAB = document.location.href;
 
     /* <https://www.chromium.org/Home/chromium-security/extension-content-script-fetches>
      * "Later in 2019, Extension Manifest V3 will become available, requiring cross-origin requests to occur in background pages rather than content scripts.  This new manifest version will have its own migration period, before support for Extension Manifest V2 is eventually removed from Chrome."
@@ -36,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
      * Description: Returns the domain name associated to a full link
      */
     function getDomain(link) {
-        let subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
+        const subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
+
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
 
@@ -67,20 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
      * {String} link
      */
     function dispatcher(node, link) {
-        let domain = getDomain(link);
-
+        const domain = getDomain(link);
         let potentialHover = getPotentialHover(node, domain);
+
         /* If we do not support the domain we might not get anything in return of getPotentialHover */
         if (potentialHover) {
+            
             /* If the potentialHover can't handle the link feed it to the garbage collector */
-            if (potentialHover.checkLinkType() == 'unknown') {
-                potentialHover = null;
-            }
+            if (potentialHover.checkLinkType() === 'unknown') potentialHover = null;
 
             /* Else bind it */
-            else {
-                potentialHover.bindToNode();
-            }
+            else potentialHover.bindToNode();
         }
     }
 
@@ -103,9 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function equipNodes(nodes) {
         return new Promise((resolve, reject) => {
             nodes.forEach((node) => {
-                if (node.href) {
-                    dispatcher(node, node.href);
-                }
+                if (node.href) dispatcher(node, node.href);
             });
         });
     }
