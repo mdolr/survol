@@ -34,10 +34,10 @@ class TwitterHover {
                     const { author_name: tweetAuthorName, author_url, html } = data;
                     const tweetAuthorUsername = author_url.split('twitter.com/')[1];
                     const tweetContent = html.split('dir="ltr">')[1].split('</p>')[0];
-                    const htmlDoc = this.parser.parseFromString(html, "text/html");
+                    const htmlDoc = this.parser.parseFromString(html, 'text/html');
 
                     // Get the date and converting it to default locale date (depending on user's computer locale)
-                    const htmlDocDate = htmlDoc.getElementsByTagName('a')[1].text
+                    const htmlDocDate = htmlDoc.getElementsByTagName('a')[1].text;
                     const tweetDate = new Date(htmlDocDate).toLocaleDateString(undefined, {dateStyle: 'long'});
 
                     // Create div content
