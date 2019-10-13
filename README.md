@@ -2,6 +2,12 @@
 
 A **browser extension** to preview links in an instant!
 
+<div align="center">
+  <a href="https://github.com/mdolr/survol/blob/master/LICENSE">
+    <img alt="GitHub" src="https://img.shields.io/github/license/mdolr/survol?style=flat-square">
+  </a>
+</div>
+
 ## Install
 ### Public version
 Not yet available
