@@ -99,10 +99,29 @@ class RedditHover {
         }
     }
 
+    // postData.created_utc = timestamp
+    static timeSinceCreation(timestamp) {
+        let secondsSinceCreation = Math.floor(Date.now() / 1000) - timestamp;
+
+        if (secondsSinceCreation < 60) {
+            return { time: secondsSinceCreation, unit: 'seconds' };
+        } else if (secondsSinceCreation < 60 * 60) {
+            return { time: Math.floor(secondsSinceCreation / 60), unit: 'minutes' };
+        } else if (secondsSinceCreation < 60 * 60 * 24) {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60), unit: 'hours' };
+        } else if (secondsSinceCreation < 60 * 60 * 24 * 30) {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60 / 24), unit: 'days' };
+        } else if (secondsSinceCreation < 60 * 60 * 24 * 365) {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60 / 24 / 30), unit: 'months' };
+        } else {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60 / 24 / 365 * 10) / 10, unit: 'years' };
+        }
+    }
+
     /* Parse Reddit API JSON and construct preview embed */
     static redditJsonToHoverElem(redditJson) {
         let postData = redditJson.data.children[0].data;
-        console.log(postData);
+
         let container = document.createElement('div');
         container.classList.add('survol-reddit-container');
 
@@ -145,49 +164,20 @@ class RedditHover {
         //score.className = 'survol-reddit-post-details';
         let upvoteImage = document.createElement('img');
         upvoteImage.src = chrome.extension.getURL('images/upvote.png');
-        upvoteImage.style.height = "1em";
+        upvoteImage.className = 'survol-reddit-upvote-icon';
+
         scoreCommentDisplay.appendChild(upvoteImage);
-        scoreCommentDisplay.appendChild(document.createTextNode(`${postData.score} `));
+        scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.score} `));
 
         let commentImage = document.createElement('img');
         commentImage.src = chrome.extension.getURL('images/comment.png');
-        commentImage.style.top = '2px';
-        commentImage.style.height = '1em';
-        commentImage.style.position = 'relative';
-        commentImage.style.top = '2px';
-        scoreCommentDisplay.appendChild(commentImage);
-        scoreCommentDisplay.appendChild(document.createTextNode(`${postData.num_comments}`));
+        commentImage.className = 'survol-reddit-comment-icon';
 
-        let br = document.createElement('br');
+        scoreCommentDisplay.appendChild(commentImage);
+        scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.num_comments}`));
+
         //  const postLink = `https://www.reddit.com/${postData.permalink}`;
 
-        let secondsSinceCreation = Math.floor(Date.now()/1000) - postData.created_utc;
-        let timeSinceCreation = '';
-        let unit = "";
-        if(secondsSinceCreation < 60){
-            timeSinceCreation = secondsSinceCreation;
-            unit = "seconds";
-        }else if(secondsSinceCreation < 60*60){
-            timeSinceCreation = Math.floor(secondsSinceCreation/60);
-            unit = "minutes";
-        }else if(secondsSinceCreation < 60*60*24){
-            timeSinceCreation = Math.floor(secondsSinceCreation/60/60);
-            unit = "hours";
-        }else if(secondsSinceCreation < 60*60*24*30){
-            timeSinceCreation = Math.floor(secondsSinceCreation/60/60/24)
-            unit = "days";
-        }else if(secondsSinceCreation < 60*60*24*365){
-            timeSinceCreation = Math.floor(secondsSinceCreation/60/60/24/30)
-            unit = "months";
-        }else{
-            timeSinceCreation = Math.floor(secondsSinceCreation/60/60/24/365*10)/10
-            unit = "years";
-        }
-        
-        if(timeSinceCreation == 1){
-            unit = unit.substr(0, unit.length-1);
-        }
-        
         // if thumbnail append thumnail
         if (postData.thumbnail != 'self') {
             container.appendChild(image);
@@ -210,12 +200,17 @@ class RedditHover {
         postDetails.appendChild(document.createElement('br'));
         postDetails.appendChild(subredditLink);
         postDetails.appendChild(scoreCommentDisplay);
-        postDetails.appendChild(document.createTextNode(timeSinceCreation + ' ' + unit + ' ago'));
+
+        let ago = this.timeSinceCreation(postData.created_utc);
+
+        if (ago.time == 1) {
+            ago.unit = ago.unit.substr(0, unit.length - 1);
+        }
+
+        postDetails.appendChild(document.createTextNode(ago.time + ' ' + ago.unit + ' ago'));
 
         footer.appendChild(postDetails);
         container.appendChild(footer);
-        
-        console.log(postData);
 
         return container;
     }
