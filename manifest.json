@@ -45,5 +45,10 @@
     "browser_action": {
         "default_title": "Survol",
         "default_popup": ""
-    }
+    },
+    "web_accessible_resources": [
+        "images/upvote.png",
+        "images/comment.png",
+        "images/reddit.png"
+    ]
 }

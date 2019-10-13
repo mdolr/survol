@@ -99,10 +99,29 @@ class RedditHover {
         }
     }
 
+    // postData.created_utc = timestamp
+    static timeSinceCreation(timestamp) {
+        let secondsSinceCreation = Math.floor(Date.now() / 1000) - timestamp;
+
+        if (secondsSinceCreation < 60) {
+            return { time: secondsSinceCreation, unit: 'seconds' };
+        } else if (secondsSinceCreation < 60 * 60) {
+            return { time: Math.floor(secondsSinceCreation / 60), unit: 'minutes' };
+        } else if (secondsSinceCreation < 60 * 60 * 24) {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60), unit: 'hours' };
+        } else if (secondsSinceCreation < 60 * 60 * 24 * 30) {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60 / 24), unit: 'days' };
+        } else if (secondsSinceCreation < 60 * 60 * 24 * 365) {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60 / 24 / 30), unit: 'months' };
+        } else {
+            return { time: Math.floor(secondsSinceCreation / 60 / 60 / 24 / 365 * 10) / 10, unit: 'years' };
+        }
+    }
+
     /* Parse Reddit API JSON and construct preview embed */
     static redditJsonToHoverElem(redditJson) {
         let postData = redditJson.data.children[0].data;
-        console.log(postData);
+
         let container = document.createElement('div');
         container.classList.add('survol-reddit-container');
 
@@ -125,28 +144,39 @@ class RedditHover {
 
         let subredditLink = document.createElement('a');
         //subredditLink.setAttribute('href', `https://www.reddit.com/r/${postData.subreddit}`);
-        subredditLink.appendChild(document.createTextNode(` on /${postData.subreddit_name_prefixed}`));
+        let subredditLinkBold = document.createElement('b');
+        subredditLinkBold.appendChild(document.createTextNode(`/${postData.subreddit_name_prefixed}`));
+        subredditLink.appendChild(document.createTextNode(`In `));
+        subredditLink.appendChild(subredditLinkBold);
 
         let redditLogo = document.createElement('img');
-        redditLogo.src = '../images/reddit.png';
+        redditLogo.src = chrome.extension.getURL('images/reddit.png');
         redditLogo.className = 'survol-reddit-logo';
 
         let author = document.createElement('span');
         author.className = 'survol-reddit-author';
-        author.appendChild(document.createTextNode(`Posted by u/${postData.author}`));
+        author.appendChild(document.createTextNode(`Posted by `));
+        let authorBold = document.createElement('b');
+        authorBold.appendChild(document.createTextNode(`u/${postData.author}`));
+        author.appendChild(authorBold);
 
-        let score = document.createElement('div');
+        let scoreCommentDisplay = document.createElement('div');
         //score.className = 'survol-reddit-post-details';
-        score.appendChild(document.createTextNode(`${postData.score} points`));
+        let upvoteImage = document.createElement('img');
+        upvoteImage.src = chrome.extension.getURL('images/upvote.png');
+        upvoteImage.className = 'survol-reddit-upvote-icon';
 
-        let commentCount = document.createElement('div');
-        //commentCount.className = 'survol-reddit-post-details';
-        commentCount.appendChild(document.createTextNode(`${postData.num_comments} comments`));
+        scoreCommentDisplay.appendChild(upvoteImage);
+        scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.score} `));
 
-        let br = document.createElement('br');
+        let commentImage = document.createElement('img');
+        commentImage.src = chrome.extension.getURL('images/comment.png');
+        commentImage.className = 'survol-reddit-comment-icon';
+
+        scoreCommentDisplay.appendChild(commentImage);
+        scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.num_comments}`));
+
         //  const postLink = `https://www.reddit.com/${postData.permalink}`;
-
-
 
         // if thumbnail append thumnail
         if (postData.thumbnail != 'self') {
@@ -167,9 +197,17 @@ class RedditHover {
         footer.appendChild(title);
 
         postDetails.appendChild(author);
+        postDetails.appendChild(document.createElement('br'));
         postDetails.appendChild(subredditLink);
-        postDetails.appendChild(score);
-        postDetails.appendChild(commentCount);
+        postDetails.appendChild(scoreCommentDisplay);
+
+        let ago = this.timeSinceCreation(postData.created_utc);
+
+        if (ago.time == 1) {
+            ago.unit = ago.unit.substr(0, unit.length - 1);
+        }
+
+        postDetails.appendChild(document.createTextNode(ago.time + ' ' + ago.unit + ' ago'));
 
         footer.appendChild(postDetails);
         container.appendChild(footer);
