@@ -5,8 +5,8 @@ class WikipediaHover {
     constructor(node, CURRENT_TAB) {
         this.boundNode = node;
         this.redirectLink = node.href;
-        this.linkType = this.checkLinkType();
         this.CURRENT_TAB = CURRENT_TAB;
+        this.linkType = this.checkLinkType();
     }
 
     /* Description: This function is unique to every Hover class,

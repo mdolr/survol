@@ -4,8 +4,8 @@ class YoutubeHover {
     constructor(node, CURRENT_TAB) {
         this.boundNode = node;
         this.redirectLink = node.href;
-        this.linkType = this.checkLinkType();
         this.CURRENT_TAB = CURRENT_TAB;
+        this.linkType = this.checkLinkType();
     }
 
     /* Description: This function is unique to every Hover class,
@@ -13,9 +13,7 @@ class YoutubeHover {
      * it can also delete the whole class if there is no point in having an embed.
      */
     checkLinkType() {
-
-        if ((this.CURRENT_TAB != 'youtube.com' && (this.redirectLink.includes('/watch?v=')) || (this.CURRENT_TAB != 'youtube.com' && this.redirectLink.includes('youtu.be')))) {
-
+        if (this.CURRENT_TAB != 'youtube.com' && (this.redirectLink.includes('/watch?v=') || this.redirectLink.includes('youtu.be'))) {
             if (this.redirectLink.includes('youtu.be')) {
                 this.redirectLink = `https://youtube.com/watch?v=${this.redirectLink.split('youtu.be/')[1].replace('?','&')}`
             }

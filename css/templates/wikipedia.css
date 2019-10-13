@@ -18,6 +18,7 @@
     padding: 0px!important;
     width: 320px;
     margin: 0px!important;
+    border-radius: 12px;
 }
 
 .survol-wikipedia-image {
@@ -26,6 +27,8 @@
     overflow-x: hidden;
     overflow-y: hidden;
     height: 240px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
 }
 
 .survol-wikipedia-text {
