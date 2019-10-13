@@ -101,92 +101,79 @@ class RedditHover {
 
     /* Parse Reddit API JSON and construct preview embed */
     static redditJsonToHoverElem(redditJson) {
-        let hasImage = false;
-        let imageUrl = '';
-
-        /* Actual post metadata should be first element */
-        const postData = redditJson.data.children[0].data;
-        /* Extract image info */
-        if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
-            hasImage = true;
-            imageUrl = postData.thumbnail;
-        }
-        /* Extract regular details */
-        const postTitle = postData.title;
-        const postLink = `https://www.reddit.com/${postData.permalink}`;
-        const postAuthor = postData.author;
-        const stats = {
-            score: postData.score,
-            numComments: postData.num_comments
-        };
-        const subReddit = postData.subreddit_name_prefixed;
-        /* Build embed HTML */
-        const container = document.createElement('div');
+        let postData = redditJson.data.children[0].data;
+        console.log(postData);
+        let container = document.createElement('div');
         container.classList.add('survol-reddit-container');
-        /* post title / link */
-        const title = document.createElement('a');
+
+        let title = document.createElement('b');
         title.className = 'survol-reddit-post-title';
-        title.href = postLink;
-        title.appendChild(document.createTextNode(postTitle));
-        /* Image */
-        const image = document.createElement('img');
+        title.appendChild(document.createTextNode(postData.title));
+
+        let image = document.createElement('img');
         image.classList.add('survol-reddit-image');
-        image.setAttribute('src', imageUrl);
-        /* divider */
-        const divider = document.createElement('div');
+        image.setAttribute('src', postData.thumbnail);
+
+        let divider = document.createElement('div');
         divider.className = 'survol-divider';
-        /* footer */
-        const footer = document.createElement('p');
-        /* post details and stats */
-        const postDetails = document.createElement('span');
-        postDetails.className = 'survol-reddit-footer-element';
-        /* Subreddit link */
-        const subredditLink = document.createElement('a');
-        subredditLink.className = 'survol-reddit-post-details';
-        subredditLink.setAttribute('href', `https://www.reddit.com/${subredditLink}`);
-        subredditLink.innerText = `${subReddit}`;
-        /* Reddit logo */
-        const redditLogo = document.createElement('img');
+
+        let footer = document.createElement('div');
+        footer.className = 'survol-reddit-footer';
+
+        let postDetails = document.createElement('span');
+        postDetails.className = 'survol-reddit-post-details';
+
+        let subredditLink = document.createElement('a');
+        //subredditLink.setAttribute('href', `https://www.reddit.com/r/${postData.subreddit}`);
+        subredditLink.appendChild(document.createTextNode(` on /${postData.subreddit_name_prefixed}`));
+
+        let redditLogo = document.createElement('img');
         redditLogo.src = '../images/reddit.png';
         redditLogo.className = 'survol-reddit-logo';
-        /* Post author */
-        const author = document.createElement('span');
-        author.classList.add('survol-reddit-footer-element','survol-reddit-author');
-        author.innerText = `${postAuthor}`;
-        /* First dot in post details */
-        const dot1 = document.createElement('span');
-        dot1.className = 'survol-reddit-dot';
-        /* second dot in post details */
-        const dot2 = document.createElement('span');
-        dot2.className = 'survol-reddit-dot';
-        /* score of post */
-        const score = document.createElement('div');
-        score.className = 'survol-reddit-post-details';
-        score.innerText = `${stats.score} points`;
-        /* comment count of post */
-        const commentCount = document.createElement('div');
-        commentCount.className = 'survol-reddit-post-details';
-        commentCount.innerText = `${stats.numComments} comments`;
-        /* line break between the two lines in post details */
-        const breaker = document.createElement('br');
-        
-        /* Build */
-        //container.appendChild(header);
-        container.appendChild(title);
-        if (hasImage) {
+
+        let author = document.createElement('span');
+        author.className = 'survol-reddit-author';
+        author.appendChild(document.createTextNode(`Posted by u/${postData.author}`));
+
+        let score = document.createElement('div');
+        //score.className = 'survol-reddit-post-details';
+        score.appendChild(document.createTextNode(`${postData.score} points`));
+
+        let commentCount = document.createElement('div');
+        //commentCount.className = 'survol-reddit-post-details';
+        commentCount.appendChild(document.createTextNode(`${postData.num_comments} comments`));
+
+        let br = document.createElement('br');
+        //  const postLink = `https://www.reddit.com/${postData.permalink}`;
+
+
+
+        // if thumbnail append thumnail
+        if (postData.thumbnail != 'self') {
             container.appendChild(image);
         }
+
+        // else append post content
+        else {
+            let text = document.createElement('p');
+            text.className = 'survol-reddit-selftext';
+            text.appendChild(document.createTextNode(postData.selftext));
+            container.appendChild(text);
+        }
+
         container.appendChild(divider);
+
         footer.appendChild(redditLogo);
-        footer.appendChild(author);
-        footer.appendChild(breaker);
+        footer.appendChild(title);
+
+        postDetails.appendChild(author);
         postDetails.appendChild(subredditLink);
-        postDetails.appendChild(dot1);
         postDetails.appendChild(score);
-        postDetails.append(dot2);
         postDetails.appendChild(commentCount);
+
         footer.appendChild(postDetails);
         container.appendChild(footer);
+
         return container;
     }
 }
