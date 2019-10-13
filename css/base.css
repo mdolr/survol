@@ -10,7 +10,6 @@
     display: none!important;
     color: #fff;
     text-align: center;
-    padding-right: 20px!important;
     /* Position the tooltip */
     position: absolute!important;
     z-index: 16777271!important;
@@ -39,8 +38,7 @@
 }
 
 .survol-divider {
-    background-color:lightgrey;
+    background-color: lightgrey;
     width: 100%;
     height: 1px;
-    margin-bottom: 4px;
 }
