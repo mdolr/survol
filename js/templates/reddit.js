@@ -101,57 +101,79 @@ class RedditHover {
 
     /* Parse Reddit API JSON and construct preview embed */
     static redditJsonToHoverElem(redditJson) {
-        let hasImage = false;
-        let imageUrl = '';
-
-        /* Actual post metadata should be first element */
-        const postData = redditJson.data.children[0].data;
-        /* Extract image info */
-        if (typeof (postData.thumbnail) === 'string' && postData.thumbnail.length > 0) {
-            hasImage = true;
-            imageUrl = postData.thumbnail;
-        }
-        /* Extract regular details */
-        const postTitle = postData.title;
-        const postLink = `https://www.reddit.com/${postData.permalink}`;
-        const postAuthor = postData.author;
-        const stats = {
-            score: postData.score,
-            numComments: postData.num_comments
-        };
-        const subReddit = postData.subreddit_name_prefixed;
-        /* Build embed HTML */
-        const container = document.createElement('div');
+        let postData = redditJson.data.children[0].data;
+        console.log(postData);
+        let container = document.createElement('div');
         container.classList.add('survol-reddit-container');
-        /* Header - author and points */
-        const header = document.createElement('div');
-        header.className = 'survol-reddit-top';
-        header.innerText = `${postAuthor} --- ${stats.score} pts.`
-            /* post title / link */
-        const link = document.createElement('a');
-        link.className = 'survol-reddit-link';
-        link.innerText = postTitle;
-        link.setAttribute('href', postLink);
-        /* Image */
-        const image = document.createElement('img');
+
+        let title = document.createElement('b');
+        title.className = 'survol-reddit-post-title';
+        title.appendChild(document.createTextNode(postData.title));
+
+        let image = document.createElement('img');
         image.classList.add('survol-reddit-image');
-        image.setAttribute('src', imageUrl);
-        /* divider */
-        const divider = document.createElement('div');
+        image.setAttribute('src', postData.thumbnail);
+
+        let divider = document.createElement('div');
         divider.className = 'survol-divider';
-        /* Subreddit link */
-        const subredditLink = document.createElement('a');
-        subredditLink.className = 'survol-reddit-sublink';
-        subredditLink.setAttribute('href', `https://www.reddit.com/${subredditLink}`);
-        subredditLink.innerText = `${subReddit}`;
-        /* Build */
-        container.appendChild(header);
-        container.appendChild(link);
-        if (hasImage) {
+
+        let footer = document.createElement('div');
+        footer.className = 'survol-reddit-footer';
+
+        let postDetails = document.createElement('span');
+        postDetails.className = 'survol-reddit-post-details';
+
+        let subredditLink = document.createElement('a');
+        //subredditLink.setAttribute('href', `https://www.reddit.com/r/${postData.subreddit}`);
+        subredditLink.appendChild(document.createTextNode(` on /${postData.subreddit_name_prefixed}`));
+
+        let redditLogo = document.createElement('img');
+        redditLogo.src = '../images/reddit.png';
+        redditLogo.className = 'survol-reddit-logo';
+
+        let author = document.createElement('span');
+        author.className = 'survol-reddit-author';
+        author.appendChild(document.createTextNode(`Posted by u/${postData.author}`));
+
+        let score = document.createElement('div');
+        //score.className = 'survol-reddit-post-details';
+        score.appendChild(document.createTextNode(`${postData.score} points`));
+
+        let commentCount = document.createElement('div');
+        //commentCount.className = 'survol-reddit-post-details';
+        commentCount.appendChild(document.createTextNode(`${postData.num_comments} comments`));
+
+        let br = document.createElement('br');
+        //  const postLink = `https://www.reddit.com/${postData.permalink}`;
+
+
+
+        // if thumbnail append thumnail
+        if (postData.thumbnail != 'self') {
             container.appendChild(image);
         }
+
+        // else append post content
+        else {
+            let text = document.createElement('p');
+            text.className = 'survol-reddit-selftext';
+            text.appendChild(document.createTextNode(postData.selftext));
+            container.appendChild(text);
+        }
+
         container.appendChild(divider);
-        container.appendChild(subredditLink);
+
+        footer.appendChild(redditLogo);
+        footer.appendChild(title);
+
+        postDetails.appendChild(author);
+        postDetails.appendChild(subredditLink);
+        postDetails.appendChild(score);
+        postDetails.appendChild(commentCount);
+
+        footer.appendChild(postDetails);
+        container.appendChild(footer);
+
         return container;
     }
 }
