@@ -1,6 +1,6 @@
-#  Survol
-
 <div align="center">
+  
+#  Survol
 
 A **browser extension** to preview links in an instant!
 
