@@ -46,6 +46,18 @@
 
 .survol-reddit-post-details {
     padding: 0px 16px 16px 16px;
+    font-size: 14px;
+}
+
+.survol-reddit-upvote-icon {
+    height: 1em;
+}
+
+.survol-reddit-comment-icon {
+    top: 2px;
+    height: 1em;
+    position: relative;
+    margin-left: 8px;
 }
 
 
