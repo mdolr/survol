@@ -204,7 +204,7 @@ class RedditHover {
         let ago = this.timeSinceCreation(postData.created_utc);
 
         if (ago.time == 1) {
-            ago.unit = ago.unit.substr(0, unit.length - 1);
+            ago.unit = ago.unit.substr(0, ago.unit.length - 1);
         }
 
         postDetails.appendChild(document.createTextNode(ago.time + ' ' + ago.unit + ' ago'));
