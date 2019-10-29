@@ -7,6 +7,7 @@ class TwitterHover {
         this.CURRENT_TAB = CURRENT_TAB;
         this.linkType = this.checkLinkType();
         this.parser = new DOMParser();
+        this.hoverEl = '';
     }
 
     /* Description: This function is unique to every Hover class,
@@ -89,9 +90,36 @@ class TwitterHover {
 
                     tweetContainer.appendChild(container);
                     this.boundNode.appendChild(tweetContainer);
+
+                    this.hoverEl = tweetContainer;
+                    this.positionOnHover();
                 })
                 .catch(console.error);
 
         }
+    }
+
+    // Update position of hover element on link hover
+    positionOnHover() {
+        // Define desired offset from <a> element
+        let offset = {top: 2, left: 0};
+        this.boundNode.onmouseover = e => {
+            // Update hover element
+            // Note: setting position fixed here to avoid conflicting with base survol-tooltiptext class which is used across all sites
+            let bound = this.boundNode.getBoundingClientRect();
+            let styles = {
+                top: bound.top + bound.height + offset.top + 'px',
+                left: bound.left + offset.left + 'px',
+                position: 'fixed'
+            };
+
+            let css = '';
+            for (var style in styles) {
+                css += `${style}: ${styles[style]} !important; `;
+            }
+
+            // Note: need to update cssText directly (rather than .style properties) to override !important styles
+            this.hoverEl.style.cssText += css;
+        };
     }
 }
