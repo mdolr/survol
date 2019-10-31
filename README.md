@@ -1,6 +1,6 @@
 #  Survol
 
-A **browser extension** to preview links in an instant!
+A **browser extension** to preview links instantly!
 
 ## Install
 ### Public version
