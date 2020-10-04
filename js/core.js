@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * (ex: reddit profiles on reddit)
      */
     var CURRENT_TAB = document.location.href;
+    var container = document.createElement('div');
 
     /* Just in case some sites use the pushState js function to navigate across pages. */
     window.onpopstate = () => {
@@ -30,6 +31,26 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     };
+
+    /* Used to do everything using CSS, however it was messy.  
+     * We will now use a single div that we will move across the screen based on the mouse position
+     */
+    function insertSurvolDiv() {
+        return new Promise((resolve) => {
+            container.className = 'survol-container hidden';
+
+            console.log('Container created', container);
+
+            document.addEventListener('mousemove', function (e) {
+                container.style.left = `${e.pageX + 20}px`;
+                container.style.top = `${e.pageY + 20}px`;
+            });
+
+            document.body.appendChild(container);
+
+            resolve();
+        });
+    }
 
     /* Takes {String} link
      * Returns {String} link
@@ -71,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let potentialHover = getPotentialHover(node, domain);
         /* If we do not support the domain we might not get anything in return of getPotentialHover */
-        if (potentialHover) {
+        if (potentialHover && potentialHover.bindToContainer != null) {
             /* If the potentialHover can't handle the link feed it to the garbage collector */
             if (potentialHover.linkType == 'unknown') {
                 potentialHover = null;
@@ -79,7 +100,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
             /* Else bind it */
             else {
-                potentialHover.bindToNode();
+                node.addEventListener('mouseenter', function () {
+                    potentialHover.bindToContainer(node, domain, container);
+                    container.className = 'survol-container';
+                });
+
+                node.addEventListener('mouseleave', function () {
+                    container.className = 'survol-container hidden';
+                    container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
+                });
             }
         }
     }
@@ -110,6 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    gatherHrefs()
+    insertSurvolDiv()
+        .then(gatherHrefs)
         .then(equipNodes);
 });
