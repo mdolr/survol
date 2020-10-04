@@ -33,23 +33,37 @@ class YoutubeHover {
             window
             .survolBackgroundRequest(`https://www.youtube.com/oembed?url=${this.redirectLink}&format=json`)
             .then((res) => {
+                console.log(res)
                 let youtubeContainer = document.createElement('div');
-                youtubeContainer.className = 'survol-wikipedia-container';
+                youtubeContainer.className = 'survol-youtube-container';
 
                 let title = document.createElement('h1');
                 title.appendChild(document.createTextNode(res.data.title));
 
-                let youtubeImageContainer = document.createElement('div');
-                youtubeImageContainer.className = 'survol-wikipedia-image-container';
+                let text = document.createElement('p');
+                text.className = 'survol-twitter-author'
+                text.appendChild(document.createTextNode(res.data.author_name));
 
-                let image = document.createElement('img');
-                image.src = `https://img.youtube.com/vi/${this.redirectLink.split('/watch?v=')[1]}/hqdefault.jpg`;
-                image.className = 'survol-wikipedia-image';
+                let textContainer = document.createElement('div');
+                textContainer.className = 'survol-youtube-text';
+
+                let youtubeImageContainer = document.createElement('div');
+                youtubeImageContainer.className = 'survol-youtube-image-container';
+
+                let image = document.createElement('div');
+                console.log(res.data.thumbnail_url)
+                image.className = 'survol-youtube-image';
+                image.style.backgroundImage = `url(${res.data.thumbnail_url})`
+                image.style.backgroundPosition = 'center';
+                image.style.backgroundSize = 'cover';
+                image.style.backgroundRepeat = 'no-repeat';
 
                 youtubeImageContainer.appendChild(image);
-
-                youtubeContainer.appendChild(title);
+                textContainer.appendChild(title)
+                textContainer.appendChild(text)
                 youtubeContainer.appendChild(youtubeImageContainer);
+                youtubeContainer.appendChild(textContainer);
+
                 container.appendChild(youtubeContainer);
 
             })
