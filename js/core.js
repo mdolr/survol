@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * Using the background script to pull data from APIs safely, i.e forwarding request from the content script to the background script
      * Direct asynchronous messaging, making it as a function to avoid having some request code across every file
      */
-    window.survolBackgroundRequest = (url) => {
+    window.survolBackgroundRequest = (url, noJSON) => {
         return new Promise((resolve, reject) => {
-            chrome.runtime.sendMessage({ action: 'request', data: { url } }, (res) => {
+            chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
                 (res.status == 'OK') ? resolve(res): reject(res);
             });
         });
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'twitter.com':
                 return new TwitterHover(node, getDomain(CURRENT_TAB));
             default:
-                return null;
+                return new BaseHover(node, getDomain(CURRENT_TAB));
                 //return new BaseHover(node);
         }
     }
@@ -92,24 +92,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let potentialHover = getPotentialHover(node, domain);
         /* If we do not support the domain we might not get anything in return of getPotentialHover */
-        if (potentialHover && potentialHover.bindToContainer != null) {
-            /* If the potentialHover can't handle the link feed it to the garbage collector */
-            if (potentialHover.linkType == 'unknown') {
-                potentialHover = null;
-            }
+        if (potentialHover && potentialHover.bindToContainer != null && node.href) {
 
-            /* Else bind it */
-            else {
-                node.addEventListener('mouseenter', function () {
-                    potentialHover.bindToContainer(node, domain, container);
-                    container.className = 'survol-container';
-                });
+            node.addEventListener('mouseenter', function () {
+                potentialHover.bindToContainer(node, domain, container);
+                container.className = 'survol-container';
+            });
 
-                node.addEventListener('mouseleave', function () {
-                    container.className = 'survol-container hidden';
-                    container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
-                });
-            }
+            node.addEventListener('mouseleave', function () {
+                container.className = 'survol-container hidden';
+                container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
+            });
+
+        } else {
+            // In case the node has no href feed it to the garbage collector
+            potentialHover = null;
         }
     }
 

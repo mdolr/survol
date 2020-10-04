@@ -25,7 +25,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
         // If the request isn't cached
         else {
             fetch(req.data.url)
-                .then((data) => { return data.json(); })
+                .then((data) => { return req.data.noJSON ? data.text() : data.json(); })
                 .then((data) => {
                     res.data = data;
                     res.status = 'OK';
