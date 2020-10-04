@@ -12,26 +12,32 @@ setInterval(() => {
  */
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     if (req.action == 'request') {
-        const { data: { url } } = req;
-        if (REQUEST_CACHE[url]) {
-            sendResponse(REQUEST_CACHE[url]);
-            return true;
-        } 
+
         let res = { status: 'error', data: null };
-        fetch(url)
-            .then((data) => { return data.json(); })
-            .then((data) => {
-                res.data = data;
-                res.status = 'OK';
-                REQUEST_CACHE[url] = res;
-                sendResponse(res);
-            })
-            .catch((error) => {
-                res.data = error;
-                res.status = 'error';
-                sendResponse(res);
-                console.error('SURVOL - Fetching error', error);
-            });
+
+        // if the request is cached
+        if (REQUEST_CACHE[url]) {
+            res = REQUEST_CACHE[req.data.url];
+            sendResponse(res);
+        }
+
+        // If the request isn't cached
+        else {
+            fetch(req.data.url)
+                .then((data) => { return data.json(); })
+                .then((data) => {
+                    res.data = data;
+                    res.status = 'OK';
+                    REQUEST_CACHE[req.data.url] = res;
+                    sendResponse(res);
+                })
+                .catch((error) => {
+                    res.data = error;
+                    res.status = 'error';
+                    sendResponse(res);
+                    console.error('SURVOL - Fetching error', error);
+                });
+        }
     }
 
     // To avoid leaving the message hanging
