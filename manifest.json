@@ -34,7 +34,8 @@
                 "css/base.css",
                 "css/templates/wikipedia.css",
                 "css/templates/reddit.css",
-                "css/templates/twitter.css"
+                "css/templates/twitter.css",
+                "css/templates/youtube.css"
             ],
             "run_at": "document_start"
         }
