@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     a.href = 'https://github.com/' + user.login;
                     a.target = '_blank';
                     a.rel = 'nofollow';
+                    a.className = 'link';
                     a.appendChild(document.createTextNode('@' + user.login.toString()));
                     tdUsername.appendChild(a);
 

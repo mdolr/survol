@@ -51,15 +51,22 @@ html {
     font-size: 72px;
 }
 
-.hero .link {
+.links .link {
     font-size: 32px;
     font-weight: 300 !important;
+}
+
+.link {
     position: relative;
     color: #007aff;
     text-decoration: none;
 }
 
-.hero .link:before {
+.link:hover {
+    color: #007aff;
+}
+
+.link:before {
     content: '';
     position: absolute;
     width: 100%;
