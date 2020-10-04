@@ -24,17 +24,13 @@ class YoutubeHover {
         }
     }
 
-    bindToNode() {
+    bindToContainer(node, domain, container) {
 
         /* TODO: 
-         * - Add support for timecodes etc
-         * - Set a some sort of div you can always click to stop playing the video / stop playing video when not hovering      
+         * - Change youtube preview to Thumbnail + title + description
          */
 
         if (this.linkType == 'video') {
-            let container = document.createElement('div');
-            container.className = 'survol-tooltiptext survol-tooltiptext-youtube';
-
             let iframe = document.createElement('iframe');
             iframe.setAttribute('width', '560');
             iframe.setAttribute('height', '315');
@@ -44,9 +40,6 @@ class YoutubeHover {
             iframe.setAttribute('allowfullscreen', true);
 
             container.appendChild(iframe);
-
-            this.boundNode.classList.add('survol-tooltip');
-            this.boundNode.appendChild(container);
         }
     }
 }

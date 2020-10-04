@@ -22,20 +22,12 @@ class WikipediaHover {
         }
     }
 
-    bindToNode() {
-
-        /* TODO:
-         *  - Set a way to always try a certain language and then try the original language of the link 
-         *  - We're magically not affected by CORS but we should use the survolBackgroundRequest function to avoid them with the manifest V3 changes
-         */
-
+    bindToContainer(node, domain, container) {
         if (this.linkType == 'article') {
 
             window
                 .survolBackgroundRequest(`https://${this.redirectLink.split('.wikipedia.org')[0].split('//')[1]}.wikipedia.org/api/rest_v1/page/summary/${this.redirectLink.split('/wiki/')[1]}`)
                 .then((res) => {
-                    let container = document.createElement('div');
-                    container.className = 'survol-tooltiptext';
 
                     let wikipediaContainer = document.createElement('div');
                     wikipediaContainer.className = 'survol-wikipedia-container';
@@ -54,19 +46,20 @@ class WikipediaHover {
                         wikipediaContainer.appendChild(wikipediaImageContainer);
                     }
 
+                    let title = document.createElement('h1');
+                    title.appendChild(document.createTextNode(res.data.displaytitle));
+
                     let textContainer = document.createElement('div');
                     textContainer.className = 'survol-wikipedia-text';
 
                     let text = document.createElement('p');
                     text.appendChild(document.createTextNode(res.data.extract));
 
+                    textContainer.appendChild(title);
                     textContainer.appendChild(text);
                     wikipediaContainer.appendChild(textContainer);
 
-                    this.boundNode.classList.add('survol-tooltip');
-
                     container.appendChild(wikipediaContainer);
-                    this.boundNode.appendChild(container);
                 })
                 .catch((res) => {
                     console.log('[Error] Survol - Wikipedia.js - Can\'t fetch API.', res);

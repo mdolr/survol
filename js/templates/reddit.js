@@ -41,7 +41,7 @@ class RedditHover {
         }
     }
 
-    bindToNode() {
+    bindToContainer(node, domain, container) {
         if (this.linkType == 'comment') {
             /* Building node using js functions is required by Firefox to get the permission to publish the extension officialy
              * (At least I had to do it the last time I did one).
@@ -72,12 +72,11 @@ class RedditHover {
             comment.appendChild(discussionDirectLink);
 
             commentContainer.appendChild(comment);
-            this.boundNode.appendChild(commentContainer);
+            container.appendChild(commentContainer);
 
             /* Because for some reason embed code doesn't init itself directly when added dynamically, depends directly of reddit-comment-embed.js */
             window.rembeddit.init();
 
-            this.boundNode.classList.add('survol-tooltip');
         } else if (this.linkType === 'post') {
             /* We need the specific post ID to get JSON */
             /* Post ID should be 6 character alpha-numeric (base36) */
@@ -90,8 +89,8 @@ class RedditHover {
                     let postContainer = document.createElement('div');
                     postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
                     postContainer.appendChild(generatedEmbed);
-                    this.boundNode.appendChild(postContainer);
-                    this.boundNode.classList.add('survol-tooltip');
+
+                    container.appendChild(postContainer);
                 })
                 .catch((error) => {
                     console.error('SURVOL - Background request failed', error);

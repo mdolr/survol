@@ -1,18 +1,14 @@
-.hidden {
+.survol-container.hidden {
     display: none!important;
 }
 
 
 /* Don't even try hiding my tooltip <https://stackoverflow.com/questions/491052/minimum-and-maximum-value-of-z-index> */
 
-.survol-tooltip .survol-tooltiptext {
-    visibility: hidden!important;
-    display: none!important;
-    color: #fff;
-    text-align: center;
-    /* Position the tooltip */
-    position: absolute!important;
+.survol-container {
+    background-color: transparent;
     z-index: 16777271!important;
+    position: absolute!important;
 }
 
 .survol-tooltiptext-youtube {
@@ -23,18 +19,6 @@
 .survol-tooltiptext-reddit-post {
     max-width: 350px;
     height: auto;
-}
-
-.survol-tooltip:hover {
-    position: relative!important;
-}
-
-.survol-tooltip:hover .survol-tooltiptext {
-    visibility: visible!important;
-    display: initial!important;
-    z-index: 16777271!important;
-    top: 22px!important;
-    left: 0px!important;
 }
 
 .survol-divider {
