@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     var CURRENT_TAB = document.location.href;
     var container = document.createElement('div');
-    var REQUEST_CACHE = {};
 
     /* Just in case some sites use the pushState js function to navigate across pages. */
     window.onpopstate = () => {
@@ -27,17 +26,8 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     window.survolBackgroundRequest = (url) => {
         return new Promise((resolve, reject) => {
-            if (REQUEST_CACHE[url]) {
-                resolve(REQUEST_CACHE[url]);
-                return;
-            }
             chrome.runtime.sendMessage({ action: 'request', data: { url } }, (res) => {
-                if (res.status == 'OK') {
-                    REQUEST_CACHE[url] = res;
-                    resolve(res);
-                    return;
-                }
-                reject(res);
+                (res.status == 'OK') ? resolve(res): reject(res);
             });
         });
     };
