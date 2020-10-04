@@ -1,23 +1,140 @@
 <head>
-    <style>
-        body {
-            background-color: darkgrey;
-        }
-    </style>
+  <style>
+    body {
+      background-color: darkgrey;
+    }
+
+    .col-md-12 {
+      display: flex;
+      justify-content: center;
+      margin: 20px;
+    }
+
+    .card-body:hover {
+        background-color:#f7f7f7;
+    }
+    .Youtube {
+        /* color: #FF0000; */
+        background-color: #FF0000 !important;
+        border-color: #FF0000 !important;
+    }
+
+    .Wikipedia {
+        background-color: #252525 !important;
+        border-color: #252525 !important;
+    }
+
+    .Tweet {
+        background-color: #1DA1F2 !important;
+        border-color: #1DA1F2 !important;
+    }
+
+    .Reddit {
+        background-color: #ff4500 !important;
+        border-color: #ff4500 !important;
+    }
+  </style>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script
+    src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"
+  ></script>
 </head>
 
 <body>
-    <a href="https://youtu.be/xVMsAgHy_IY?t=593">Youtube video</a><br>
-    <!-- Trains are one of the coolest thing on earth tbh -->
-    <br>
-    <a href="https://fr.wikipedia.org/wiki/Prost_AP03">Wikipedia</a><br>
-    <br>
-    <a href="https://twitter.com/SpaceX/status/1178129849057038337" id="tweet">Tweet</a><br>
-    <br>
-    <a href="https://old.reddit.com/r/test/comments/agi5zf/test/eed190g/">Reddit comment</a><br>
-    <br/>
-    <a href="https://www.reddit.com/r/dogpictures/comments/7bgy66/abby_is_being_so_patient_with_the_new_puppy/">Reddit Post / Thread</a>
-    <br><br>
-    <a href="https://old.reddit.com/r/GlobalOffensive/comments/dh3eo4/what_is_the_single_most_historical_casting/">Reddit text</a><br>
-    <br>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title"><i class="fab fa-youtube"></i> Youtube</h5>
+            <a href="https://youtu.be/xVMsAgHy_IY?t=593" class="btn btn-primary Youtube"
+              >Go to Youtube</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Wikipedia</h5>
+            <a
+              href="https://fr.wikipedia.org/wiki/Prost_AP03"
+              class="btn btn-primary Wikipedia"
+              >Go to Wikipedia</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Tweet</h5>
+            <a
+              href="https://twitter.com/SpaceX/status/1178129849057038337"
+              class="btn btn-primary Tweet"
+              >Go to Tweet</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Reddit</h5>
+            <a
+              href="https://old.reddit.com/r/test/comments/agi5zf/test/eed190g/"
+              class="btn btn-primary Reddit"
+              >Go to Reddit</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Reddit Post / Thread</h5>
+            <a
+              href="https://www.reddit.com/r/dogpictures/comments/7bgy66/abby_is_being_so_patient_with_the_new_puppy/"
+              class="btn btn-primary Reddit"
+              >Go to Reddit Post / Thread</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <div class="card" style="width: 18rem">
+          <div class="card-body">
+            <h5 class="card-title">Reddit text</h5>
+            <a
+              href="https://old.reddit.com/r/GlobalOffensive/comments/dh3eo4/what_is_the_single_most_historical_casting/"
+              class="btn btn-primary Reddit"
+              >Reddit text</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trains are one of the coolest thing on earth tbh -->
 </body>
