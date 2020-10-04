@@ -1,0 +1,93 @@
+body,
+html {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+@font-face {
+    font-family: 'Nunito';
+    src: url('/NunitoRegular.ttf') format('ttf');
+}
+
+.nunito {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+@media screen and (max-width: 1023px) {
+    .container {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+    .links {
+        flex-direction: column;
+    }
+}
+
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 32px;
+}
+
+.links .link {
+    margin-right: 24px;
+    margin-left: 24px;
+}
+
+.badges img {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
+.hero .title {
+    font-size: 72px;
+}
+
+.hero .link {
+    font-size: 32px;
+    font-weight: 300 !important;
+    position: relative;
+    color: #007aff;
+    text-decoration: none;
+}
+
+.hero .link:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007aff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.1s ease-in-out 0s;
+}
+
+.link:hover.link:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.contributor-image {
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+.contributor-table {
+    margin-bottom: 32px;
+}
+
+.table td {
+    vertical-align: middle;
+    display: table-cell;
+}
