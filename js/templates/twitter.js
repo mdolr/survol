@@ -18,12 +18,13 @@ class TwitterHover {
         else if (this.redirectLink.includes('/status/')) return 'tweet';
     }
 
-    bindToNode() {
+    bindToContainer(node, domain, container) {
         if (this.linkType == 'tweet') {
 
             /* TODO :
              * - Handle embeds
              * - Get a way to display profile picture etc (i.e: generate tweet like a normal embed would do)
+             * - Parse and display hashtags correctly
              * - Add line returns
              */
 
@@ -39,12 +40,8 @@ class TwitterHover {
                     const htmlDocDate = htmlDoc.getElementsByTagName('a')[htmlDoc.getElementsByTagName('a').length - 1].text;
                     const tweetDate = new Date(htmlDocDate).toLocaleDateString(undefined, { dateStyle: 'long' });
 
-                    // Create div content
                     let tweetContainer = document.createElement('div');
-                    tweetContainer.className = 'survol-tooltiptext';
-
-                    let container = document.createElement('div');
-                    container.className = 'survol-twitter-container';
+                    tweetContainer.className = 'survol-twitter-container';
 
                     let name = document.createElement('b');
                     name.appendChild(document.createTextNode(tweetAuthorName));
@@ -62,33 +59,19 @@ class TwitterHover {
                     content.className = 'survol-twitter-content';
                     content.appendChild(document.createTextNode(tweetContent));
 
-                    let linkContainer = document.createElement('div');
-                    linkContainer.className = 'survol-twitter-source';
-
                     let date = document.createElement('span');
                     date.className = 'survol-twitter-date';
                     date.appendChild(document.createTextNode(tweetDate));
-
-                    let link = document.createElement('a');
-                    link.setAttribute('src', this.redirectLink);
-                    link.appendChild(document.createTextNode('Tweet on twitter.com'));
 
                     // if tweet has no media media is null
                     // added for potential media embedding in the future
                     let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
 
+                    tweetContainer.appendChild(author);
+                    tweetContainer.appendChild(content);
+                    tweetContainer.appendChild(date);
 
-                    linkContainer.appendChild(link);
-
-                    container.appendChild(author);
-                    container.appendChild(content);
-                    container.appendChild(date);
-                    container.appendChild(linkContainer);
-
-                    this.boundNode.classList.add('survol-tooltip');
-
-                    tweetContainer.appendChild(container);
-                    this.boundNode.appendChild(tweetContainer);
+                    container.appendChild(tweetContainer);
                 })
                 .catch(console.error);
 
