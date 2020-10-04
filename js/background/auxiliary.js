@@ -16,8 +16,9 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
         let res = { status: 'error', data: null };
 
         // if the request is cached
-        if (REQUEST_CACHE[url]) {
+        if (REQUEST_CACHE[req.data.url]) {
             res = REQUEST_CACHE[req.data.url];
+            res.cached = true;
             sendResponse(res);
         }
 
@@ -28,6 +29,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
                 .then((data) => {
                     res.data = data;
                     res.status = 'OK';
+                    res.cached = false;
                     REQUEST_CACHE[req.data.url] = res;
                     sendResponse(res);
                 })
