@@ -43,38 +43,38 @@ class TwitterHover {
                     let tweetContainer = document.createElement('div');
                     tweetContainer.className = 'survol-twitter-container';
 
-                    let profilePicContainer = document.createElement('div')
-                    profilePicContainer.style.flexBasis = "50px"
-                    profilePicContainer.style.alignItems = "center"
-                    let profilePic = document.createElement('img')
-                    profilePic.src = `https://unavatar.now.sh/twitter/${tweetAuthorUsername}`
-                    profilePic.height = 50
-                    profilePic.width = 50
-                    profilePicContainer.appendChild(profilePic)
+                    let profilePicContainer = document.createElement('div');
+                    profilePicContainer.style.flexBasis = '50px';
+                    profilePicContainer.style.alignItems = 'center';
+                    let profilePic = document.createElement('img');
+                    profilePic.src = `https://unavatar.now.sh/twitter/${tweetAuthorUsername}`;
+                    profilePic.height = 50;
+                    profilePic.width = 50;
+                    profilePicContainer.appendChild(profilePic);
 
                     let name = document.createElement('b');
                     name.appendChild(document.createTextNode(tweetAuthorName));
-                    name.style.marginInlineStart = "10px"
+                    name.style.marginInlineStart = '10px';
 
                     let twitterAt = document.createElement('span');
                     twitterAt.className = 'survol-twitter-at';
                     twitterAt.appendChild(document.createTextNode(` @${tweetAuthorUsername}`));
-                    twitterAt.style.marginInlineStart = "10px"
+                    twitterAt.style.marginInlineStart = '10px';
 
                     let author = document.createElement('div');
                     author.className = 'survol-twitter-author';
-                    author.style.display = "flex"
-                    author.style.flexDirection = "row"
-                    author.style.flexBasis = "auto"
-                    author.style.alignItems = "center"
-                    author.style.marginBottom = "10px"
-                    author.appendChild(profilePicContainer)
+                    author.style.display = 'flex';
+                    author.style.flexDirection = 'row';
+                    author.style.flexBasis = 'auto';
+                    author.style.alignItems = 'center';
+                    author.style.marginBottom = '10px';
+                    author.appendChild(profilePicContainer);
                     author.appendChild(name);
                     author.appendChild(twitterAt);
 
                     let content = document.createElement('div');
                     content.className = 'survol-twitter-content';
-                    content.innerHTML = tweetContent
+                    content.innerHTML = tweetContent;
 
                     let date = document.createElement('div');
                     date.className = 'survol-twitter-date';
@@ -85,7 +85,7 @@ class TwitterHover {
                     let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
 
                     tweetContainer.appendChild(author);
-                    while(content.firstChild) {
+                    while (content.firstChild) {
                         tweetContainer.appendChild(content.firstChild);
                     }
                     tweetContainer.appendChild(date);
