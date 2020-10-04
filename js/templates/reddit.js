@@ -30,7 +30,7 @@ class RedditHover {
             /* Comments have a 7-character unique ID, which is the last slash enclosed path part */
             if (urlChunks.length == 7 && /[a-z0-9]{7}/.test(urlChunks[6])) {
                 return 'comment';
-            } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/[^\/]*$/.test(this.redirectLink)) {
+            } else if (urlChunks.length == 6 && /\/comments\/[^\/]+\/[^\/]+\/?[^\/]*$/.test(this.redirectLink)) {
                 return 'post';
             } else {
                 return 'unknown';
