@@ -29,17 +29,31 @@ class YoutubeHover {
         /* TODO: 
          * - Change youtube preview to Thumbnail + title + description
          */
-
         if (this.linkType == 'video') {
-            let iframe = document.createElement('iframe');
-            iframe.setAttribute('width', '560');
-            iframe.setAttribute('height', '315');
-            iframe.setAttribute('src', `https://www.youtube-nocookie.com/embed/${this.redirectLink.split('watch?v=')[1].split('&')[0]}?rel=0`)
-            iframe.setAttribute('frameborder', '0');
-            iframe.setAttribute('allow', 'accelerometer; encrypted-media; gyroscope; picture-in-picture');
-            iframe.setAttribute('allowfullscreen', true);
+            window
+            .survolBackgroundRequest(`https://www.youtube.com/oembed?url=${this.redirectLink}&format=json`)
+            .then((res) => {
+                let youtubeContainer = document.createElement('div');
+                youtubeContainer.className = 'survol-wikipedia-container';
 
-            container.appendChild(iframe);
+                let title = document.createElement('h1');
+                title.appendChild(document.createTextNode(res.data.title));
+
+                let youtubeImageContainer = document.createElement('div');
+                youtubeImageContainer.className = 'survol-wikipedia-image-container';
+
+                let image = document.createElement('img');
+                image.src = `https://img.youtube.com/vi/${this.redirectLink.split('/watch?v=')[1]}/hqdefault.jpg`;
+                image.className = 'survol-wikipedia-image';
+
+                youtubeImageContainer.appendChild(image);
+
+                youtubeContainer.appendChild(title);
+                youtubeContainer.appendChild(youtubeImageContainer);
+                container.appendChild(youtubeContainer);
+
+            })
+            .catch(console.error)
         }
     }
 }
