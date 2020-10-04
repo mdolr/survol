@@ -3,116 +3,64 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Survol</title>
-    <!-- Original Boostrap4 CDN -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <script src="https://kit.fontawesome.com/d1f865536f.js" crossorigin="anonymous"></script>
-    <!-- stylesheet -->
+    <title>Survol helps you get rid of useless browser tabs</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="./scripts/contributors.js"></script>
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark bg-dark navbar-expand-sm py-2">
-        <div class="container">
-            <!-- Icon -->
-            <a class="navbar-brand" href="#">Survol</a>
-            <!-- Collapse Button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-            </button>
-            <!-- Collapse Content -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#demo">Demo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#install">Install</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#github">Github</a>
-                    </li>
-                </ul>
+    <div class="container">
+        <div class="hero">
+            <h1 class="title nunito has-text-centered is-1">Too many tabs opened ? <br><strong>Survol</strong> solves this.</h1>
+            <h2 class="subtitle nunito has-text-centered is-2">Seriously try it, just hover any link below</h2>
+            <div class="links">
+                <a class="link" target="_blank" href="https://google.com">A tweet</a><a class="link" target="_blank" href="https://en.wikipedia.org/wiki/Product_Hunt">A wikipedia article</a>
             </div>
+
+            <h2 class="subtitle nunito has-text-centered is-2">Convinced ?<br>Download the extension on your favourite browser :</h2>
+            <a class="button is-medium">
+                <span class="icon">
+                  <i class="fab fa-chrome"></i>
+                </span>
+                <span>Install on chrome</span>
+            </a><br>
+            <a disabled class="button is-medium">
+                <span class="icon">
+                  <i class="fab fa-firefox"></i>
+                </span>
+                <span>Not available on firefox yet</span>
+            </a><br>
         </div>
-    </nav>
-    <!-- Body -->
-    <!-- Home -->
-    <section id="home" class="section-light">
-        <div class="container">
-            <h1>Survol</h1>
-            <div class="blank"></div>
-            <hr>
-            <div class="blank"></div>
-            <h2>A browser extension to preview links in an instant!</h2>
+        <div style="display:flex; justify-content:center;" class="has-text-centered">
+            <i class="fab fa-3x fa-github"></i>
+            <h2 class="subtitle nunito has-text-centered is-2" style="margin-left:16px;">Survol is the product of open-source</h2>
         </div>
-    </section>
-    <!-- Demo -->
-    <section id="demo" class="section-dark">
-        <div class="container">
-            <h1>Demo</h1>
-            <div class="blank"></div>
-            <hr>
-            <div class="blank"></div>
-            <div class="row">
-                <!-- YouTube -->
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <h4>YouTube</h4>
-                    <div class="blank"></div>
-                    <img src="img/Snip20191005_4.png" class="card-img-top">
-                    <div class="blank"></div>
-                    <p class="text">Hover over a <a class="btn-primary" href="https://youtu.be/xVMsAgHy_IY?t=593">YouTube link</a> to view video thumbnail!</p>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <h4>Wikipedia</h4>
-                    <div class="blank"></div>
-                    <img src="img/Snip20191005_5.png" style="max-height: 200px" class="card-img-top">
-                    <div class="blank"></div>
-                    <p class="text">Hover over a <a class="btn-primary" href="https://en.wikipedia.org/wiki/Prost_AP03">Wikipedia link</a> to preview an article!</p>
-                </div>
-                <div class="col-sm-12 col-md-6 col-lg-4">
-                    <h4>Reddit</h4>
-                    <div class="blank"></div>
-                    <img src="img/Snip20191005_6.png" style="max-height: 200px" class="card-img-top">
-                    <div class="blank"></div>
-                    <p class="text">Hover over a <a class="btn-primary" href="https://old.reddit.com/r/test/comments/agi5zf/test/eed190g/">Reddit comment link</a> to preview it!</p>
-                </div>
-            </div>
+        <br>
+        <div class="badges" style="display:flex; align-items:center; justify-content:center;">
+            <img src="https://img.shields.io/github/stars/mdolr/survol?style=social" style="width:125px;" />
+            <img src="https://img.shields.io/github/license/mdolr/survol" style="width:150px;" />
         </div>
-    </section>
-    <!-- Install -->
-    <section id="install" class="section-light">
-        <div class="container">
-            <h1>Install</h1>
-            <div class="blank"></div>
-            <hr>
-            <div class="blank"></div>
-            <p class="text">Coming soon.</p>
+        <br>
+        <h3 class="subtitle nunito has-text-centered is-2" style="margin-left:16px;">List of contributors</h3>
+        <div style="display:flex; align-items:center; justify-content:center;">
+            <table class="table is-striped contributor-table">
+                <tbody id="contributors">
+                    <tr>
+                        <td><img src="https://avatars2.githubusercontent.com/u/19026937?v=4" class="contributor-image" alt="Author avatar" /></td>
+                        <td><a href="https://github.com/mdolr" target="_blank" rel="nofollow">@mdolr</td>
+                        <td>Author of Survol and CEO of <a href="https://kaen.fr">&nbsp;Kaen</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-    </section>
-    <!-- Github -->
-    <section id="github" class="section-dark">
-        <div class="container">
-            <h1><i class="fab fa-github-square"></i> GitHub</h1>
-            <div class="blank"></div>
-            <hr>
-            <div class="blank"></div>
-            <h2>View our project on <a href="https://github.com/mdolr/survol" target="_blank">GitHub</a></h2>
-        </div>
-    </section>
-    <!-- Footer and Copyright -->
-    <footer class="page-footer font-small" style="color: white">
-        <div class="footer-copyright text-center py-3">
-            Copyright © 2019 Survol
-        </div>
-    </footer>
+    </div>
 </body>
 
 </html>

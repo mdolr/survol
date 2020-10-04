@@ -1,54 +1,93 @@
-* {
-    font-family: Raleway;
-    color: azure;
-}
-
-h1, h2, h3, h4, h5, h6 {
+body,
+html {
+    margin: 0;
+    padding: 0;
     text-align: center;
 }
 
-html, body {
-    height: 100%;
+@font-face {
+    font-family: 'Nunito';
+    src: url('/NunitoRegular.ttf') format('ttf');
 }
 
-footer {
-    background-color: black;
+.nunito {
+    font-family: 'Nunito', sans-serif !important;
 }
 
-.navbar-nav {
-    font-size: 1rem;
+@media screen and (max-width: 1023px) {
+    .container {
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+    .links {
+        flex-direction: column;
+    }
 }
 
-.navbar {
-    background-color: #0F0F0F !important;
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
 }
 
-.text {
-    font-size: 1.2rem;
+.links {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 32px;
 }
 
-.section-light {
-    background-color: #2F2F2F;
-    padding: 10rem 0;
+.links .link {
+    margin-right: 24px;
+    margin-left: 24px;
 }
 
-.section-dark {
-    background-color: #1F1F1F;
-    padding: 10rem 0;
+.badges img {
+    margin-right: 12px;
+    margin-left: 12px;
 }
 
-.blank {
-    height: 1rem;
+.hero .title {
+    font-size: 72px;
 }
 
-hr {
-    background-color: azure;
+.hero .link {
+    font-size: 32px;
+    font-weight: 300 !important;
+    position: relative;
+    color: #007aff;
+    text-decoration: none;
 }
 
-.card {
-    background: #1F1F1F;
+.hero .link:before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #007aff;
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.1s ease-in-out 0s;
 }
 
-a {
-    color: azure;
+.link:hover.link:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+.contributor-image {
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+}
+
+.contributor-table {
+    margin-bottom: 32px;
+}
+
+.table td {
+    vertical-align: middle;
+    display: table-cell;
 }
