@@ -1,14 +1,14 @@
-/* 
+/*
  * core.js is used to reference every <a href="?"/> and link them to the different
  * hovering functions we support.
- * 
+ *
  * It is responsible for checking if links are from known or unknown website and to add events
  * regarding wether we have a template for them or not.
  */
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* Keeping track of the current tab is important as we'll need to disable some of the 
-     * embed shown while hovering on certain site as some already have hovering functions for profiles 
+    /* Keeping track of the current tab is important as we'll need to disable some of the
+     * embed shown while hovering on certain site as some already have hovering functions for profiles
      * (ex: reddit profiles on reddit)
      */
     var CURRENT_TAB = document.location.href;
@@ -27,24 +27,40 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     window.survolBackgroundRequest = (url, noJSON) => {
         return new Promise((resolve, reject) => {
-            chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
+           chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
                 (res.status == 'OK') ? resolve(res): reject(res);
             });
         });
     };
 
-    /* Used to do everything using CSS, however it was messy.  
+    /* Used to do everything using CSS, however it was messy.
      * We will now use a single div that we will move across the screen based on the mouse position
      */
     function insertSurvolDiv() {
         return new Promise((resolve) => {
             container.className = 'survol-container hidden';
-
             console.log('Container created', container);
 
+            //set the buffer (popup distance from mouse)
+            const buffer = 20;
+
             document.addEventListener('mousemove', function (e) {
-                container.style.left = `${e.pageX + 20}px`;
-                container.style.top = `${e.pageY + 20}px`;
+                //get the popup dims
+                let popupWidth = container.clientWidth;
+                let popupHeight = container.clientHeight;
+                //get the current scroll distance
+                let scrolled = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+
+                //calculate the popup positions
+                //if the current mouse X position plus the popup width is greater than the width of the viewport set the popup to the left, else right
+                let leftPosition = (e.pageX + popupWidth + buffer >= window.innerWidth) ? `${e.pageX - (popupWidth + buffer)}px` : `${e.pageX + buffer}px`;
+                //if the current mouse Y position (mius scroll distance) plus the popup height is greater than viewport height, set the popup above mouse, else below
+                let topPosition = ((e.pageY - scrolled) + popupHeight + buffer >= window.innerHeight) ? `${e.pageY - (popupHeight + buffer)}px` : `${e.pageY + buffer}px`;
+
+                //update the popup with the calculated values
+                container.style.left = leftPosition;
+                container.style.top = topPosition;
+
             });
 
             document.body.appendChild(container);
@@ -68,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
 
-    /* Node is a DOM Node 
+    /* Node is a DOM Node
      * domain is a string
      * Description: Returns the correct hover CLass for a given domain.
      */
@@ -90,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* Checks if the hover class is working with the given link and deletes it if it's not.
-     * takes 
+     * takes
      * {Node} node
      * {String} link
      */
@@ -143,7 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Retrieves every <a> element on the page
      * it is separated as some sites need to reload displayed elements (ex: Twitter deletes nodes out of the screen)
      * resolves a Nodelist see <https://developer.mozilla.org/fr/docs/Web/API/Document/querySelectorAll>
-     * 
+     *
      * TODO : Find a way to search for nodes in some sections only on certain known sites ?
      */
     function gatherHrefs() {
@@ -152,8 +168,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* Takes a nodelist as an argument 
-     * TODO: Once done, resolve / reject 
+    /* Takes a nodelist as an argument
+     * TODO: Once done, resolve / reject
      * In case of success, go to another function displaying the number of previews on the page ?
      */
     function equipNodes(nodes) {
