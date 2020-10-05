@@ -14,10 +14,20 @@ class BaseHover {
                 .survolBackgroundRequest(node.href, true)
                 .then((res) => {
                     let title = null;
-                    let description = null;
+                    let description = null; 
+                    let subscribers = null;
 
+                    
                     if (res.data.includes('<title>') && res.data.includes('</title>')) {
                         title = res.data.split('<title>')[1].split('</title>')[0];
+                        
+                    }
+
+                    // adding youtube subscriber
+                    if(res.data.includes('subscribers')){
+                        console.log('there is subs')
+                        subscribers = res.data.split('"subscriberCountText":{"runs":[{"text":"')[1].split('subscribers"}]}')[0];
+                        console.log(subscribers)
                     }
 
                     if (res.data.includes('name="description"') && res.data.includes('content="')) {
@@ -32,7 +42,13 @@ class BaseHover {
 
                         let webTitle = document.createElement('h1');
                         webTitle.appendChild(document.createTextNode(title));
-
+                        if(subscribers){
+                            let webTitle2 = document.createElement('h3')
+                            webTitle2.appendChild(document.createTextNode(`${subscribers} Subscribers`))
+                        }else{
+                            let webTitle2 = "XXXXXX"
+                            webTitle2.appendChild(document.createTextNode(`${subscribers} Subscribers`))
+                        }
                         let textContainer = document.createElement('div');
                         textContainer.className = 'survol-wikipedia-text';
 
@@ -40,6 +56,7 @@ class BaseHover {
                         text.appendChild(document.createTextNode(description));
 
                         textContainer.appendChild(webTitle);
+                        textContainer.appendChild(webTitle2)
                         textContainer.appendChild(text);
                         wikipediaContainer.appendChild(textContainer);
 
