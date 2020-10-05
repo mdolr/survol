@@ -43,43 +43,25 @@ class RedditHover {
 
     bindToContainer(node, domain, container) {
         if (this.linkType == 'comment') {
-            /* Building node using js functions is required by Firefox to get the permission to publish the extension officialy
-             * (At least I had to do it the last time I did one).
-             * Also the commentContainer is needed as rembeddit overwrites the comment to an iframe and the iframe is not affected by class change.
-             */
+            const commentId = this.redirectLink.split("/").reverse()[1]
+            window
+                .survolBackgroundRequest(`https://api.reddit.com/api/info/?id=t1_${commentId}`)
+                .then((res) => {
+                    const generatedEmbed = RedditHover.redditJsonToHoverElem(res.data, false);
+                    let postContainer = document.createElement('div');
+                    postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
+                    postContainer.appendChild(generatedEmbed);
 
-            let commentContainer = document.createElement('div');
-            commentContainer.className = 'survol-tooltiptext';
-
-            /* This is a reconstitution of the reddit embed code when sharing a comment.*/
-            let comment = document.createElement('div');
-            comment.setAttribute('data-embed-media', 'www.redditmedia.com');
-            comment.setAttribute('data-embed-parent', 'false');
-            comment.setAttribute('data-embed-live', 'false');
-            comment.setAttribute('data-embed-created', `${new Date().toISOString()}`);
-            comment.className = 'reddit-embed';
-
-            let commentDirectLink = document.createElement('a');
-            commentDirectLink.href = `${this.redirectLink}?`;
-            commentDirectLink.appendChild(document.createTextNode('Comment'));
-
-            let discussionDirectLink = document.createElement('a');
-            discussionDirectLink.href = `${this.redirectLink.split('/').slice(0, this.redirectLink.split('/').length - 1).join('/')}?`;
-            discussionDirectLink.appendChild(document.createTextNode('discussion'));
-
-            comment.appendChild(commentDirectLink);
-            comment.appendChild(document.createTextNode('from discussion'));
-            comment.appendChild(discussionDirectLink);
-
-            commentContainer.appendChild(comment);
-            container.appendChild(commentContainer);
-
-            /* Because for some reason embed code doesn't init itself directly when added dynamically, depends directly of reddit-comment-embed.js */
-            window.rembeddit.init();
-
+                    container.appendChild(postContainer);
+                })
+                .catch((error) => {
+                    console.error('SURVOL - Background request failed', error);
+                });
+                
         } else if (this.linkType === 'post') {
             /* We need the specific post ID to get JSON */
             /* Post ID should be 6 character alpha-numeric (base36) */
+            console.log(this.redirectLink);
             const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
 
             window
@@ -117,99 +99,114 @@ class RedditHover {
         }
     }
 
-    /* Parse Reddit API JSON and construct preview embed */
-    static redditJsonToHoverElem(redditJson) {
-        let postData = redditJson.data.children[0].data;
+    static getAuthor(json) {
+        const author = document.createElement('span');
+        author.className = 'survol-reddit-author';
 
-        let container = document.createElement('div');
-        container.classList.add('survol-reddit-container');
+        const postedBy = document.createTextNode('Posted by ');
+        const authorBold = document.createElement('b');
+        const authorName = document.createTextNode(`u/${json.author}`);
 
-        let title = document.createElement('b');
-        title.className = 'survol-reddit-post-title';
-        title.appendChild(document.createTextNode(postData.title));
+        author.append(postedBy, authorBold, authorName)
+        return author;
+    }
 
-        let image = document.createElement('img');
-        image.classList.add('survol-reddit-image');
-        image.setAttribute('src', postData.thumbnail);
-
-        let divider = document.createElement('div');
-        divider.className = 'survol-divider';
-
-        let footer = document.createElement('div');
-        footer.className = 'survol-reddit-footer';
-
-        let postDetails = document.createElement('span');
-        postDetails.className = 'survol-reddit-post-details';
-
-        let subredditLink = document.createElement('a');
-        //subredditLink.setAttribute('href', `https://www.reddit.com/r/${postData.subreddit}`);
-        let subredditLinkBold = document.createElement('b');
-        subredditLinkBold.appendChild(document.createTextNode(`/${postData.subreddit_name_prefixed}`));
+    static getSubReddit(json) {
+        const subredditLink = document.createElement('a');
+        const subredditLinkBold = document.createElement('b');
+        
+        subredditLinkBold.appendChild(document.createTextNode(`/${json.subreddit_name_prefixed}`));
         subredditLink.appendChild(document.createTextNode(`In `));
         subredditLink.appendChild(subredditLinkBold);
 
-        let redditLogo = document.createElement('img');
-        redditLogo.src = chrome.extension.getURL('images/reddit.png');
-        redditLogo.className = 'survol-reddit-logo';
-
-        let author = document.createElement('span');
-        author.className = 'survol-reddit-author';
-        author.appendChild(document.createTextNode(`Posted by `));
-        let authorBold = document.createElement('b');
-        authorBold.appendChild(document.createTextNode(`u/${postData.author}`));
-        author.appendChild(authorBold);
-
-        let scoreCommentDisplay = document.createElement('div');
-        //score.className = 'survol-reddit-post-details';
-        let upvoteImage = document.createElement('img');
+        return subredditLink;
+    }
+    static getUpVotes(json) {
+        const scoreCommentDisplay = document.createElement('div');
+        const upvoteImage = document.createElement('img');
         upvoteImage.src = chrome.extension.getURL('images/upvote.png');
         upvoteImage.className = 'survol-reddit-upvote-icon';
 
         scoreCommentDisplay.appendChild(upvoteImage);
-        scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.score} `));
+        scoreCommentDisplay.appendChild(document.createTextNode(` ${json.score} `));
+        return scoreCommentDisplay;
+    }
+    static getDatePosted(json) {
+        const date = this.timeSinceCreation(json.created_utc);
 
-        let commentImage = document.createElement('img');
+        if (date.time == 1) {
+            date.unit = date.unit.substr(0, date.unit.length - 1);
+        }
+        return document.createTextNode(date.time + ' ' + date.unit + ' ago');
+    }
+    static getPostTitle(json) {
+        const title = document.createElement('b');
+        title.className = 'survol-reddit-post-title';
+        title.appendChild(document.createTextNode(json.title));
+        return title;
+    }
+    static getPostImage(json) {
+        const image = document.createElement('img');
+        image.classList.add('survol-reddit-image');
+        image.setAttribute('src', json.thumbnail);
+        return image;
+    }
+
+    /* Parse Reddit API JSON and construct preview embed */
+    static redditJsonToHoverElem(json, isPost=true) {
+        const postData = json.data.children[0].data;
+
+        // Basic HTML elements for styling
+        const container = document.createElement('div');
+        container.classList.add('survol-reddit-container');
+
+        const divider = document.createElement('div');
+        divider.className = 'survol-divider';
+
+        const footer = document.createElement('div');
+        footer.className = 'survol-reddit-footer';
+      
+        const postDetails = document.createElement('span');
+        postDetails.className = 'survol-reddit-post-details';
+
+        const redditLogo = document.createElement('img');
+        redditLogo.src = chrome.extension.getURL('images/reddit.png');
+        redditLogo.className = 'survol-reddit-logo';
+
+        const commentImage = document.createElement('img');
         commentImage.src = chrome.extension.getURL('images/comment.png');
         commentImage.className = 'survol-reddit-comment-icon';
+        //-----
 
-        scoreCommentDisplay.appendChild(commentImage);
-        scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.num_comments}`));
-
-        //  const postLink = `https://www.reddit.com/${postData.permalink}`;
-
-        // if thumbnail append thumnail
-        if (postData.thumbnail != 'self') {
-            container.appendChild(image);
-        }
-
-        // else append post content
-        else {
-            let text = document.createElement('p');
-            text.className = 'survol-reddit-selftext';
-            text.appendChild(document.createTextNode(postData.selftext));
-            container.appendChild(text);
-        }
-
-        container.appendChild(divider);
+        const title = RedditHover.getPostTitle(postData);
+        const postImage = RedditHover.getPostImage(postData);
+        const subredditLink = RedditHover.getSubReddit(postData);
+        const author = RedditHover.getAuthor(postData);
+        const scoreCommentDisplay = RedditHover.getUpVotes(postData);
+        const datePosted = RedditHover.getDatePosted(postData);
 
         footer.appendChild(redditLogo);
-        footer.appendChild(title);
 
-        postDetails.appendChild(author);
-        postDetails.appendChild(document.createElement('br'));
-        postDetails.appendChild(subredditLink);
-        postDetails.appendChild(scoreCommentDisplay);
+        // Only add this for posts and not comments
+        if (isPost) {
+            scoreCommentDisplay.appendChild(commentImage);
+            scoreCommentDisplay.appendChild(document.createTextNode(` ${postData.num_comments}`));
 
-        let ago = this.timeSinceCreation(postData.created_utc);
-
-        if (ago.time == 1) {
-            ago.unit = ago.unit.substr(0, ago.unit.length - 1);
+            footer.appendChild(title);
         }
-
-        postDetails.appendChild(document.createTextNode(ago.time + ' ' + ago.unit + ' ago'));
-
-        footer.appendChild(postDetails);
-        container.appendChild(footer);
+        // Add comment text or post image | post text
+        if (postData.thumbnail != 'self' && isPost) {
+            container.appendChild(postImage);
+        } else {
+            const commentText = document.createTextNode(isPost ? postData.selftext : postData.body);
+            const textElement = document.createElement('p');
+            textElement.className = 'survol-reddit-selftext';
+            textElement.appendChild(commentText);
+            container.appendChild(textElement);
+        }
+        postDetails.append(author, document.createElement('br'), subredditLink, scoreCommentDisplay, datePosted);
+        container.append(divider, footer);
+        footer.append(postDetails);
 
         return container;
     }
