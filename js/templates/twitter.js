@@ -72,9 +72,9 @@ class TwitterHover {
                     author.appendChild(name);
                     author.appendChild(twitterAt);
 
-                    let content = document.createElement('div');
-                    content.className = 'survol-twitter-content';
-                    content.innerHTML = tweetContent;
+                    let parser = new DOMParser();
+                    let content = parser.parseFromString(tweetContent, 'text/html').body.childNodes;
+                    let contentContainer = document.createElement('div');
 
                     let date = document.createElement('div');
                     date.className = 'survol-twitter-date';
@@ -84,10 +84,23 @@ class TwitterHover {
                     // added for potential media embedding in the future
                     let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
 
+                    content.forEach((node) => {
+                        if(node.tagName == 'A'){
+                            let a = document.createElement('a');
+                            let aText = document.createTextNode(node.textContent)
+                            a.appendChild(aText);
+                            contentContainer.appendChild(a)
+                        } else if(node.tagName == 'BR'){
+                            let br = document.createElement('br');
+                            contentContainer.appendChild(br)
+                        } else {
+                            let text = document.createTextNode(node.textContent)
+                            contentContainer.appendChild(text)
+                        }
+                    })
+                    
                     tweetContainer.appendChild(author);
-                    while (content.firstChild) {
-                        tweetContainer.appendChild(content.firstChild);
-                    }
+                    tweetContainer.appendChild(contentContainer)
                     tweetContainer.appendChild(date);
 
                     container.appendChild(tweetContainer);
