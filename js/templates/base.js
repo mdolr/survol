@@ -8,6 +8,7 @@ class BaseHover {
     }
 
     bindToContainer(node, domain, container) {
+        if(node.title) node.href = node.title;
         if (node.href) {
             window
                 .survolBackgroundRequest(node.href, true)

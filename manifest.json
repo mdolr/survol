@@ -45,7 +45,7 @@
     },
     "browser_action": {
         "default_title": "Survol",
-        "default_popup": ""
+        "default_popup": "popup.html"
     },
     "web_accessible_resources": [
         "images/upvote.png",

@@ -77,6 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'twitter.com':
                 return new TwitterHover(node, getDomain(CURRENT_TAB));
             default:
+                
                 return new BaseHover(node, getDomain(CURRENT_TAB));
                 //return new BaseHover(node);
         }
@@ -136,7 +137,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+        
+        console.log(request)
+       
     insertSurvolDiv()
         .then(gatherHrefs)
         .then(equipNodes);
+})
 });
