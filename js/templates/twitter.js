@@ -72,9 +72,8 @@ class TwitterHover {
                     author.appendChild(name);
                     author.appendChild(twitterAt);
 
-                    let content = document.createElement('div');
-                    content.className = 'survol-twitter-content';
-                    content.innerHTML = tweetContent;
+                    let parser = new DOMParser();
+                    let content = parser.parseFromString(tweetContent, 'text/html');
 
                     let date = document.createElement('div');
                     date.className = 'survol-twitter-date';
@@ -85,9 +84,7 @@ class TwitterHover {
                     let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
 
                     tweetContainer.appendChild(author);
-                    while (content.firstChild) {
-                        tweetContainer.appendChild(content.firstChild);
-                    }
+                    tweetContainer.appendChild(content.documentElement)
                     tweetContainer.appendChild(date);
 
                     container.appendChild(tweetContainer);
