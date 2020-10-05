@@ -26,11 +26,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     let tdBio = document.createElement('td');
                     tdBio.appendChild(document.createTextNode('Contributor'));
 
+                    let tdContrib = document.createElement('td');
+                    tdContrib.appendChild(document.createTextNode(user.contributions.toString()));
+
                     tr.appendChild(tdPicture);
                     tr.appendChild(tdUsername);
                     tr.appendChild(tdBio);
+                    tr.appendChild(tdContrib);
 
                     document.getElementById('contributors').appendChild(tr);
+                } else {
+                    document.getElementById('mdolr-contributions').innerText = user.contributions.toString();
                 }
             });
         })
