@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(container);
 
             // MutationObserver will observe the page if there is any nodes are added to the page
-            const observer = new MutationObserver(domMutaionCallback);
-            const bodyNode = document.getElementsByTagName("BODY")[0];
+            const observer = new MutationObserver(domMutationCallback);
+            const bodyNode = document.getElementsByTagName('BODY')[0];
             const config = { childList: true, subtree: true };
             observer.observe(bodyNode, config);
 
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let potentialHover = getPotentialHover(node, domain);
         /* If we do not support the domain we might not get anything in return of getPotentialHover */
-        if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http') && isNotCaptured(node) ) {
+        if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http') && isNotCaptured(node)) {
 
             node.addEventListener('mouseenter', function () {
                 potentialHover.bindToContainer(node, domain, container);
@@ -111,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
             });
 
-            markAscaptured(node)
+            markAscaptured(node);
 
         } else {
             // In case the node has no href feed it to the garbage collector
@@ -119,20 +119,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function markAscaptured(node){
-        capturedNodes.push(node)
+    function markAscaptured(node) {
+        capturedNodes.push(node);
     }
-    
+
     /* Returns false if the node already captured - so we can skip */
-    function isNotCaptured(node){
+    function isNotCaptured(node) {
         return capturedNodes.indexOf(node) == -1;
     }
 
-    function domMutaionCallback (mutationsList, observer) {
-        for(let index in mutationsList) {
+    function domMutationCallback(mutationsList, observer) {
+        for (let index in mutationsList) {
             const mutation = mutationsList[index]
             if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                if(mutation.addedNodes.length == 1 && mutation.addedNodes[0].tagName == 'DIV' && mutation.addedNodes[0].className == 'survol-container'){
+                if (mutation.addedNodes.length == 1 && mutation.addedNodes[0].tagName == 'DIV' && mutation.addedNodes[0].className == 'survol-container') {
                     return;
                 }
                 gatherHrefs().then(equipNodes);

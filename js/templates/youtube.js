@@ -31,43 +31,43 @@ class YoutubeHover {
          */
         if (this.linkType == 'video') {
             window
-            .survolBackgroundRequest(`https://www.youtube.com/oembed?url=${this.redirectLink}&format=json`)
-            .then((res) => {
-                console.log(res)
-                let youtubeContainer = document.createElement('div');
-                youtubeContainer.className = 'survol-youtube-container';
+                .survolBackgroundRequest(`https://www.youtube.com/oembed?url=${this.redirectLink}&format=json`)
+                .then((res) => {
 
-                let title = document.createElement('h1');
-                title.appendChild(document.createTextNode(res.data.title));
+                    let youtubeContainer = document.createElement('div');
+                    youtubeContainer.className = 'survol-youtube-container';
 
-                let text = document.createElement('p');
-                text.className = 'survol-twitter-author'
-                text.appendChild(document.createTextNode(res.data.author_name));
+                    let title = document.createElement('h1');
+                    title.appendChild(document.createTextNode(res.data.title));
 
-                let textContainer = document.createElement('div');
-                textContainer.className = 'survol-youtube-text';
+                    let text = document.createElement('p');
+                    text.className = 'survol-twitter-author'
+                    text.appendChild(document.createTextNode(res.data.author_name));
 
-                let youtubeImageContainer = document.createElement('div');
-                youtubeImageContainer.className = 'survol-youtube-image-container';
+                    let textContainer = document.createElement('div');
+                    textContainer.className = 'survol-youtube-text';
 
-                let image = document.createElement('div');
-                console.log(res.data.thumbnail_url)
-                image.className = 'survol-youtube-image';
-                image.style.backgroundImage = `url(${res.data.thumbnail_url})`
-                image.style.backgroundPosition = 'center';
-                image.style.backgroundSize = 'cover';
-                image.style.backgroundRepeat = 'no-repeat';
+                    let youtubeImageContainer = document.createElement('div');
+                    youtubeImageContainer.className = 'survol-youtube-image-container';
 
-                youtubeImageContainer.appendChild(image);
-                textContainer.appendChild(title)
-                textContainer.appendChild(text)
-                youtubeContainer.appendChild(youtubeImageContainer);
-                youtubeContainer.appendChild(textContainer);
+                    let image = document.createElement('div');
+                    console.log(res.data.thumbnail_url)
+                    image.className = 'survol-youtube-image';
+                    image.style.backgroundImage = `url(${res.data.thumbnail_url})`;
+                    image.style.backgroundPosition = 'center';
+                    image.style.backgroundSize = 'cover';
+                    image.style.backgroundRepeat = 'no-repeat';
 
-                container.appendChild(youtubeContainer);
+                    youtubeImageContainer.appendChild(image);
+                    textContainer.appendChild(title)
+                    textContainer.appendChild(text)
+                    youtubeContainer.appendChild(youtubeImageContainer);
+                    youtubeContainer.appendChild(textContainer);
 
-            })
-            .catch(console.error)
+                    container.appendChild(youtubeContainer);
+
+                })
+                .catch(console.error);
         }
     }
 }
