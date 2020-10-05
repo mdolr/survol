@@ -76,6 +76,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return new YoutubeHover(node, getDomain(CURRENT_TAB));
             case 'twitter.com':
                 return new TwitterHover(node, getDomain(CURRENT_TAB));
+            case 'soundcloud.com':
+                return new SoundCloudHover(node, getDomain(CURRENT_TAB));
             default:
                 return new BaseHover(node, getDomain(CURRENT_TAB));
                 //return new BaseHover(node);

@@ -1,0 +1,55 @@
+.survol-soundcloud-container {
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-color: rgb(255, 255, 255);
+  background-image: none;
+  background-origin: padding-box;
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-size: auto;
+  border-radius: 2px;
+  box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+  color: rgb(0, 0, 0)!important;
+  display: block;
+  font-size: 14px;
+  font-family: sans-serif;
+  min-width: 300px;
+  line-height: 20px;
+  padding: 0px!important;
+  width: 320px;
+  margin: 0px!important;
+  border-radius: 12px;
+}
+
+.survol-soundcloud-image {
+  transform-origin: 0px 0px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  height:180px;
+  width:320px;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.survol-soundcloud-text {
+  padding: 16px!important;
+  min-height: 40px;
+  /*position:relative;*/
+}
+
+.survol-soundcloud-text h1 {
+  font-style: bold;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.survol-soundcloud-text p {
+  color: #727171;
+  font-size: 14px;
+}
+
+.survol-soundcloud-text p,
+.survol-soundcloud-text h1 {
+  margin: 8px;
+  color: rgb(0, 0, 0)!important;
+}
