@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // If the script is running in demo-mode on survol.me
-    if (getDomain(CURRENT_TAB).toLowerCase() === 'survol.me' && !chrome.storage) {
+    if (!chrome || !chrome.storage) {
         insertSurvolDiv()
             .then(gatherHrefs)
             .then(equipNodes);
