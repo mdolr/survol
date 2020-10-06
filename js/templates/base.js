@@ -12,22 +12,31 @@ class BaseHover {
             window
                 .survolBackgroundRequest(node.href, true)
                 .then((res) => {
-                    let title = null;
-                    let description = null;
+                    let parser = new DOMParser();
+                    let doc = parser.parseFromString(res.data, 'text/html');
 
-                    if (res.data.includes('<title>') && res.data.includes('</title>')) {
-                        title = res.data.split('<title>')[1].split('</title>')[0];
-                    }
-
-                    if (res.data.includes('name="description"') && res.data.includes('content="')) {
-                        description = res.data.split('name="description"')[1].split('content="')[1].split('"')[0];
-                    }
+                    let title = doc.querySelector('title') ? doc.querySelector('title').innerText : null;
+                    let description = doc.querySelector('meta[name="description"]') ? doc.querySelector('meta[name="description"]').content : null;
+                    let thumbnail = doc.querySelector('meta[name="og:image"]') ? doc.querySelector('meta[name="og:image"]').content : null;
 
                     if (title && description) {
                         // re-using wikipedia css
                         let wikipediaContainer = document.createElement('div');
                         wikipediaContainer.className = 'survol-wikipedia-container';
 
+                        /* If there is a thumbnail */
+                        if (thumbnail) {
+                            let wikipediaImageContainer = document.createElement('div');
+                            wikipediaImageContainer.className = 'survol-wikipedia-image-container';
+
+
+                            let image = document.createElement('img');
+                            image.src = thumbnail;
+                            image.className = 'survol-wikipedia-image';
+
+                            wikipediaImageContainer.appendChild(image);
+                            wikipediaContainer.appendChild(wikipediaImageContainer);
+                        }
 
                         let webTitle = document.createElement('h1');
                         webTitle.appendChild(document.createTextNode(title));

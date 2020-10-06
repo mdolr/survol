@@ -15,10 +15,15 @@
     <link rel="stylesheet" href="style/survol/twitter.css">
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/core.js"></script>
     <script src="scripts/contributors.js"></script>
-    <script src="scripts/survol/core.js"></script>
-    <script src="scripts/survol/wikipedia.js"></script>
-    <script src="scripts/survol/twitter.js"></script>
+    <script src="scripts/survolBackgroundRequest.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/wikipedia.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/twitter.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/base.js"></script>
+
 </head>
 
 <body>
@@ -27,7 +32,9 @@
             <h1 class="title nunito has-text-centered is-1">Too many tabs opened ? <br><strong>Survol</strong> solves this.</h1>
             <h2 class="subtitle nunito has-text-centered is-2">Seriously try it, just hover any link below</h2>
             <div class="links">
-                <a class="link" style="display:none;" target="_blank" href="https://google.com">A tweet</a><a class="link" target="_blank" href="https://en.wikipedia.org/wiki/Product_Hunt">A wikipedia article</a>
+                <a class="link" target="_blank" href="https://twitter.com/hacktoberfest/status/1295752863986196480">A tweet</a>
+                <a class="link" target="_blank" href="https://www.producthunt.com/">A website</a>
+                <a class="link" target="_blank" href="https://en.wikipedia.org/wiki/Product_Hunt">A wikipedia article</a>
             </div>
 
             <h2 class="subtitle nunito has-text-centered is-2">Convinced ?<br>Download the extension on your favourite browser :</h2>
@@ -51,13 +58,19 @@
         <br>
         <h3 class="subtitle nunito has-text-centered is-2" style="margin-left:16px;">List of contributors</h3>
         <div style="display:flex; align-items:center; justify-content:center;">
-            <table class="table is-striped contributor-table">
+            <table class="table is-hoverable contributor-table">
+                <thead>
+                    <td></td>
+                    <td>Github login</td>
+                    <td>Role</td>
+                    <td>Contributions</td>
+                </thead>
                 <tbody id="contributors">
                     <tr>
                         <td><img src="https://avatars2.githubusercontent.com/u/19026937?v=4" class="contributor-image" alt="Author avatar" /></td>
                         <td><a class="link" href="https://github.com/mdolr" target="_blank" rel="nofollow">@mdolr</td>
-                        <td>Author of Survol and CEO of <a class="link" href="https://kaen.fr">Kaen</a>
-                        </td>
+                        <td>Author of Survol and CEO of <a class="link" href="https://kaen.fr">Kaen</a></td>
+                        <td id="mdolr-contributions"></td>
                     </tr>
                 </tbody>
             </table>

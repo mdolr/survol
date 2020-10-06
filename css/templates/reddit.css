@@ -26,6 +26,7 @@
     display: flex;
     text-align: left;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .survol-reddit-post-title {
@@ -39,13 +40,13 @@
 .survol-reddit-logo {
     width: 45px;
     height: 45px;
-    margin: auto;
     margin-left: 16px;
     flex: 0 0 45px;
 }
 
 .survol-reddit-post-details {
-    padding: 0px 16px 16px 16px;
+    justify-content: center;
+    padding: 16px 16px 16px 16px;
     font-size: 14px;
 }
 
