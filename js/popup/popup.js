@@ -23,6 +23,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (res.isDarkMode === false) {
             isDarkMode = false;
+            document.documentElement.style.setProperty('--bg-color--', 'white');
+            document.documentElement.style.setProperty('--fg-color--', 'black');
+        } else {
+            document.documentElement.style.setProperty('--bg-color--', '#212121');
+            document.documentElement.style.setProperty('--fg-color--', 'white');
         }
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

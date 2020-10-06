@@ -1,6 +1,8 @@
 body {
     width: 300px;
-    height: 520px;
+    height: 530px;
+    background-color: var(--bg-color--);
+    color: var(--fg-color--);
     text-align: center;
     margin: 0px;
     padding: 12px;
