@@ -6,6 +6,23 @@
         "message": "Survol"
     },
     "extensionDescription": {
-        "message": "Daha sonra bakmak için sekme dolu pencerelerden kurtulun, Survol, farenizle üzerinden geçtiğiniz sitelere hızlı bir şekilde bakmanızı sağlar!"
+        "message": "Survol, üzerine geldiğiniz her bağlantıyı önizleyerek sekmelerden ve zamandan tasarruf etmenizi sağlar" 
+    },
+
+    "pageSettings": {
+        "message": "Sayfa ayarları",
+        "description": "Bu metin, uzantı simgesi tıklandığında açılır pencerede görüntülenir"
+    },
+    "enableOnPage": {
+        "message": "Survol bu sayfada etkinleştirilsin mi?",
+        "description": "Bu metin, uzantı simgesi tıklandığında açılır pencerede görüntülenir"
+    },
+    "generalSettings": {
+        "message": "Genel ayarlar",
+        "description": "Bu metin, uzantı simgesi tıklandığında açılır pencerede görüntülenir"
+    },
+    "allowMetadata": {
+        "message": "Meta veri önizlemesine izin verilsin mi? (devre dışı bırakılırsa Survol yalnızca youtube, twitter, wikipedia, vs. önizlemenizi sağlar )",
+        "description": "Bu metin, uzantı simgesi tıklandığında açılır pencerede görüntülenir"
     }
 }
