@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
      * (ex: reddit profiles on reddit)
      */
     var CURRENT_TAB = document.location.href;
+    var previewMetadata = true;
     var container = document.createElement('div');
-    var capturedNodes = []
+    var capturedNodes = [];
 
     /* Just in case some sites use the pushState js function to navigate across pages. */
     window.onpopstate = () => {
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Description: Returns the correct hover CLass for a given domain.
      */
     function getPotentialHover(node, domain) {
+        console.log(previewMetadata)
         switch (domain) {
             case 'reddit.com':
                 return new RedditHover(node, getDomain(CURRENT_TAB));
@@ -104,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'soundcloud.com':
                 return new SoundCloudHover(node, getDomain(CURRENT_TAB));
             default:
-                return new BaseHover(node, getDomain(CURRENT_TAB));
+                return previewMetadata ? new BaseHover(node, getDomain(CURRENT_TAB)) : null;
                 //return new BaseHover(node);
         }
     }
@@ -188,7 +190,17 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    insertSurvolDiv()
-        .then(gatherHrefs)
-        .then(equipNodes);
+    chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+        let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
+
+        if (res.previewMetadata === false) {
+            previewMetadata = false;
+        }
+
+        if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
+            insertSurvolDiv()
+                .then(gatherHrefs)
+                .then(equipNodes);
+        }
+    });
 });

@@ -11,7 +11,9 @@
         "http://*/*",
         "file:///*",
         "tabs",
-        "activeTab"
+        "activeTab",
+        "storage",
+        "unlimitedStorage"
     ],
     "icons": {
         "128": "/images/icon128.png"
@@ -48,7 +50,7 @@
     },
     "browser_action": {
         "default_title": "Survol",
-        "default_popup": ""
+        "default_popup": "html/popup.html"
     },
     "web_accessible_resources": [
         "images/upvote.png",
