@@ -188,17 +188,27 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
-        let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
+    // If the script is running in demo-mode on survol.me
+    if (getDomain(CURRENT_TAB).toLowerCase() === 'survol.me' && !chrome.storage) {
+        insertSurvolDiv()
+            .then(gatherHrefs)
+            .then(equipNodes);
+    }
 
-        if (res.previewMetadata === false) {
-            previewMetadata = false;
-        }
+    // ELse the script is part of the extension
+    else {
+        chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+            let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
 
-        if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
-            insertSurvolDiv()
-                .then(gatherHrefs)
-                .then(equipNodes);
-        }
-    });
+            if (res.previewMetadata === false) {
+                previewMetadata = false;
+            }
+
+            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
+                insertSurvolDiv()
+                    .then(gatherHrefs)
+                    .then(equipNodes);
+            }
+        });
+    }
 });
