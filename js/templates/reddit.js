@@ -74,7 +74,7 @@ class RedditHover {
                     postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
                     postContainer.appendChild(generatedEmbed);
 
-                    if (window.lastHovered == node) {
+                    if (window.lastHovered == node && container.innerHTML == '') {
                         container.appendChild(postContainer);
                     }
                 })

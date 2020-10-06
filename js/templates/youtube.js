@@ -64,7 +64,7 @@ class YoutubeHover {
                     youtubeContainer.appendChild(youtubeImageContainer);
                     youtubeContainer.appendChild(textContainer);
 
-                    if (window.lastHovered == node) {
+                    if (window.lastHovered == node && container.innerHTML == '') {
                         container.appendChild(youtubeContainer);
                     }
                 })

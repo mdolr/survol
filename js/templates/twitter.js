@@ -103,7 +103,7 @@ class TwitterHover {
                     tweetContainer.appendChild(contentContainer);
                     tweetContainer.appendChild(date);
 
-                    if (window.lastHovered == node) {
+                    if (window.lastHovered == node && container.innerHTML == '') {
                         container.appendChild(tweetContainer);
                     }
                 })

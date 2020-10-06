@@ -42,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function insertSurvolDiv() {
         return new Promise((resolve) => {
             container.className = 'survol-container hidden';
-            console.log('Container created', container);
 
             //set the buffer (popup distance from mouse)
             const buffer = 20;
@@ -92,7 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
      * Description: Returns the correct hover CLass for a given domain.
      */
     function getPotentialHover(node, domain) {
-        console.log(previewMetadata)
         switch (domain) {
             case 'reddit.com':
                 return new RedditHover(node, getDomain(CURRENT_TAB));

@@ -60,7 +60,7 @@ class SoundCloudHover {
                     soundCloudContainer.appendChild(soundCloudImageContainer);
                     soundCloudContainer.appendChild(textContainer);
 
-                    if (window.lastHovered == node) {
+                    if (window.lastHovered == node && container.innerHTML == '') {
                         container.appendChild(soundCloudContainer);
                     }
                 })
