@@ -1,11 +1,11 @@
 .survol-twitter-container {
     width: 559px;
     background-color: white;
-    color: black;
+    color: var(--fg-color--);
     font-size: 14px;
     line-height: 20px;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    background-color: white;
+    background-color: var(--bg-color--);
     padding: 16px;
     /* margin: 3px; */
     border: solid 1px #e6ecf0;

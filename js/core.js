@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     var CURRENT_TAB = document.location.href;
     var previewMetadata = true;
-    var isDarkMode = false;
     var container = document.createElement('div');
     var capturedNodes = [];
 
@@ -205,8 +204,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 previewMetadata = false;
             }
 
-            if (res.isDarkMode === false){
-                isDarkMode = false
+            if(res.isDarkMode === true){
+                document.documentElement.style.setProperty('--bg-color--', '#212121');
+                document.documentElement.style.setProperty('--fg-color--', 'white');
+            } else{
+                document.documentElement.style.setProperty('--bg-color--', 'white');
+                document.documentElement.style.setProperty('--fg-color--', 'black');
             }
 
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {

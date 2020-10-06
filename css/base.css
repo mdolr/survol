@@ -1,3 +1,8 @@
+:root {
+    --bg-color--: white;
+    --fg-color--: black;
+}
+
 .survol-container.hidden {
     display: none!important;
 }

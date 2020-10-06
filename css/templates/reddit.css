@@ -1,11 +1,11 @@
 .survol-reddit-container {
     box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
-    background-color: white;
+    background-color: var(--bg-color--);
     border-radius: 12px;
     width: 320px;
     text-align: left;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
-    color: black;
+    color: var(--fg-color--);
 }
 
 .survol-reddit-image {
@@ -17,7 +17,7 @@
 }
 
 .survol-reddit-selftext {
-    color: black;
+    color: var(--fg-color--);
     padding: 16px;
     margin: 0px;
 }

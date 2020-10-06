@@ -1,7 +1,7 @@
 .survol-soundcloud-container {
   background-attachment: scroll;
   background-clip: border-box;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--bg-color--);
   background-image: none;
   background-origin: padding-box;
   background-position-x: 0%;
@@ -9,7 +9,7 @@
   background-size: auto;
   border-radius: 2px;
   box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
-  color: rgb(0, 0, 0)!important;
+  color: var(--fg-color--)!important;
   display: block;
   font-size: 14px;
   font-family: sans-serif;
@@ -51,5 +51,5 @@
 .survol-soundcloud-text p,
 .survol-soundcloud-text h1 {
   margin: 8px;
-  color: rgb(0, 0, 0)!important;
+  color: var(--fg-color--)!important;
 }
