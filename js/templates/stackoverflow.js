@@ -49,17 +49,17 @@ class StackOverFlowHover {
       
                     if(answer_accepted == 0){
                         let code_h = doc.getElementsByClassName('answer')[0].getElementsByTagName('pre')[0]
-                        if(code_h.getElementsByTagName('code')[0].innerHTML){
+                        if(code_h){
                             let code_t = code_h.getElementsByTagName('code')[0].innerHTML
-                            code.appendChild(document.createTextNode(code_t))
+                            if(code_t)code.appendChild(document.createTextNode(code_t))
                         }
                     text.appendChild(document.createTextNode(doc.getElementsByClassName('s-prose js-post-body')[1].getElementsByTagName('p')[0].innerHTML.slice(0,100)))
                     
                     }else {
                         let code_h = doc.getElementsByClassName('answer accepted-answer')[0].getElementsByTagName('pre')[0]
-                        if(code_h.getElementsByTagName('code')[0].innerHTML){
+                        if(code_h){
                             let code_t = code_h.getElementsByTagName('code')[0].innerHTML
-                            code.appendChild(document.createTextNode(code_t))
+                            if(code_t)code.appendChild(document.createTextNode(code_t))
                         }
                         text.appendChild(document.createTextNode(doc.getElementsByClassName('s-prose js-post-body')[1].getElementsByTagName('p')[0].innerHTML.slice(0,100)))
                         
