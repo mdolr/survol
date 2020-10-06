@@ -7,5 +7,23 @@
     },
     "extensionDescription": {
         "message": "Mettez fin aux fenêtres remplies d'onglets à regarder plus tard, Survol vous permet de jeter un coup d'oeil rapide aux sites que vous survolez avec votre souris!"
+    },
+
+
+    "pageSettings": {
+        "message": "Paramètres de la page",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "Activer Survol sur cette page ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "Paramètres globaux",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "Permettre la prévisualisation via la meta-data ? (si désactivée seuls les sites tels que youtube, twitter, wikipedia, ... seront prévisualisés)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }
