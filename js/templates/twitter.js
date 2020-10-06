@@ -85,25 +85,27 @@ class TwitterHover {
                     let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
 
                     content.forEach((node) => {
-                        if(node.tagName == 'A'){
+                        if (node.tagName == 'A') {
                             let a = document.createElement('a');
-                            let aText = document.createTextNode(node.textContent)
+                            let aText = document.createTextNode(node.textContent);
                             a.appendChild(aText);
                             contentContainer.appendChild(a)
-                        } else if(node.tagName == 'BR'){
+                        } else if (node.tagName == 'BR') {
                             let br = document.createElement('br');
-                            contentContainer.appendChild(br)
+                            contentContainer.appendChild(br);
                         } else {
-                            let text = document.createTextNode(node.textContent)
-                            contentContainer.appendChild(text)
+                            let text = document.createTextNode(node.textContent);
+                            contentContainer.appendChild(text);
                         }
-                    })
-                    
+                    });
+
                     tweetContainer.appendChild(author);
-                    tweetContainer.appendChild(contentContainer)
+                    tweetContainer.appendChild(contentContainer);
                     tweetContainer.appendChild(date);
 
-                    container.appendChild(tweetContainer);
+                    if (window.lastHovered == node) {
+                        container.appendChild(tweetContainer);
+                    }
                 })
                 .catch(console.error);
 

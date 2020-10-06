@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         CURRENT_TAB = document.location.href;
     };
 
+    window.lastHovered = null;
+
     /* <https://www.chromium.org/Home/chromium-security/extension-content-script-fetches>
      * "Later in 2019, Extension Manifest V3 will become available, requiring cross-origin requests to occur in background pages rather than content scripts.  This new manifest version will have its own migration period, before support for Extension Manifest V2 is eventually removed from Chrome."
      * Using the background script to pull data from APIs safely, i.e forwarding request from the content script to the background script
@@ -27,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     window.survolBackgroundRequest = (url, noJSON) => {
         return new Promise((resolve, reject) => {
-           chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
+            chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
                 (res.status == 'OK') ? resolve(res): reject(res);
             });
         });
@@ -122,10 +124,12 @@ document.addEventListener('DOMContentLoaded', () => {
             node.addEventListener('mouseenter', function () {
                 potentialHover.bindToContainer(node, domain, container);
                 container.className = 'survol-container';
+                window.lastHovered = node;
             });
 
             node.addEventListener('mouseleave', function () {
                 container.className = 'survol-container hidden';
+                window.lastHovered = null;
                 container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
             });
 

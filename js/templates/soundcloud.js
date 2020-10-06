@@ -60,7 +60,9 @@ class SoundCloudHover {
                     soundCloudContainer.appendChild(soundCloudImageContainer);
                     soundCloudContainer.appendChild(textContainer);
 
-                    container.appendChild(soundCloudContainer);
+                    if (window.lastHovered == node) {
+                        container.appendChild(soundCloudContainer);
+                    }
                 })
                 .catch((res) => {
                     console.log('[Error] Survol - SoundCloud.js - Can\'t fetch API.', res);
