@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     var CURRENT_TAB = document.location.href;
     var previewMetadata = true;
+    var isDarkMode = false;
     var container = document.createElement('div');
     var capturedNodes = [];
 
@@ -197,11 +198,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ELse the script is part of the extension
     else {
-        chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'isDarkMode'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
 
             if (res.previewMetadata === false) {
                 previewMetadata = false;
+            }
+
+            if (res.isDarkMode === false){
+                isDarkMode = false
             }
 
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {

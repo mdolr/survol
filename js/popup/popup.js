@@ -12,12 +12,17 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(word).innerText = chrome.i18n.getMessage(word);
     });
 
-    chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+    chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'isDarkMode'], function (res) {
         let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
         let previewMetadata = true;
+        let isDarkMode = true;
 
         if (res.previewMetadata === false) {
             previewMetadata = false;
+        }
+
+        if (res.isDarkMode === false) {
+            isDarkMode = false;
         }
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -31,8 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 document.getElementById('previewMetadata').checked = previewMetadata;
 
+                document.getElementById('isDarkMode').checked = isDarkMode;
+
                 document.getElementById('previewMetadata').addEventListener('click', () => {
                     chrome.storage.local.set({ previewMetadata: document.getElementById('previewMetadata').checked });
+                });
+
+                document.getElementById('isDarkMode').addEventListener('click', () => {
+                    chrome.storage.local.set({ isDarkMode: document.getElementById('isDarkMode').checked });
                 });
 
                 document.getElementById('previewOnThisPage').addEventListener('click', () => {
