@@ -121,9 +121,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             node.addEventListener('mouseenter', function () {
                 potentialHover.bindToContainer(node, domain, container);
+            
                 container.className = 'survol-container';
+                
             });
-
             node.addEventListener('mouseleave', function () {
                 container.className = 'survol-container hidden';
                 container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
