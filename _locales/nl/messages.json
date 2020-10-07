@@ -1,0 +1,27 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol bespaart jou tabbladen and tijd door elke link waar je overheen gaat met de muis voor te vertonen."
+    },
+    "pageSettings": {
+        "message": "Pagina instellingen",
+        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+    },
+    "enableOnPage": {
+        "message": "Survol aanzetten op deze pagina?",
+        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+    },
+    "generalSettings": {
+        "message": "Algemene instellingen",
+        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+    },
+    "allowMetadata": {
+        "message": "Voorvertoning meta-data toestaan ? (Wanneer dit uitstaat zal Survol alleen youtube, twitter, wikipedia, ... voorvertonen)",
+        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+    }
+}
