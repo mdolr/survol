@@ -1,0 +1,29 @@
+{
+  "extensionName": {
+    "message": "Survol"
+  },
+  "extensionShortName": {
+    "message": "Survol"
+  },
+  "extensionDescription": {
+    "message": "Survol saves you tabs and time by previewing every link you hover"
+  },
+  
+  
+  "pageSettings": {
+    "message": "페이지 설정",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "enableOnPage": {
+    "message": "현재 페이지에서 Survol을 활성화하시겠습니까?",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "generalSettings": {
+    "message": "일반 설정",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "allowMetadata": {
+    "message": "메타데이터 미리보기를 허용하시겠습니까? (Survol을 비활성화하면 유튜브, 트위터, 위키피디아 등의 미리보기만 표시됩니다.)",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  }
+}
