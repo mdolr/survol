@@ -10,18 +10,18 @@
     },
     "pageSettings": {
         "message": "Pagina instellingen",
-        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableOnPage": {
         "message": "Survol aanzetten op deze pagina?",
-        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "generalSettings": {
         "message": "Algemene instellingen",
-        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "allowMetadata": {
         "message": "Voorvertoning meta-data toestaan ? (Wanneer dit uitstaat zal Survol alleen youtube, twitter, wikipedia, ... voorvertonen)",
-        "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }
