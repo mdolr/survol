@@ -1,6 +1,7 @@
 
 ![](https://github.com/mdolr/survol/blob/master/images/icon128.png?raw=true)  
 #  Survol
+![](https://img.shields.io/chrome-web-store/users/fdnnmbmkgfdjclkgimonnimokhnndalk?label=Chrome%20users&style=flat-square)  
 ![](https://img.shields.io/github/license/mdolr/survol?style=flat-square) ![](https://img.shields.io/github/issues/mdolr/survol?style=flat-square)
 
 A **browser extension** to preview links in an instant!  
@@ -8,7 +9,7 @@ A **browser extension** to preview links in an instant!
 
 ## Install
 ### Public version
-* Chrome : Not available
+* Chrome : [Store page](https://chrome.google.com/webstore/detail/survol/fdnnmbmkgfdjclkgimonnimokhnndalk)
 * Firefox : Not available
 
 ### Dev version
