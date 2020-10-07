@@ -10,7 +10,7 @@ A **browser extension** to preview links in an instant!
 ## Install
 ### Public version
 * Chrome : [Store page](https://chrome.google.com/webstore/detail/survol/fdnnmbmkgfdjclkgimonnimokhnndalk)
-* Firefox : [Store page](https://addons.mozilla.org/fr/firefox/addon/survol/)
+* Firefox : [Store page](https://addons.mozilla.org/en-US/firefox/addon/survol)
 
 ### Dev version
 - Clone the repository
