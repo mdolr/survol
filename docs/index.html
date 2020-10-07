@@ -25,28 +25,6 @@
     <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/twitter.js"></script>
     <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/wikipedia.js"></script>
 
-    <script src="scripts/cookies-eu-banner.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            new CookiesEuBanner(function() {
-                (function(b, o, i, l, e, r) {
-                    b.GoogleAnalyticsObject = l;
-                    b[l] || (b[l] =
-                        function() {
-                            (b[l].q = b[l].q || []).push(arguments)
-                        });
-                    b[l].l = +new Date;
-                    e = o.createElement(i);
-                    r = o.getElementsByTagName(i)[0];
-                    e.src = 'https://www.google-analytics.com/analytics.js';
-                    r.parentNode.insertBefore(e, r)
-                }(window, document, 'script', 'ga'));
-                ga('create', 'UA-172929726-3');
-                ga('send', 'pageview');
-            }, true);
-        });
-    </script>
-
     <!--
         <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
@@ -54,12 +32,6 @@
 </head>
 
 <body>
-    <div id="cookies-eu-banner" style="display: none;">
-        By continuing your visit to this site, you accept the use of cookies by Google Analytics to make visits statistics.
-        <a href="./read-more.html" id="cookies-eu-more">Read more</a>
-        <button id="cookies-eu-reject">Reject</button>
-        <button id="cookies-eu-accept">Accept</button>
-    </div>
     <div class="container">
         <div class="hero">
             <h1 class="title nunito has-text-centered is-1">Too many tabs opened ? <br><strong>Survol</strong> solves this.</h1>
