@@ -61,6 +61,12 @@ class TwitterHover {
                     twitterAt.appendChild(document.createTextNode(` @${tweetAuthorUsername}`));
                     twitterAt.style.marginInlineStart = '10px';
 
+                    let tweetAuthorContainer = document.createElement('div');
+                    tweetAuthorContainer.className = 'survol-twitter-author-container';
+
+                    tweetAuthorContainer.appendChild(name);
+                    tweetAuthorContainer.appendChild(twitterAt);
+
                     let author = document.createElement('div');
                     author.className = 'survol-twitter-author';
                     author.style.display = 'flex';
@@ -68,9 +74,9 @@ class TwitterHover {
                     author.style.flexBasis = 'auto';
                     author.style.alignItems = 'center';
                     author.style.marginBottom = '10px';
+
                     author.appendChild(profilePicContainer);
-                    author.appendChild(name);
-                    author.appendChild(twitterAt);
+                    author.appendChild(tweetAuthorContainer);
 
                     let parser = new DOMParser();
                     let content = parser.parseFromString(tweetContent, 'text/html').body.childNodes;
@@ -82,28 +88,30 @@ class TwitterHover {
 
                     // if tweet has no media media is null
                     // added for potential media embedding in the future
-                    let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
+                    // let htmlmedia = (htmlDoc.getElementsByTagName('a').length > 1 ? htmlDoc.getElementsByTagName('a')[0] : null);
 
                     content.forEach((node) => {
-                        if(node.tagName == 'A'){
+                        if (node.tagName == 'A') {
                             let a = document.createElement('a');
-                            let aText = document.createTextNode(node.textContent)
+                            let aText = document.createTextNode(node.textContent);
                             a.appendChild(aText);
-                            contentContainer.appendChild(a)
-                        } else if(node.tagName == 'BR'){
+                            contentContainer.appendChild(a);
+                        } else if (node.tagName == 'BR') {
                             let br = document.createElement('br');
-                            contentContainer.appendChild(br)
+                            contentContainer.appendChild(br);
                         } else {
-                            let text = document.createTextNode(node.textContent)
-                            contentContainer.appendChild(text)
+                            let text = document.createTextNode(node.textContent);
+                            contentContainer.appendChild(text);
                         }
-                    })
-                    
+                    });
+
                     tweetContainer.appendChild(author);
-                    tweetContainer.appendChild(contentContainer)
+                    tweetContainer.appendChild(contentContainer);
                     tweetContainer.appendChild(date);
 
-                    container.appendChild(tweetContainer);
+                    if (window.lastHovered == node && container.innerHTML == '') {
+                        container.appendChild(tweetContainer);
+                    }
                 })
                 .catch(console.error);
 

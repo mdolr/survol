@@ -1,0 +1,27 @@
+{
+  "extensionName": {
+    "message": "Survol"
+  },
+  "extensionShortName": {
+    "message": "Survol"
+  },
+  "extensionDescription": {
+    "message": "Survol 通过预览您悬停的每个链接来减少您打开的标签量，并且节省您的时间。"
+  },
+  "pageSettings": {
+    "message": "页面设置",
+    "description": "此文本会在扩展图标被点击的时候显示"
+  },
+  "enableOnPage": {
+    "message": "在此页面上启用Survol ?",
+    "description": "此文本会在扩展图标被点击的时候显示"
+  },
+  "generalSettings": {
+    "message": "通用设置",
+    "description": "此文本会在扩展图标被点击的时候显示"
+  },
+  "allowMetadata": {
+    "message": "允许预览元数据 ? (如关闭，Survol 会只预览 youtube, twitter, wikipedia, ...)",
+    "description": "此文本会在扩展图标被点击的时候显示"
+  }
+}

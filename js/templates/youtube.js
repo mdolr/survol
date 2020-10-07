@@ -59,13 +59,14 @@ class YoutubeHover {
                     image.style.backgroundRepeat = 'no-repeat';
 
                     youtubeImageContainer.appendChild(image);
-                    textContainer.appendChild(title)
-                    textContainer.appendChild(text)
+                    textContainer.appendChild(title);
+                    textContainer.appendChild(text);
                     youtubeContainer.appendChild(youtubeImageContainer);
                     youtubeContainer.appendChild(textContainer);
 
-                    container.appendChild(youtubeContainer);
-
+                    if (window.lastHovered == node && container.innerHTML == '') {
+                        container.appendChild(youtubeContainer);
+                    }
                 })
                 .catch(console.error);
         }

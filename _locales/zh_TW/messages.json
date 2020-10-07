@@ -1,0 +1,27 @@
+{
+  "extensionName": {
+    "message": "Survol"
+  },
+  "extensionShortName": {
+    "message": "Survol"
+  },
+  "extensionDescription": {
+    "message": "Survol 透過預覽您懸停的每個快連結來減少您新增的分頁數量，並且節省您的時間。"
+  },
+  "pageSettings": {
+    "message": "頁面設定",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "enableOnPage": {
+    "message": "是否在當前頁面上啟用 Survol？",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "generalSettings": {
+    "message": "一般設定",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "allowMetadata": {
+    "message": "允許預覽元標籤資料（meta-data） ? 若不允許預覽，則只會預覽 YouTube、Twitter、WikiPedia…",
+    "description": "This text is displayed in the popup when the extension icon is clicked"
+  }
+}

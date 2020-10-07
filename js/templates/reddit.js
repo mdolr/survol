@@ -52,12 +52,14 @@ class RedditHover {
                     postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
                     postContainer.appendChild(generatedEmbed);
 
-                    container.appendChild(postContainer);
+                    if (window.lastHovered == node) {
+                        container.appendChild(postContainer);
+                    }
                 })
                 .catch((error) => {
                     console.error('SURVOL - Background request failed', error);
                 });
-                
+
         } else if (this.linkType === 'post') {
             /* We need the specific post ID to get JSON */
             /* Post ID should be 6 character alpha-numeric (base36) */
@@ -72,7 +74,9 @@ class RedditHover {
                     postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
                     postContainer.appendChild(generatedEmbed);
 
-                    container.appendChild(postContainer);
+                    if (window.lastHovered == node && container.innerHTML == '') {
+                        container.appendChild(postContainer);
+                    }
                 })
                 .catch((error) => {
                     console.error('SURVOL - Background request failed', error);
@@ -114,7 +118,7 @@ class RedditHover {
     static getSubReddit(json) {
         const subredditLink = document.createElement('a');
         const subredditLinkBold = document.createElement('b');
-        
+
         subredditLinkBold.appendChild(document.createTextNode(`/${json.subreddit_name_prefixed}`));
         subredditLink.appendChild(document.createTextNode(`In `));
         subredditLink.appendChild(subredditLinkBold);
@@ -153,7 +157,7 @@ class RedditHover {
     }
 
     /* Parse Reddit API JSON and construct preview embed */
-    static redditJsonToHoverElem(json, isPost=true) {
+    static redditJsonToHoverElem(json, isPost = true) {
         const postData = json.data.children[0].data;
 
         // Basic HTML elements for styling
@@ -165,7 +169,7 @@ class RedditHover {
 
         const footer = document.createElement('div');
         footer.className = 'survol-reddit-footer';
-      
+
         const postDetails = document.createElement('span');
         postDetails.className = 'survol-reddit-post-details';
 

@@ -12,13 +12,16 @@ document.addEventListener('DOMContentLoaded', () => {
      * (ex: reddit profiles on reddit)
      */
     var CURRENT_TAB = document.location.href;
+    var previewMetadata = true;
     var container = document.createElement('div');
-    var capturedNodes = []
+    var capturedNodes = [];
 
     /* Just in case some sites use the pushState js function to navigate across pages. */
     window.onpopstate = () => {
         CURRENT_TAB = document.location.href;
     };
+
+    window.lastHovered = null;
 
     /* <https://www.chromium.org/Home/chromium-security/extension-content-script-fetches>
      * "Later in 2019, Extension Manifest V3 will become available, requiring cross-origin requests to occur in background pages rather than content scripts.  This new manifest version will have its own migration period, before support for Extension Manifest V2 is eventually removed from Chrome."
@@ -27,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     window.survolBackgroundRequest = (url, noJSON) => {
         return new Promise((resolve, reject) => {
-           chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
+            chrome.runtime.sendMessage({ action: 'request', data: { url, noJSON } }, (res) => {
                 (res.status == 'OK') ? resolve(res): reject(res);
             });
         });
@@ -39,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function insertSurvolDiv() {
         return new Promise((resolve) => {
             container.className = 'survol-container hidden';
-            console.log('Container created', container);
 
             //set the buffer (popup distance from mouse)
             const buffer = 20;
@@ -101,8 +103,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return new TwitterHover(node, getDomain(CURRENT_TAB));
             case 'stackoverflow.com':
                 return new StackOverFlowHover(node, getDomain(CURRENT_TAB));
+            case 'soundcloud.com':
+                return new SoundCloudHover(node, getDomain(CURRENT_TAB));
+
             default:
-                return new BaseHover(node, getDomain(CURRENT_TAB));
+                return previewMetadata ? new BaseHover(node, getDomain(CURRENT_TAB)) : null;
                 //return new BaseHover(node);
         }
     }
@@ -122,11 +127,13 @@ document.addEventListener('DOMContentLoaded', () => {
             node.addEventListener('mouseenter', function () {
                 potentialHover.bindToContainer(node, domain, container);
             
-                container.className = 'survol-container';
-                
+                container.className = 'survol-container';               
+                window.lastHovered = node;
+
             });
             node.addEventListener('mouseleave', function () {
                 container.className = 'survol-container hidden';
+                window.lastHovered = null;
                 container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
             });
 
@@ -185,7 +192,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    insertSurvolDiv()
-        .then(gatherHrefs)
-        .then(equipNodes);
+
+
+    // If the script is part of the extension
+    if (window.chrome && chrome.runtime && chrome.runtime.id) {
+        chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+            let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
+
+            if (res.previewMetadata === false) {
+                previewMetadata = false;
+            }
+
+            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
+                insertSurvolDiv()
+                    .then(gatherHrefs)
+                    .then(equipNodes);
+            }
+        });
+    }
+
+    // Else the script is running in demo-mode on survol.me
+    else {
+        insertSurvolDiv()
+            .then(gatherHrefs)
+            .then(equipNodes);
+    }
 });
