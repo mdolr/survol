@@ -50,7 +50,9 @@ class BaseHover {
                         textContainer.appendChild(text);
                         wikipediaContainer.appendChild(textContainer);
 
-                        container.appendChild(wikipediaContainer);
+                        if (window.lastHovered == node && container.innerHTML == '') {
+                            container.appendChild(wikipediaContainer);
+                        }
                     }
                 })
                 .catch((error) => {

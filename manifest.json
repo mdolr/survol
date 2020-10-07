@@ -11,8 +11,13 @@
         "http://*/*",
         "file:///*",
         "tabs",
-        "activeTab"
-      ],
+        "activeTab",
+        "storage",
+        "unlimitedStorage"
+    ],
+    "icons": {
+        "128": "/images/icon128.png"
+    },
     "content_scripts": [
         {
             "matches": [
@@ -21,14 +26,14 @@
                 "file:///*/*"
             ],
             "js": [
-                "js/core.js",
-                "js/utils/reddit-comment-embed.js",
                 "js/templates/wikipedia.js",
                 "js/templates/base.js",
                 "js/templates/reddit.js",
                 "js/templates/twitter.js",
                 "js/templates/youtube.js",
                 "js/templates/stackoverflow.js",
+                "js/templates/soundcloud.js",
+
                 "js/core.js"
             ],
             "css": [
@@ -37,7 +42,9 @@
                 "css/templates/reddit.css",
                 "css/templates/twitter.css",
                 "css/templates/youtube.css",
-                "css/templates/overflow.css"
+               "css/templates/overflow.css"
+                "css/templates/soundcloud.css"
+
             ],
             "run_at": "document_start"
         }
@@ -47,7 +54,7 @@
     },
     "browser_action": {
         "default_title": "Survol",
-        "default_popup": ""
+        "default_popup": "html/popup.html"
     },
     "web_accessible_resources": [
         "images/upvote.png",

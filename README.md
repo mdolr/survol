@@ -1,27 +1,23 @@
-#  Survol
 
-A **browser extension** to preview links in an instant!
+![](https://github.com/mdolr/survol/blob/master/images/icon128.png?raw=true)  
+#  Survol
+![](https://img.shields.io/chrome-web-store/users/fdnnmbmkgfdjclkgimonnimokhnndalk?label=Chrome%20users&style=flat-square) ![](https://img.shields.io/amo/users/survol?label=Firefox%20users&style=flat-square)  
+![](https://img.shields.io/github/license/mdolr/survol?style=flat-square) ![](https://img.shields.io/github/issues/mdolr/survol?style=flat-square)
+
+A **browser extension** to preview links in an instant!  
+[Try it here](https://survol.me)
 
 ## Install
 ### Public version
-Not yet available
+* Chrome : [Store page](https://chrome.google.com/webstore/detail/survol/fdnnmbmkgfdjclkgimonnimokhnndalk)
+* Firefox : [Store page](https://addons.mozilla.org/en-US/firefox/addon/survol)
 
 ### Dev version
 - Clone the repository
 - Lookup on how to add unpacked extension to your browser
 
 ## Contributing
-### General guidelines
-If you would like to contribute code you can do so through GitHub by forking the repository and sending a pull request.
-
-When submitting code, please make every effort to follow existing conventions and style in order to keep the code as readable as possible.
-
-### Testing
-There is no testing protocol yet so please test your work thoroughly before sending it.
-
-### Libraries
-When integrating a new site, if a library is needed (ex: reddit needed the rembeddit library) please specify the exact link where you've got it (it has to be a library rendering embed code for the site you integrate and coming from it).
-
+Check [CONTRIBUTING.MD](https://github.com/mdolr/survol/blob/master/CONTRIBUTING.MD).
 
 ## License
 

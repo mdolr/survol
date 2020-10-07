@@ -3,30 +3,48 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Survol helps you get rid of useless browser tabs</title>
+    <title>Survol - A browser extension to preview any link you hover</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A browser extension to preview any link you hover. Stop wasting time managing too many tabs and discover a new way of navigating on the internet.">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://rawcdn.githack.com/mdolr/survol/68a3e7d0117bbc84293f41c85aa70d53cc0d430d/images/icon128.png" />
 
     <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="style/survol/base.css">
-    <link rel="stylesheet" href="style/survol/wikipedia.css">
-    <link rel="stylesheet" href="style/survol/twitter.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/base.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/templates/twitter.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/templates/wikipedia.css">
+
 
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/core.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/59b4ad56f1b72859a928841cf571a5311377251b/js/core.js"></script>
     <script src="scripts/contributors.js"></script>
     <script src="scripts/survolBackgroundRequest.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/wikipedia.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/twitter.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/base.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/base.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/twitter.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/wikipedia.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const START = 1602226800000;
+            const END = 1602313200000;
+            let now = new Date().getTime();
+
+            if (now >= START && now <= END) {
+                document.getElementById('producthunt').classList.remove('hidden');
+            }
+        });
+    </script>
+    <!--
+        <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
+    -->
 </head>
 
 <body>
+    <a id="producthunt" class="hidden" style="position:fixed; left:24px; bottom:24px; z-index:15000!important;" href="https://www.producthunt.com/posts/survol?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-survol" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=269855&theme=dark" alt="Survol - Preview any link you hover, save time and tabs. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
     <div class="container">
         <div class="hero">
             <h1 class="title nunito has-text-centered is-1">Too many tabs opened ? <br><strong>Survol</strong> solves this.</h1>
@@ -38,17 +56,17 @@
             </div>
 
             <h2 class="subtitle nunito has-text-centered is-2">Convinced ?<br>Download the extension on your favourite browser :</h2>
-            <a disabled class="button is-medium">
+            <a href="https://chrome.google.com/webstore/detail/survol/fdnnmbmkgfdjclkgimonnimokhnndalk" class="button is-success is-medium">
                 <span class="icon">
                   <i class="fab fa-chrome"></i>
                 </span>
-                <span>Not available on chrome yet</span>
+                <span>Download on Chrome</span>
             </a><br>
-            <a disabled class="button is-medium">
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/survol/" class="button is-success is-medium">
                 <span class="icon">
                   <i class="fab fa-firefox"></i>
                 </span>
-                <span>Not available on firefox yet</span>
+                <span>Download on Firefox</span>
             </a><br>
         </div>
         <div style="display:flex; justify-content:center;" class="has-text-centered">

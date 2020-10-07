@@ -6,13 +6,23 @@
     line-height: 20px;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
     background-color: white;
-    padding: 11px;
+    padding: 16px;
     /* margin: 3px; */
     border: solid 1px #e6ecf0;
     cursor: pointer;
     border-radius: 12px;
     text-align: left;
     box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.survol-twitter-author-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.survol-twitter-container img {
+    border-radius: 50%!important;
 }
 
 .survol-twitter-hover {

@@ -59,7 +59,9 @@ class WikipediaHover {
                     textContainer.appendChild(text);
                     wikipediaContainer.appendChild(textContainer);
 
-                    container.appendChild(wikipediaContainer);
+                    if (window.lastHovered == node && container.innerHTML == '') {
+                        container.appendChild(wikipediaContainer);
+                    }
                 })
                 .catch((res) => {
                     console.log('[Error] Survol - Wikipedia.js - Can\'t fetch API.', res);

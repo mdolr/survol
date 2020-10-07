@@ -6,6 +6,24 @@
         "message": "Survol"
     },
     "extensionDescription": {
-        "message": "Stop filling your window with tabs to watch later, Survol lets you get a glimpse of any link you hover!"
+        "message": "Survol saves you tabs and time by previewing every link you hover"
+    },
+
+
+    "pageSettings": {
+        "message": "Page settings",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "Enable Survol on this page ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "General settings",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "Allow meta-data preview ? (if disabled Survol will only preview youtube, twitter, wikipedia, ...)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }
