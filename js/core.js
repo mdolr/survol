@@ -188,15 +188,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // If the script is running in demo-mode on survol.me
-    if (!chrome || !chrome.storage) {
-        insertSurvolDiv()
-            .then(gatherHrefs)
-            .then(equipNodes);
-    }
 
-    // ELse the script is part of the extension
-    else {
+
+    // If the script is part of the extension
+    if (window.chrome && chrome.runtime && chrome.runtime.id) {
         chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
 
@@ -210,5 +205,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     .then(equipNodes);
             }
         });
+    }
+
+    // Else the script is running in demo-mode on survol.me
+    else {
+        insertSurvolDiv()
+            .then(gatherHrefs)
+            .then(equipNodes);
     }
 });
