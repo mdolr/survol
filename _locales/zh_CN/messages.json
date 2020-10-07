@@ -13,11 +13,11 @@
     "description": "此文本会在扩展图标被点击的时候显示"
   },
   "enableOnPage": {
-    "message": "Enable Survol on this page ?",
+    "message": "在此页面上启用Survol ?",
     "description": "此文本会在扩展图标被点击的时候显示"
   },
   "generalSettings": {
-    "message": "General settings",
+    "message": "通用设置",
     "description": "此文本会在扩展图标被点击的时候显示"
   },
   "allowMetadata": {
