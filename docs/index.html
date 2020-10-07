@@ -25,6 +25,17 @@
     <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/twitter.js"></script>
     <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/wikipedia.js"></script>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const START = 1602226800000;
+            const END = 1602313200000;
+            let now = new Date().getTime();
+
+            if (now >= START && now <= END) {
+                document.getElementById('producthunt').classList.remove('hidden');
+            }
+        });
+    </script>
     <!--
         <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
@@ -32,6 +43,8 @@
 </head>
 
 <body>
+    <a id="producthunt" class="hidden" style="position:fixed; left:24px; bottom:24px; z-index:15000!important;" href="https://www.producthunt.com/posts/survol?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-survol" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=269855&theme=dark" alt="Survol - Preview any link you hover, save time and tabs. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+
     <div class="container">
         <div class="hero">
             <h1 class="title nunito has-text-centered is-1">Too many tabs opened ? <br><strong>Survol</strong> solves this.</h1>
