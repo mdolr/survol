@@ -25,19 +25,39 @@ class StackOverFlowHover {
 
     
         if (this.linkType == 'stackoverflow') {
+            let question_id = node.href.split('questions/')[1].split('/')[0]
             window
-                .survolBackgroundRequest(node.href,true)
+                .survolBackgroundRequest(`https://api.stackexchange.com/2.2/questions/${question_id}/answers?order=desc&sort=activity&site=stackoverflow&filter=!--1nZx.VICx*`)
                 .then((res) => {
-                    let parser = new DOMParser();
-                    let doc = parser.parseFromString(res.data, 'text/html');
-                    let answer_accepted = doc.getElementsByClassName('answer accepted-answer').length
+                    
+                    let accepted_answer;
+                    let up_vote_cout = []
+                    for(var items in res.data.items){
+                        if(res.data.items[items].is_accepted){
+                            accepted_answer = res.data.items[items];
+                            break;
+                        }
+                        up_vote_cout.push(res.data.items[items].up_vote_count)
+                    }
+                    up_vote_cout.sort((a,b)=>{return a-b;})
+                    if(!accepted_answer){
+                        for(var items in res.data.items){
+                            if(res.data.items[items].up_vote_count == up_vote_cout[up_vote_cout.length-1]){
+                                accepted_answer = res.data.items[items]
+                                break;
+                            }
+                        }
+                    }
 
                     let stackcontainer = document.createElement('div')
                     stackcontainer.className = "survol-wikipedia-container"
 
                     let webTitle = document.createElement('h1');
-                    webTitle.appendChild(document.createTextNode(`${answer_accepted} Answer Accepted !`))
-
+                    if(accepted_answer.is_accepted){
+                        webTitle.appendChild(document.createTextNode(`1 Answer Accepted !`))
+                    }else {
+                        webTitle.appendChild(document.createTextNode(`0 Answer Accepted !`))
+                    }
                     let code_div = document.createElement('div')
                     code_div.className = "code"
 
@@ -45,24 +65,12 @@ class StackOverFlowHover {
                     textContainer.className = 'survol-wikipedia-text';
 
                     let text = document.createElement('p');
+                    if(accepted_answer.body.includes('<p>')){
+                        text.insertAdjacentHTML('beforeend',accepted_answer.body.split('<p>')[1].split('</p>')[0].slice(0,200)+'...')
+                    }
                     let code = document.createElement('code')
-      
-                    if(answer_accepted == 0){
-                        let code_h = doc.getElementsByClassName('answer')[0].getElementsByTagName('pre')[0]
-                        if(code_h){
-                            let code_t = code_h.getElementsByTagName('code')[0].innerHTML
-                            if(code_t)code.appendChild(document.createTextNode(code_t))
-                        }
-                    text.appendChild(document.createTextNode(doc.getElementsByClassName('s-prose js-post-body')[1].getElementsByTagName('p')[0].innerHTML.slice(0,100)))
-                    
-                    }else {
-                        let code_h = doc.getElementsByClassName('answer accepted-answer')[0].getElementsByTagName('pre')[0]
-                        if(code_h){
-                            let code_t = code_h.getElementsByTagName('code')[0].innerHTML
-                            if(code_t)code.appendChild(document.createTextNode(code_t))
-                        }
-                        text.appendChild(document.createTextNode(doc.getElementsByClassName('s-prose js-post-body')[1].getElementsByTagName('p')[0].innerHTML.slice(0,100)))
-                        
+                    if(accepted_answer.body.includes('<pre>')){
+                        code.insertAdjacentHTML('beforeend',accepted_answer.body.split('<pre>')[1].split('</pre>')[0])
                     }
                     code_div.appendChild(code)
 
