@@ -15,7 +15,12 @@ body {
     padding: 12px;
     background-color: var(--background-color);
     color:var(--text-color);
-   
+   transition:var(--transition-delay);
+   display:flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   overflow: hidden;
    
 }
 
@@ -131,5 +136,55 @@ input:checked+.slider:before {
 /*themes styling*/
 .header{
     display:flex;
-    justify-content: space-between;
+    background-color: red;
+    flex-direction: column-reverse;
+}
+
+.icon{
+    margin-right: 0.5em;
+}
+
+.sun-moon-container{
+    --rotation: 0;
+
+    position: absolute;
+    top:0;
+    height: 200vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(calc(var(--rotation) * 1deg));
+    transition:transform var(--transition-delay);
+   
+}
+
+.dark .sun-moon-container{
+    --rotation:180;
+}
+
+.sun,
+.moon{
+    position: absolute;
+    transition:opacity,fill, var(--transition-delay);
+    width: 30px;
+    height: 30px;
+    fill:var(--default-color);
+}
+
+.sun{
+   top:2%;
+   opacity:1;
+}
+.dark .sun{
+    opacity: 0;
+}
+
+.moon{
+    bottom:2%;
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.dark .moon{
+    opacity: 1;
 }
