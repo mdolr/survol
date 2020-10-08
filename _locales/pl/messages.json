@@ -1,0 +1,29 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol oszczędza Twoje zakładki i czas przez podgląd linku po najechaniu na niego"
+    },
+
+
+    "pageSettings": {
+        "message": "Ustawienia strony",
+        "description": "Ten tekst jest wyświetlany w okienku po kliknięciu ikony rozszerzenia"
+    },
+    "enableOnPage": {
+        "message": "Czy włączyć Survol na tej stronie ?",
+        "description": "Ten tekst jest wyświetlany w okienku po kliknięciu ikony rozszerzenia"
+    },
+    "generalSettings": {
+        "message": "Ustawienia ogólne",
+        "description": "Ten tekst jest wyświetlany w okienku po kliknięciu ikony rozszerzenia"
+    },
+    "allowMetadata": {
+        "message": "Pozwól wyświetlać podgląd meta-data ? (jeśli wyłączysz Survol możliwe będzie tylko podglądanie youtube, twitter, wikipedia, ...)",
+        "description": "Ten tekst jest wyświetlany w okienku po kliknięciu ikony rozszerzenia"
+    }
+}
