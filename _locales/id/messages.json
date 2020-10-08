@@ -1,0 +1,27 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol menghemat waktu dan banyaknya tab yang dibuka dengan menampilkan pratinjau saat kursor diarahkan ke tautan"
+    },
+    "pageSettings": {
+        "message": "Pengaturan halaman",
+        "description": "Teks ini ditampilkan di popup pada saat ikon ekstensi di klik"
+    },
+    "enableOnPage": {
+        "message": "Aktifkan Survol pada halaman ini ?",
+        "description": "Teks ini ditampilkan di popup pada saat ikon ekstensi di klik"
+    },
+    "generalSettings": {
+        "message": "Pengaturan umum",
+        "description": "Teks ini ditampilkan di popup pada saat ikon ekstensi di klik"
+    },
+    "allowMetadata": {
+        "message": "Izinkan untuk menampilkan pratinjau dari metadata ? (jika dinonaktifkan Survol hanya akan menampilkan pratinjau pada Youtube, Twitter, Wikipedia, ...)",
+        "description": "Teks ini ditampilkan di popup pada saat ikon ekstensi di klik"
+    }
+}
