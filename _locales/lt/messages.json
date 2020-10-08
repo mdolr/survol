@@ -1,0 +1,29 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol taupo jūsų skirtukus ir laiką leidžiant, užvedus pelę ant nuorodos, ją peržiūrėti iššokančiame lange"
+    },
+
+
+    "pageSettings": {
+        "message": "Puslapio nustatymai",
+        "description": "Šis tekstas yra rodomas iššokančiame lange, kai plėtinio piktograma yra spragtelėta"
+    },
+    "enableOnPage": {
+        "message": "Įjungti Survol šiame puslapyje ?",
+        "description": "Šis tekstas yra rodomas iššokančiame lange, kai plėtinio piktograma yra spragtelėta"
+    },
+    "generalSettings": {
+        "message": "Bendri nustatymai",
+        "description": "Šis tekstas yra rodomas iššokančiame lange, kai plėtinio piktograma yra spragtelėta"
+    },
+    "allowMetadata": {
+        "message": "Leisti meta-duomenų peržiūrą ? (jei išjungta, Survol rodys tik youtube, twitter, wikipedia, ...)",
+        "description": "Šis tekstas yra rodomas iššokančiame lange, kai plėtinio piktograma yra spragtelėta"
+    }
+}
