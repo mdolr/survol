@@ -214,7 +214,7 @@ class StackExchangeHover {
 
             commentText.appendChild(answerContainer);
         } else {
-            commentText = document.createTextNode('Couldn\t find an accepted answer');
+            commentText = document.createTextNode('Couldn\'t find an accepted answer');
         }
 
         const textElement = document.createElement('p');
