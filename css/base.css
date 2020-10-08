@@ -9,10 +9,10 @@
     background-color: transparent;
     z-index: 16777271!important;
     position: absolute!important;
+    word-wrap: break-word;
 }
 
 .survol-container h1 {
-    word-wrap: break-word;
     line-height: 24px;
 }
 
