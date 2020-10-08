@@ -1,6 +1,6 @@
 const sunMoonContainer = document.querySelector(".sun-moon-container");
 
-document.getElementById("btn").addEventListener("click", () => {
+document.querySelector(".theme-toggle-btn").addEventListener("click", () => {
   document.body.classList.toggle("dark");
   // const currentRotation = parseInt(getComputedStyle(sunMoonContainer).getPropertyValue("--rotation"));
 

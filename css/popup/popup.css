@@ -188,3 +188,17 @@ input:checked+.slider:before {
 .dark .moon{
     opacity: 1;
 }
+.theme-toggle-btn{
+
+    outline: none;
+    color: var(--text-color);
+    font-size: 13px;
+    font-weight: 600;
+
+}
+
+.theme-toggle-btn:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    transition: var(--transition-delay);
+}
