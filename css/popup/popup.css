@@ -1,13 +1,37 @@
 body {
+    --default-color:orangered;
+    --background-color:white;
+    --text-color:black;
+    --transition-delay: 1s;
+    --sliderON-bg-color:#28d431;
+    --sliderOFF-bg-color:#ccc;
+    --slider-round-color:white;
+
+
     width: 300px;
     height: 520px;
     text-align: center;
     margin: 0px;
     padding: 12px;
+    background-color: var(--background-color);
+    color:var(--text-color);
+   
+   
+}
+
+body.dark{
+    --default-color:#D0D066;
+    --background-color:#333;
+    --text-color:rgb(211, 104, 104);
+    --sliderON-bg-color:#9ea55a;
+    --sliderOFF-bg-color:rgb(204, 190, 190);
+    --slider-round-color:rgb(38, 142, 114);
+
 }
 
 .logo {
     transform: scale(0.75);
+    
 }
 
 .popup .title {
@@ -73,13 +97,13 @@ The switch - the box around the slider */
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color:var(--slider-round-color);
     -webkit-transition: .4s;
     transition: .4s;
 }
 
 input:checked+.slider {
-    background-color: #28d431;
+    background-color: var(--sliderON-bg-color);  /*initial green color*/
 }
 
 input:focus+.slider {
@@ -97,8 +121,15 @@ input:checked+.slider:before {
 
 .slider.round {
     border-radius: 34px;
+    background-color:var(--sliderOFF-bg-color);  /*after turn off grey color*/
 }
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/*themes styling*/
+.header{
+    display:flex;
+    justify-content: space-between;
 }
