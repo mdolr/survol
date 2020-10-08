@@ -11,6 +11,11 @@
     position: absolute!important;
 }
 
+.survol-container h1 {
+    word-wrap: break-word;
+    line-height: 24px;
+}
+
 .survol-tooltiptext-youtube {
     width: 560px!important;
     height: 315px!important;

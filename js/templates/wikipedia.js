@@ -47,8 +47,8 @@ class WikipediaHover {
                     }
 
                     let title = document.createElement('h1');
-                    title.appendChild(document.createTextNode(res.data.displaytitle));
-
+                    title.appendChild(document.createTextNode(res.data.displaytitle.replace(/<\/?i>/g, '')));
+                    
                     let textContainer = document.createElement('div');
                     textContainer.className = 'survol-wikipedia-text';
 
