@@ -1,0 +1,29 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol sparar dig flikar och tid genom att förhandsvisa varje länk du håller musen över"
+    },
+
+
+    "pageSettings": {
+        "message": "Sidinställningar",
+        "description": "Den här texten visas i popup-fönstret när tilläggs-ikonen klickas på"
+    },
+    "enableOnPage": {
+        "message": "Aktivera Survol på denna sida?",
+        "description": "Den här texten visas i popup-fönstret när tilläggs-ikonen klickas på"
+    },
+    "generalSettings": {
+        "message": "Allmänna inställningar",
+        "description": "Den här texten visas i popup-fönstret när tilläggs-ikonen klickas på"
+    },
+    "allowMetadata": {
+        "message": "Tillåt förhandsvisning av meta-data? (Om avaktiverad kommer Survol endast förhandsvisa youtube, twitter, wikipedia, ...)",
+        "description": "Den här texten visas i popup-fönstret när tilläggs-ikonen klickas på"
+    }
+}
