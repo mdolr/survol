@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Permettre la prévisualisation via la meta-data ? (si désactivée seuls les sites tels que youtube, twitter, wikipedia, ... seront prévisualisés)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Mode sombre",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

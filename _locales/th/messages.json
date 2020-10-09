@@ -24,5 +24,9 @@
     "allowMetadata": {
         "message": "ยินยอมแสดงตัวอย่าง meta-data ? (ถ้าไม่ Survol จะแสดงตัวอย่างได้แค่ youtube, twitter, wikipedia, ...)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "โหมดมืด",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

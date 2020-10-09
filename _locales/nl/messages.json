@@ -23,5 +23,9 @@
     "allowMetadata": {
         "message": "Voorvertoning meta-data toestaan ? (Wanneer dit uitstaat zal Survol alleen youtube, twitter, wikipedia, ... voorvertonen)",
         "description": "Deze text wordt getoond in de popup wanneer er op het extensie symbool wordt geklikt"
+    },
+    "enableDarkTheme": {
+        "message": "Donkere modus",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

@@ -5,6 +5,11 @@ body {
     padding: 12px;
 }
 
+body.dark-theme {
+    background-color: rgb(24, 26, 27);
+    color: white!important;
+}
+
 .logo {
     transform: scale(0.75);
 }

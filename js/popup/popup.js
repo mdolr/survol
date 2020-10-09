@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
 
-    //'enableDarkTheme'
-    ['pageSettings', 'generalSettings', 'allowMetadata', 'enableOnPage'].forEach(function (word) {
+    ['pageSettings', 'generalSettings', 'allowMetadata', 'enableOnPage', 'enableDarkTheme'].forEach(function (word) {
         document.getElementById(word).innerText = chrome.i18n.getMessage(word);
     });
 
@@ -24,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (res.darkThemeToggle === true) {
             darkTheme = true;
+            document.getElementById('body').classList.add('dark-theme');
         }
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 document.getElementById('darkThemeCheckbox').addEventListener('click', () => {
                     chrome.storage.local.set({ darkThemeToggle: document.getElementById('darkThemeCheckbox').checked });
+                    document.getElementById('body').classList.toggle('dark-theme');
                 });
 
                 document.getElementById('previewOnThisPage').addEventListener('click', () => {

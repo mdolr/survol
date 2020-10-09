@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Vuoi attivare l'anteprima dei meta-data? (se disattivata, Survol darà un'anteprima solo di youtube, twitter, wikipedia, ...)",
         "description": "Questo testo appare nel popup quando l'icona dell'estensione viene cliccata"
+    },
+    "enableDarkTheme": {
+        "message": "Modalità scura",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

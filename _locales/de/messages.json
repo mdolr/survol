@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Erlaube Meta-Daten Vorschau? (Wenn dies deaktiviert ist wird nur eine Vorschau von YouTube, Twitter, Wikipedia, ... angezeigt)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Dunkler Modus",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

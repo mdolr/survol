@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Leisti meta-duomenų peržiūrą ? (jei išjungta, Survol rodys tik youtube, twitter, wikipedia, ...)",
         "description": "Šis tekstas yra rodomas iššokančiame lange, kai plėtinio piktograma yra spragtelėta"
+    },
+    "enableDarkTheme": {
+        "message": "Tamsus režimas",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }
