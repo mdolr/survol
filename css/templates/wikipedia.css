@@ -1,14 +1,11 @@
 .survol-wikipedia-container {
     background-attachment: scroll;
     background-clip: border-box;
-    background-color: rgb(255, 255, 255);
     background-image: none;
     background-origin: padding-box;
     background-position-x: 0%;
     background-position-y: 0%;
     background-size: auto;
-    border-radius: 2px;
-    box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
     color: rgb(0, 0, 0)!important;
     display: block;
     font-size: 14px;
@@ -18,7 +15,6 @@
     padding: 0px!important;
     width: 320px;
     margin: 0px!important;
-    border-radius: 12px;
 }
 
 .survol-wikipedia-image {
