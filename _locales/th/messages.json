@@ -1,0 +1,28 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol ช่วยประหยัดแท็บและเวลาโดยแสดงตัวอย่างลิ้งที่ชี้"
+    },
+
+    "pageSettings": {
+        "message": "ตั้งค่าหน้าเว็บ",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "เปิดใช้ Survol ที่หน้านี้ ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "ตั้งค่าทั่วไป",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "ยินยอมแสดงตัวอย่าง meta-data ? (ถ้าไม่ Survol จะแสดงตัวอย่างได้แค่ youtube, twitter, wikipedia, ...)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    }
+}
