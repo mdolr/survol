@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     var CURRENT_TAB = document.location.href;
     var previewMetadata = true;
+    var darkTheme = false;
     var container = document.createElement('div');
     var capturedNodes = [];
 
@@ -41,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
      */
     function insertSurvolDiv() {
         return new Promise((resolve) => {
-            container.className = 'survol-container hidden';
+            container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
 
             //set the buffer (popup distance from mouse)
             const buffer = 20;
@@ -126,12 +127,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             node.addEventListener('mouseenter', function () {
                 potentialHover.bindToContainer(node, domain, container);
-                container.className = 'survol-container';
+                container.className = `survol-container ${darkTheme ? 'dark-theme' : ''}`;
                 window.lastHovered = node;
             });
 
             node.addEventListener('mouseleave', function () {
-                container.className = 'survol-container hidden';
+                container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
                 window.lastHovered = null;
                 container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
             });
@@ -195,11 +196,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If the script is part of the extension
     if (window.chrome && chrome.runtime && chrome.runtime.id) {
-        chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
 
             if (res.previewMetadata === false) {
                 previewMetadata = false;
+            }
+
+            if (res.darkThemeToggle === true) {
+                darkTheme = true;
             }
 
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {

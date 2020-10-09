@@ -6,7 +6,6 @@
     background-position-x: 0%;
     background-position-y: 0%;
     background-size: auto;
-    color: rgb(0, 0, 0)!important;
     display: block;
     font-size: 14px;
     font-family: sans-serif;
@@ -40,12 +39,10 @@
 }
 
 .survol-soundcloud-text p {
-    color: #727171;
     font-size: 14px;
 }
 
 .survol-soundcloud-text p,
 .survol-soundcloud-text h1 {
     margin: 8px;
-    color: rgb(0, 0, 0)!important;
 }

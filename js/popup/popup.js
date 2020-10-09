@@ -8,16 +8,22 @@ document.addEventListener('DOMContentLoaded', () => {
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
 
+    //'enableDarkTheme'
     ['pageSettings', 'generalSettings', 'allowMetadata', 'enableOnPage'].forEach(function (word) {
         document.getElementById(word).innerText = chrome.i18n.getMessage(word);
     });
 
-    chrome.storage.local.get(['disabledDomains', 'previewMetadata'], function (res) {
+    chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
         let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
         let previewMetadata = true;
+        let darkTheme = false;
 
         if (res.previewMetadata === false) {
             previewMetadata = false;
+        }
+
+        if (res.darkThemeToggle === true) {
+            darkTheme = true;
         }
 
         chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -33,6 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 document.getElementById('previewMetadata').addEventListener('click', () => {
                     chrome.storage.local.set({ previewMetadata: document.getElementById('previewMetadata').checked });
+                });
+
+                document.getElementById('darkThemeCheckbox').checked = darkTheme;
+
+                document.getElementById('darkThemeCheckbox').addEventListener('click', () => {
+                    chrome.storage.local.set({ darkThemeToggle: document.getElementById('darkThemeCheckbox').checked });
                 });
 
                 document.getElementById('previewOnThisPage').addEventListener('click', () => {

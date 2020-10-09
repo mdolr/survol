@@ -6,7 +6,6 @@
     background-position-x: 0%;
     background-position-y: 0%;
     background-size: auto;
-    color: rgb(0, 0, 0)!important;
     display: block;
     font-size: 14px;
     font-family: sans-serif;
@@ -43,7 +42,6 @@
 .survol-wikipedia-text p,
 .survol-wikipedia-text h1 {
     margin: 8px;
-    color: rgb(0, 0, 0)!important;
     text-align: left!important;
     /* text-justify: auto!important;*/
 }
