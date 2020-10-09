@@ -22,6 +22,11 @@ class WikipediaHover {
         }
     }
 
+    stripHTML(html) {
+        let doc = new DOMParser().parseFromString(html, 'text/html');
+        return doc.body.textContent || '';
+    }
+
     bindToContainer(node, domain, container) {
         if (this.linkType == 'article') {
 
@@ -47,7 +52,7 @@ class WikipediaHover {
                     }
 
                     let title = document.createElement('h1');
-                    title.appendChild(document.createTextNode(res.data.displaytitle.replace(/<\/?i>/g, '')));
+                    title.appendChild(document.createTextNode(this.stripHTML(res.data.displaytitle)));
 
                     let textContainer = document.createElement('div');
                     textContainer.className = 'survol-wikipedia-text';
