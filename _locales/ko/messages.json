@@ -6,7 +6,8 @@
     "message": "Survol"
   },
   "extensionDescription": {
-    "message": "Survol saves you tabs and time by previewing every link you hover"
+    "message2": "Survol saves you tabs and time by previewing every link you hover",
+    "message": "Survol는 마우스오버된 모든 링크의 미리보기를 제공함으로써 당신의 시간과 탭을 절약해줍니다."
   },
   
   
@@ -23,7 +24,7 @@
     "description": "This text is displayed in the popup when the extension icon is clicked"
   },
   "allowMetadata": {
-    "message": "메타데이터 미리보기를 허용하시겠습니까? (Survol을 비활성화하면 유튜브, 트위터, 위키피디아 등의 미리보기만 표시됩니다.)",
+    "message": "메타데이터 미리보기를 허용하시겠습니까? (Survol을 비활성화하면 유튜브, 트위터, 위키피디아 등의 미리보기만 제공됩니다.)",
     "description": "This text is displayed in the popup when the extension icon is clicked"
   }
 }
