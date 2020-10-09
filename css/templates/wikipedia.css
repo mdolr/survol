@@ -41,12 +41,13 @@
     font-style: bold;
     font-size: 24px;
     margin-bottom: 12px;
+    line-height: 24px;
 }
 
 .survol-wikipedia-text p,
 .survol-wikipedia-text h1 {
     margin: 8px;
     color: rgb(0, 0, 0)!important;
-    text-align: justify!important;
-    text-justify: auto!important;
+    text-align: left!important;
+    /* text-justify: auto!important;*/
 }
