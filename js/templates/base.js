@@ -14,7 +14,6 @@ class BaseHover {
                 .then((res) => {
                     let parser = new DOMParser();
                     let doc = parser.parseFromString(res.data, 'text/html');
-
                     let title = doc.querySelector('title') ? doc.querySelector('title').innerText : null;
                     let description = doc.querySelector('meta[name="description"]') ? doc.querySelector('meta[name="description"]').content : null;
                     let thumbnail = doc.querySelector('meta[name="og:image"]') ? doc.querySelector('meta[name="og:image"]').content : null;

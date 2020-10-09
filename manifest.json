@@ -31,7 +31,9 @@
                 "js/templates/reddit.js",
                 "js/templates/twitter.js",
                 "js/templates/youtube.js",
+                "js/templates/stackexchange.js",
                 "js/templates/soundcloud.js",
+
                 "js/core.js"
             ],
             "css": [
@@ -40,7 +42,9 @@
                 "css/templates/reddit.css",
                 "css/templates/twitter.css",
                 "css/templates/youtube.css",
+                "css/templates/stackexchange.css",
                 "css/templates/soundcloud.css"
+
             ],
             "run_at": "document_start"
         }

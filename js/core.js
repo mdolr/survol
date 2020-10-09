@@ -101,8 +101,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 return new YoutubeHover(node, getDomain(CURRENT_TAB));
             case 'twitter.com':
                 return new TwitterHover(node, getDomain(CURRENT_TAB));
+            case 'stackoverflow.com':
+                return new StackExchangeHover(node, getDomain(CURRENT_TAB));
             case 'soundcloud.com':
                 return new SoundCloudHover(node, getDomain(CURRENT_TAB));
+
             default:
                 return previewMetadata ? new BaseHover(node, getDomain(CURRENT_TAB)) : null;
                 //return new BaseHover(node);
