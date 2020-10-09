@@ -1,0 +1,27 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol sparer dig for faner og tid ved at forhåndsvise hvert link, du holder markøren over"
+    },
+    "pageSettings": {
+        "message": "Side indstillinger",
+        "description": "Denne tekst vises i popup'en, når der klikkes på udvidelsesikonet"
+    },
+    "enableOnPage": {
+        "message": "Aktiver Survol på denne side?",
+        "description": "Denne tekst vises i popup'en, når der klikkes på udvidelsesikonet"
+    },
+    "generalSettings": {
+        "message": "Generelle indstillinger",
+        "description": "Denne tekst vises i popup'en, når der klikkes på udvidelsesikonet"
+    },
+    "allowMetadata": {
+        "message": "Tillad forhåndsvisning af meta-data ? (hvis deaktiveret vil Survol kun forhåndsvise youtube, twitter, wikipedia, ...)",
+        "description": "Denne tekst vises i popup'en, når der klikkes på udvidelsesikonet"
+    }
+}
