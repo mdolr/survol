@@ -8,7 +8,7 @@
 .survol-container {
     background-color: white;
     border-radius: 12px!important;
-    color: black;
+    color: black!important;
     box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
     z-index: 16777271!important;
     position: absolute!important;
@@ -26,6 +26,14 @@
 
 .survol-container h1 {
     line-height: 24px;
+}
+
+#survol-container p, #survol-container h1 {
+    color: black!important;
+}
+
+#survol-container.dark-theme p, #survol-container.dark-theme h1 {
+    color: white!important;
 }
 
 .survol-tooltiptext-youtube {
