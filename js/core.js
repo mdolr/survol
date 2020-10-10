@@ -43,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function insertSurvolDiv() {
         return new Promise((resolve) => {
             container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
+            container.id = "survol-container";
 
             //set the buffer (popup distance from mouse)
             const buffer = 20;
