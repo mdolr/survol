@@ -109,8 +109,6 @@ class StackExchangeHover {
     }
 
     generateEmbed(container, node, data) {
-        console.log('Generating embed', data);
-
 
         // Re-using reddit code
         const generated = document.createElement('div');
@@ -230,7 +228,7 @@ class StackExchangeHover {
         postContainer.className = 'survol-tooltiptext survol-tooltiptext-reddit-post';
         postContainer.appendChild(generated);
 
-        if (window.lastHovered == node) {
+        if (window.lastHovered == node && container.innerHTML == '') {
             container.appendChild(postContainer);
         }
     }

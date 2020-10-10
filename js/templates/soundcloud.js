@@ -28,7 +28,6 @@ class SoundCloudHover {
                 .survolBackgroundRequest(`https://soundcloud.com/oembed?url=${this.redirectLink}&format=json`)
                 .then((res) => {
 
-                    console.log('res:', res);
                     let soundCloudContainer = document.createElement('div');
                     soundCloudContainer.className = 'survol-soundcloud-container';
 

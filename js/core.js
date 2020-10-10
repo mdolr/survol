@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function insertSurvolDiv() {
         return new Promise((resolve) => {
             container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
-            container.id = "survol-container";
+            container.id = 'survol-container';
 
             //set the buffer (popup distance from mouse)
             const buffer = 20;
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // If the script is part of the extension
-    if (window.chrome && chrome.runtime && chrome.runtime.id) {
+    if ((window.chrome && chrome.runtime && chrome.runtime.id) || chrome) {
         chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
 
