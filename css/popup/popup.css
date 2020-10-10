@@ -3,6 +3,7 @@ body {
     text-align: center;
     margin: 0px;
     padding: 12px;
+    font-family: system-ui, sans-serif
 }
 
 body.dark-theme {
