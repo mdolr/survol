@@ -105,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return new TwitterHover(node, getDomain(CURRENT_TAB));
             case 'stackoverflow.com':
                 return new StackExchangeHover(node, getDomain(CURRENT_TAB));
+            case 'stackexchange.com':
+                return new StackExchangeHover(node, getDomain(CURRENT_TAB));
             case 'soundcloud.com':
                 return new SoundCloudHover(node, getDomain(CURRENT_TAB));
 

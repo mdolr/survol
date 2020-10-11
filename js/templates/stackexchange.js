@@ -10,11 +10,10 @@ class StackExchangeHover {
 
     /* Takes {String} link
      * Returns {String} link
-     * Description: Returns the domain name associated to a full link
+     * Description: Returns the site name associated to a full link (e.g. stackoverflow, physics)
      */
-    getDomain(link) {
-        let subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
-        return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
+    getSite(link) {
+        return link.replace('http://', '').replace('https://', '').split('/')[0].split('.')[0];
     }
 
     /* Description: This function is unique to every Hover class,
@@ -22,8 +21,7 @@ class StackExchangeHover {
      * it can also give the code of the accepted answer.
      */
     checkLinkType() {
-        // TODO: Make sure the website is not part of the stackexchange network and not limit ourselves to stackoverflow
-        if (this.CURRENT_TAB != 'stackoverflow.com' && this.redirectLink.includes('/questions/')) {
+        if ((this.CURRENT_TAB != 'stackoverflow.com' || this.CURRENT_TAB != 'stackexchange.com') && this.redirectLink.includes('/questions/')) {
             return 'question';
         } else {
             return 'unknown';
@@ -37,7 +35,7 @@ class StackExchangeHover {
 
             // Get the question ID and website from the URL
             const questionID = node.href.split('/questions/')[1].split('/')[0];
-            const site = this.getDomain(node.href).split('.')[0];
+            const site = this.getSite(node.href);
 
             if (questionID) {
 
