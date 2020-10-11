@@ -138,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let potentialHover = getPotentialHover(node, domain);
         /* If we do not support the domain we might not get anything in return of getPotentialHover */
-        if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http') && isNotCaptured(node)) {
+        if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http')) {
             potentialHover.bindToContainer(node, domain, container);
             container.className = `survol-container ${darkTheme ? 'dark-theme' : ''}`;
             window.lastHovered = node;
