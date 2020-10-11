@@ -49,6 +49,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const buffer = 20;
 
             document.addEventListener('mousemove', function (e) {
+
+                // Link detection, doesn't need to refresh nodes on asynchronous requests, doesn't need to add thousands of event listener
+                // Pretty reliable
+                if (document.querySelectorAll('a:hover')[0] != window.lastHovered) {
+                    window.lastHovered = document.querySelectorAll('a:hover')[0];
+
+                    if (document.querySelectorAll('a:hover')[0]) {
+                        dispatcher(window.lastHovered, window.lastHovered.href);
+                    } else {
+                        container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
+                        container.innerHTML = '';
+                    }
+                }
+
                 //get the popup dims
                 let popupWidth = container.clientWidth;
                 let popupHeight = container.clientHeight;
@@ -70,10 +84,10 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.appendChild(container);
 
             // MutationObserver will observe the page if there is any nodes are added to the page
-            const observer = new MutationObserver(domMutationCallback);
+            /*const observer = new MutationObserver(domMutationCallback);
             const bodyNode = document.getElementsByTagName('BODY')[0];
             const config = { childList: true, subtree: true };
-            observer.observe(bodyNode, config);
+            observer.observe(bodyNode, config);*/
 
             resolve();
         });
@@ -125,75 +139,14 @@ document.addEventListener('DOMContentLoaded', () => {
         let potentialHover = getPotentialHover(node, domain);
         /* If we do not support the domain we might not get anything in return of getPotentialHover */
         if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http') && isNotCaptured(node)) {
-
-            node.addEventListener('mouseenter', function () {
-                potentialHover.bindToContainer(node, domain, container);
-                container.className = `survol-container ${darkTheme ? 'dark-theme' : ''}`;
-                window.lastHovered = node;
-            });
-
-            node.addEventListener('mouseleave', function () {
-                container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
-                window.lastHovered = null;
-                container.innerHTML = ''; // Need to find a better way to do it later but I'm struggling with childNodes
-            });
-
-            markAscaptured(node);
-
+            potentialHover.bindToContainer(node, domain, container);
+            container.className = `survol-container ${darkTheme ? 'dark-theme' : ''}`;
+            window.lastHovered = node;
         } else {
             // In case the node has no href feed it to the garbage collector
             potentialHover = null;
         }
     }
-
-    function markAscaptured(node) {
-        capturedNodes.push(node);
-    }
-
-    /* Returns false if the node already captured - so we can skip */
-    function isNotCaptured(node) {
-        return capturedNodes.indexOf(node) == -1;
-    }
-
-    function domMutationCallback(mutationsList, observer) {
-        for (let index in mutationsList) {
-            const mutation = mutationsList[index]
-            if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                if (mutation.addedNodes.length == 1 && mutation.addedNodes[0].tagName == 'DIV' && mutation.addedNodes[0].className == 'survol-container') {
-                    return;
-                }
-                gatherHrefs().then(equipNodes);
-            }
-        }
-    }
-
-    /* Retrieves every <a> element on the page
-     * it is separated as some sites need to reload displayed elements (ex: Twitter deletes nodes out of the screen)
-     * resolves a Nodelist see <https://developer.mozilla.org/fr/docs/Web/API/Document/querySelectorAll>
-     *
-     * TODO : Find a way to search for nodes in some sections only on certain known sites ?
-     */
-    function gatherHrefs() {
-        return new Promise((resolve, reject) => {
-            document.querySelectorAll('a').length ? resolve(document.querySelectorAll('a')) : reject('Can\'t find a single <a> node');
-        });
-    }
-
-    /* Takes a nodelist as an argument
-     * TODO: Once done, resolve / reject
-     * In case of success, go to another function displaying the number of previews on the page ?
-     */
-    function equipNodes(nodes) {
-        return new Promise((resolve, reject) => {
-            nodes.forEach((node) => {
-                if (node.href) {
-                    dispatcher(node, node.href);
-                }
-            });
-        });
-    }
-
-
 
     // If the script is part of the extension
     if ((window.chrome && chrome.runtime && chrome.runtime.id) || chrome) {
@@ -209,17 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
-                insertSurvolDiv()
-                    .then(gatherHrefs)
-                    .then(equipNodes);
+                insertSurvolDiv();
             }
         });
     }
 
     // Else the script is running in demo-mode on survol.me
     else {
-        insertSurvolDiv()
-            .then(gatherHrefs)
-            .then(equipNodes);
+        insertSurvolDiv();
     }
 });
