@@ -21,7 +21,7 @@ class StackExchangeHover {
      * it can also give the code of the accepted answer.
      */
     checkLinkType() {
-        if ((this.CURRENT_TAB != 'stackoverflow.com' || this.CURRENT_TAB != 'stackexchange.com') && this.redirectLink.includes('/questions/')) {
+        if (this.CURRENT_TAB != 'stackoverflow.com' && this.CURRENT_TAB != 'stackexchange.com' && this.redirectLink.includes('/questions/')) {
             return 'question';
         } else {
             return 'unknown';
