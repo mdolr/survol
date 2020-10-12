@@ -56,9 +56,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Pretty reliable
                 if (document.querySelectorAll('a:hover')[0] != window.lastHovered) {
                     window.lastHovered = document.querySelectorAll('a:hover')[0];
+                    container.innerHTML = '';
 
                     if (document.querySelectorAll('a:hover')[0]) {
-                        intentTimeout = setTimeout(() => { dispatcher(window.lastHovered, window.lastHovered.href); }, 1000 * intent);
+                        intentTimeout = setTimeout(() => {
+                            dispatcher(window.lastHovered, window.lastHovered.href);
+                        }, 1000 * intent);
                     } else {
                         clearTimeout(intentTimeout);
                         container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
