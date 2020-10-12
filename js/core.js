@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     var darkTheme = false;
     var container = document.createElement('div');
     var capturedNodes = [];
+    var intentTimeout = null;
+    var intent = 0.75; // Wait duration in seconds before loading the preview
 
     /* Just in case some sites use the pushState js function to navigate across pages. */
     window.onpopstate = () => {
@@ -56,8 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.lastHovered = document.querySelectorAll('a:hover')[0];
 
                     if (document.querySelectorAll('a:hover')[0]) {
-                        dispatcher(window.lastHovered, window.lastHovered.href);
+                        intentTimeout = setTimeout(() => { dispatcher(window.lastHovered, window.lastHovered.href); }, 1000 * intent);
                     } else {
+                        clearTimeout(intentTimeout);
                         container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
                         container.innerHTML = '';
                     }
@@ -67,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let popupWidth = container.clientWidth;
                 let popupHeight = container.clientHeight;
                 //get the current scroll distance
-                let scrolled = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
+                let scrolled = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
                 //calculate the popup positions
                 //if the current mouse X position plus the popup width is greater than the width of the viewport set the popup to the left, else right
