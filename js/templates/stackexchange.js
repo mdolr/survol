@@ -214,11 +214,7 @@ class StackExchangeHover {
 
             commentText.appendChild(answerContainer);
         } else {
-<<<<<<< HEAD
-            commentText = document.createTextNode('Couldn\t find an accepted answer');
-=======
             commentText = document.createTextNode('Couldn\'t find an accepted answer');
->>>>>>> 87192ab85767a0424472976f1303c6aca200a042
         }
 
         const textElement = document.createElement('p');
@@ -238,8 +234,4 @@ class StackExchangeHover {
             container.appendChild(postContainer);
         }
     }
-<<<<<<< HEAD
-} 
-=======
 }
->>>>>>> 87192ab85767a0424472976f1303c6aca200a042
