@@ -1,0 +1,32 @@
+{
+  "extensionName": {
+    "message": "Survol"
+  },
+  "extensionShortName": {
+    "message": "Survol"
+  },
+  "extensionDescription": {
+    "message": "Sa Survol makakatipid ka sa iyong tabs at oras sa pamamagitan ng pag-preview ng bawat link na iyong na hover"
+  },
+
+  "pageSettings": {
+    "message": "Mga settings sa pahina",
+    "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
+  },
+  "enableOnPage": {
+    "message": "Paganahin ang Survol sa pahinang ito?",
+    "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
+  },
+  "generalSettings": {
+    "message": "Pangkalahatang settings",
+    "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
+  },
+  "allowMetadata": {
+    "message": "Payagan ang preview ng meta-data? (kung hindi pinagana ang Survol, ito ay i-preview lamang ang youtube, twitter, wikipedia, ...)",
+    "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
+  },
+  "enableDarkTheme": {
+    "message": "Madilim na mode",
+    "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
+  }
+}
