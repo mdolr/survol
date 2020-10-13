@@ -22,7 +22,7 @@
     "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
   },
   "allowMetadata": {
-    "message": "Payagan ang preview ng meta-data? (kung hindi pinagana ang Survol, ito ay i-preview lamang ang youtube, twitter, wikipedia, ...)",
+    "message": "Payagan ang preview ng meta-data? (kung hindi pinagana ang Survol, ito ay i-preview lamang sa youtube, twitter, wikipedia, ...)",
     "description": "Ang teksto na ito ay ipinapakita sa popup kapag ang icon ng extension ay na-click"
   },
   "enableDarkTheme": {
