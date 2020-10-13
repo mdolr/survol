@@ -14,15 +14,18 @@ class SoundCloudHover {
      */
     checkLinkType() {
         let trackLinkRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?soundcloud\.com\/[a-zA-Z0-9_]+\/[a-zA-Z0-9-_]+\/?$/;
+        let profileLinkRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?soundcloud\.com\/[a-zA-Z0-9_]+\/?$/;
         if (this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(trackLinkRegex)) {
             return 'track';
+        } else if(this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(profileLinkRegex)) {
+            return 'profile';
         } else {
             return 'unknown';
         }
     }
 
     bindToContainer(node, domain, container) {
-        if (this.linkType == 'track') {
+        if (this.linkType == 'track' || this.linkType == 'profile') {
 
             window
                 .survolBackgroundRequest(`https://soundcloud.com/oembed?url=${this.redirectLink}&format=json`)
