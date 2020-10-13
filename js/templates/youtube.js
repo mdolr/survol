@@ -19,6 +19,11 @@ class YoutubeHover {
             }
 
             return 'video';
+        }else if(this.CURRENT_TAB != 'youtube.com' && this.redirectLink.includes('channel')){
+            if(this.redirectLink.includes('channel') || this.redirectLink.includes('/c/')){
+                return 'channel'
+            }
+
         } else {
             return 'unknown';
         }
@@ -69,6 +74,45 @@ class YoutubeHover {
                     }
                 })
                 .catch(console.error);
+        }else if(this.linkType == 'channel'){
+            window
+            .survolBackgroundRequest(this.redirectLink,true)
+            .then((res) => {
+                let parser = new DOMParser();
+                let doc = parser.parseFromString(res.data, 'text/html');
+                const description = doc.querySelector('meta[name="description"]').content
+                const picture = doc.querySelector('meta[property="og:image"]').content
+                const title = doc.querySelector('title')
+
+
+                let youtubeContainer = document.createElement('div');
+                youtubeContainer.className = 'survol-youtube-container';
+
+                let title_div = document.createElement('h1');
+                title_div.appendChild(document.createTextNode(title.text.replace(' - YouTube','')));
+
+                let text = document.createElement('p');
+                text.className = 'survol-twitter-author'
+                text.appendChild(document.createTextNode(description));
+
+                let textContainer = document.createElement('div');
+                textContainer.className = 'survol-youtube-channel';
+
+                let profile_pic = document.createElement('img')
+                profile_pic.className = "survol-profile-pic"
+                profile_pic.src=picture
+
+                textContainer.appendChild(profile_pic);
+                textContainer.appendChild(title_div);
+                textContainer.appendChild(text);
+                
+
+
+                youtubeContainer.appendChild(textContainer);
+                container.appendChild(youtubeContainer);
+
+            })
+            .catch(console.error);
         }
     }
 }
