@@ -25,7 +25,7 @@ class SoundCloudHover {
     }
 
     bindToContainer(node, domain, container) {
-        if (this.linkType == 'track') {
+        if (this.linkType == 'track' || this.linkType == 'profile') {
 
             window
                 .survolBackgroundRequest(`https://soundcloud.com/oembed?url=${this.redirectLink}&format=json`)
