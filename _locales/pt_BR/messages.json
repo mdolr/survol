@@ -1,0 +1,33 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol economiza tempo e abas pré-visualizando cada link que você passa o mouse"
+    },
+
+
+    "pageSettings": {
+        "message": "Configurações de página",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "Habilitar Survol nesta página ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "Configurações Gerais",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "Permitir pré-visualização de meta-data ? (se desabilitado Survol irá apenas pré-visualizar youtube, twitter, wikipedia, ...)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Modo Escuro",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    }
+}
