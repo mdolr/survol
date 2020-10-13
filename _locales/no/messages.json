@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Tillate meta-data forhåndsvisning? (hvis deaktivert vil Survol kun forhåndsvise youtube, twitter, wikipedia, ...)",
         "description": "Denne teksten vises i popupen når du klikker på utvidelsesikonet"
+    },
+    "enableDarkTheme": {
+        "message": "Mørk modus",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Salli metatietojen esikatselu ? (Jos estetty, Survol näyttää esikatseluita vain youtube, twitter, wikipedia, ...)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Tumma tila",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

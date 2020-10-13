@@ -25,5 +25,9 @@
     "allowMetadata": {
         "message": "Pozwól wyświetlać podgląd meta-data ? (jeśli wyłączysz Survol możliwe będzie tylko podglądanie youtube, twitter, wikipedia, ...)",
         "description": "Ten tekst jest wyświetlany w okienku po kliknięciu ikony rozszerzenia"
+    },
+    "enableDarkTheme": {
+        "message": "Tryb ciemny",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

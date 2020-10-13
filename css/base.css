@@ -6,9 +6,34 @@
 /* Don't even try hiding my tooltip <https://stackoverflow.com/questions/491052/minimum-and-maximum-value-of-z-index> */
 
 .survol-container {
-    background-color: transparent;
+    background-color: white;
+    border-radius: 12px!important;
+    color: black!important;
+    box-shadow: 0 30px 90px -20px rgba(0, 0, 0, 0.3), 0 0 1px 1px rgba(0, 0, 0, 0.05);
     z-index: 16777271!important;
     position: absolute!important;
+    word-wrap: break-word;
+}
+
+.survol-container.dark-theme {
+    background-color: rgb(24, 26, 27);
+    color: white!important;
+}
+
+.survol-container.dark-theme a {
+    color: lightblue;
+}
+
+.survol-container h1 {
+    line-height: 24px;
+}
+
+#survol-container p, #survol-container h1 {
+    color: black!important;
+}
+
+#survol-container.dark-theme p, #survol-container.dark-theme h1 {
+    color: white!important;
 }
 
 .survol-tooltiptext-youtube {

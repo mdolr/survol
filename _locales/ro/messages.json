@@ -6,28 +6,28 @@
         "message": "Survol"
     },
     "extensionDescription": {
-        "message": "Mettez fin aux fenêtres remplies d'onglets à regarder plus tard, Survol vous permet de jeter un coup d'oeil rapide aux sites que vous survolez avec votre souris!"
+        "message": "Survol vă permite previzualizarea fiecărui link peste care plasați cursorul, economisind timp și tab-uri"
     },
 
 
     "pageSettings": {
-        "message": "Paramètres de la page",
+        "message": "Setările de pagină",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableOnPage": {
-        "message": "Activer Survol sur cette page ?",
+        "message": "Doriți să activați Survol pe această pagină ?",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "generalSettings": {
-        "message": "Paramètres globaux",
+        "message": "Setările generale",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "allowMetadata": {
-        "message": "Permettre la prévisualisation via la meta-data ? (si désactivée seuls les sites tels que youtube, twitter, wikipedia, ... seront prévisualisés)",
+        "message": "Permiteți previzualizarea meta-datelor ? (dacă este dezactivată, Survol va previzualiza doar youtube, twitter, wikipedia, ...)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableDarkTheme": {
-        "message": "Mode sombre",
+        "message": "Modul întunecat",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

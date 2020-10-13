@@ -23,5 +23,9 @@
     "allowMetadata": {
         "message": "Izinkan untuk menampilkan pratinjau dari metadata ? (jika dinonaktifkan Survol hanya akan menampilkan pratinjau pada Youtube, Twitter, Wikipedia, ...)",
         "description": "Teks ini ditampilkan di popup pada saat ikon ekstensi di klik"
+    },
+    "enableDarkTheme": {
+        "message": "Mode gelap",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

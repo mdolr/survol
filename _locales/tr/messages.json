@@ -6,7 +6,7 @@
         "message": "Survol"
     },
     "extensionDescription": {
-        "message": "Survol, üzerine geldiğiniz her bağlantıyı önizleyerek sekmelerden ve zamandan tasarruf etmenizi sağlar" 
+        "message": "Survol, üzerine geldiğiniz her bağlantıyı önizleyerek sekmelerden ve zamandan tasarruf etmenizi sağlar"
     },
 
     "pageSettings": {
@@ -24,5 +24,9 @@
     "allowMetadata": {
         "message": "Meta veri önizlemesine izin verilsin mi? (devre dışı bırakılırsa Survol yalnızca youtube, twitter, wikipedia, vs. önizlemenizi sağlar )",
         "description": "Bu metin, uzantı simgesi tıklandığında açılır pencerede görüntülenir"
+    },
+    "enableDarkTheme": {
+        "message": "Karanlık mod",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

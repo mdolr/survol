@@ -6,28 +6,28 @@
         "message": "Survol"
     },
     "extensionDescription": {
-        "message": "Mettez fin aux fenêtres remplies d'onglets à regarder plus tard, Survol vous permet de jeter un coup d'oeil rapide aux sites que vous survolez avec votre souris!"
+        "message": "Survol economiza tempo e abas pré-visualizando cada link que você passa o mouse"
     },
 
 
     "pageSettings": {
-        "message": "Paramètres de la page",
+        "message": "Configurações de página",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableOnPage": {
-        "message": "Activer Survol sur cette page ?",
+        "message": "Habilitar Survol nesta página ?",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "generalSettings": {
-        "message": "Paramètres globaux",
+        "message": "Configurações Gerais",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "allowMetadata": {
-        "message": "Permettre la prévisualisation via la meta-data ? (si désactivée seuls les sites tels que youtube, twitter, wikipedia, ... seront prévisualisés)",
+        "message": "Permitir pré-visualização de meta-data ? (se desabilitado Survol irá apenas pré-visualizar youtube, twitter, wikipedia, ...)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableDarkTheme": {
-        "message": "Mode sombre",
+        "message": "Modo Escuro",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     }
 }

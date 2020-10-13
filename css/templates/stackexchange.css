@@ -5,3 +5,8 @@
     margin-top: 8px;
     margin-bottom: 8px;
 }
+
+.survol-container.dark-theme .survol-code-preview {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+}

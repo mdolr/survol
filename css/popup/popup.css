@@ -1,9 +1,14 @@
 body {
     width: 300px;
-    height: 520px;
     text-align: center;
     margin: 0px;
     padding: 12px;
+    font-family: "Segoe UI", Tahoma, system-ui, sans-serif
+}
+
+body.dark-theme {
+    background-color: rgb(24, 26, 27);
+    color: white!important;
 }
 
 .logo {
