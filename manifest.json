@@ -42,7 +42,11 @@
                 "css/templates/reddit.css",
                 "css/templates/twitter.css",
                 "css/templates/youtube.css",
+<<<<<<< HEAD
                "css/templates/stackexchange.css",
+=======
+                "css/templates/stackexchange.css",
+>>>>>>> 87192ab85767a0424472976f1303c6aca200a042
                 "css/templates/soundcloud.css"
 
             ],

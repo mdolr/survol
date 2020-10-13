@@ -111,7 +111,7 @@ class RedditHover {
         const authorBold = document.createElement('b');
         const authorName = document.createTextNode(`u/${json.author}`);
 
-        author.append(postedBy, authorBold, authorName)
+        author.append(postedBy, authorBold, authorName);
         return author;
     }
 
@@ -125,6 +125,7 @@ class RedditHover {
 
         return subredditLink;
     }
+
     static getUpVotes(json) {
         const scoreCommentDisplay = document.createElement('div');
         const upvoteImage = document.createElement('img');
@@ -135,20 +136,24 @@ class RedditHover {
         scoreCommentDisplay.appendChild(document.createTextNode(` ${json.score} `));
         return scoreCommentDisplay;
     }
+
     static getDatePosted(json) {
         const date = this.timeSinceCreation(json.created_utc);
 
         if (date.time == 1) {
             date.unit = date.unit.substr(0, date.unit.length - 1);
         }
+
         return document.createTextNode(date.time + ' ' + date.unit + ' ago');
     }
+
     static getPostTitle(json) {
         const title = document.createElement('b');
         title.className = 'survol-reddit-post-title';
         title.appendChild(document.createTextNode(json.title));
         return title;
     }
+
     static getPostImage(json) {
         const image = document.createElement('img');
         image.classList.add('survol-reddit-image');
