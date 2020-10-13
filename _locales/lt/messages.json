@@ -28,6 +28,6 @@
     },
     "enableDarkTheme": {
         "message": "Tamsus režimas",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "description": "Šis tekstas yra rodomas iššokančiame lange, kai plėtinio piktograma yra spragtelėta"
     }
 }
