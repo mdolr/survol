@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     /* Used to do everything using CSS, however it was messy.
      * We will now use a single div that we will move across the screen based on the mouse position
      */
-    function insertSurvolDiv() {
+    function insertSurvolDiv(selfReferDisabled) {
         return new Promise((resolve) => {
             container.className = `survol-container ${darkTheme ? 'dark-theme' : ''} hidden`;
             container.id = 'survol-container';
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (document.querySelectorAll('a:hover')[0]) {
                         intentTimeout = setTimeout(() => {
-                            dispatcher(window.lastHovered, window.lastHovered.href);
+                            dispatcher(window.lastHovered, window.lastHovered.href, selfReferDisabled);
                         }, 1000 * intent);
                     } else {
                         clearTimeout(intentTimeout);
@@ -139,25 +139,30 @@ document.addEventListener('DOMContentLoaded', () => {
      * {Node} node
      * {String} link
      */
-    function dispatcher(node, link) {
+    function dispatcher(node, link, selfReferDisabled) {
         let domain = getDomain(link);
 
-        let potentialHover = getPotentialHover(node, domain);
-        /* If we do not support the domain we might not get anything in return of getPotentialHover */
-        if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http')) {
-            potentialHover.bindToContainer(node, domain, container);
-            container.className = `survol-container ${darkTheme ? 'dark-theme' : ''}`;
-            window.lastHovered = node;
-        } else {
-            // In case the node has no href feed it to the garbage collector
-            potentialHover = null;
+        let cond = selfReferDisabled && (domain == getDomain(CURRENT_TAB).toLowerCase());
+
+        if (!cond) {
+            let potentialHover = getPotentialHover(node, domain);
+            /* If we do not support the domain we might not get anything in return of getPotentialHover */
+            if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http')) {
+                potentialHover.bindToContainer(node, domain, container);
+                container.className = `survol-container ${darkTheme ? 'dark-theme' : ''}`;
+                window.lastHovered = node;
+            } else {
+                // In case the node has no href feed it to the garbage collector
+                potentialHover = null;
+            }
         }
     }
 
     // If the script is part of the extension
     if ((window.chrome && chrome.runtime && chrome.runtime.id) || chrome) {
-        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
+        chrome.storage.local.get(['disabledDomains', 'disabledSelfReferDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
+            let selfReferDisabled = res.disabledSelfReferDomains ? res.disabledSelfReferDomains.includes(getDomain(CURRENT_TAB).toLowerCase()) : false;
 
             if (res.previewMetadata === false) {
                 previewMetadata = false;
@@ -168,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
-                insertSurvolDiv();
+                insertSurvolDiv(selfReferDisabled);
             }
         });
     }
