@@ -14,7 +14,9 @@ class SoundCloudHover {
      */
     checkLinkType() {
         let trackLinkRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?soundcloud\.com\/[a-zA-Z0-9_]+\/[a-zA-Z0-9-_]+\/?$/;
+        //Regex matches [protocol]soundcloud.com/[a-z, A-Z, 0-9, -, _]/[a-z, A-Z, 0-9, -, _][optional / mark]
         let profileLinkRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?soundcloud\.com\/[a-zA-Z0-9_]+\/?$/;
+        //Regex matches [protocol]soundcloud.com/[a-z, A-Z, 0-9, -, _][optional / mark]
         if (this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(trackLinkRegex)) {
             return 'track';
         } else if(this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(profileLinkRegex)) {
