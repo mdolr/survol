@@ -29,5 +29,13 @@
     "enableDarkTheme": {
         "message": "Dark mode",
         "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "onboardingTitle": {
+        "message": "Configure the way you want",
+        "description": "This text is displayed on the onboarding page when the extension is first installed"
+    },
+    "helpTitle": {
+        "message": "You can configure anytime by clicking the extension on chrome toolbar",
+        "description": "This text is displayed on the onboarding page when the extension is first installed"
     }
 }

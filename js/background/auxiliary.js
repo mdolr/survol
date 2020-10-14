@@ -49,3 +49,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 
     return true;
 });
+
+chrome.runtime.onInstalled.addListener(function (object) {
+    chrome.tabs.create({url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html`});
+});
