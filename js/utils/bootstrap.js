@@ -1,7 +1,7 @@
-const bootstrap = (function() {
-    
+const bootstrap = (function () {
+
     function setInternationalization(array) {
-        if(!array) {
+        if (!array) {
             return;
         }
 
@@ -14,11 +14,10 @@ const bootstrap = (function() {
         let subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
-    
-    function updateUIElements(isPreviewMetadata, isDarkThemeChecked, isPreviewOnThisPage) {
+
+    function updateUIElements(isPreviewMetadata, isDarkThemeChecked) {
         document.getElementById('previewMetadata').checked = isPreviewMetadata;
         document.getElementById('darkThemeCheckbox').checked = isDarkThemeChecked;
-        document.getElementById('previewOnThisPage').checked = isPreviewOnThisPage;
     }
 
     function bindEventListenersAndUpdateUI() {
@@ -26,45 +25,31 @@ const bootstrap = (function() {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
             let previewMetadata = true;
             let darkTheme = false;
-    
+
             if (res.previewMetadata === false) {
                 previewMetadata = false;
             }
-    
+
             if (res.darkThemeToggle === true) {
                 darkTheme = true;
                 document.getElementById('body').classList.add('dark-theme');
             }
-    
+
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 if (tabs[0]) { // Sanity check
                     let CURRENT_URL = getDomain(tabs[0].url);
                     const previewOnThisPage = !disabledDomains.includes(CURRENT_URL.toLowerCase());
 
                     updateUIElements(previewMetadata, darkTheme, previewOnThisPage)
-    
-    
+
+
                     document.getElementById('previewMetadata').addEventListener('click', () => {
                         chrome.storage.local.set({ previewMetadata: document.getElementById('previewMetadata').checked });
                     });
-    
+
                     document.getElementById('darkThemeCheckbox').addEventListener('click', () => {
                         chrome.storage.local.set({ darkThemeToggle: document.getElementById('darkThemeCheckbox').checked });
                         document.getElementById('body').classList.toggle('dark-theme');
-                    });
-    
-                    document.getElementById('previewOnThisPage').addEventListener('click', () => {
-                        // if the box gets unchecked i.e domain disabled, and the domain is not already in the list add it
-                        if (!document.getElementById('previewOnThisPage').checked && !disabledDomains.includes(CURRENT_URL.toLowerCase())) {
-                            disabledDomains.push(CURRENT_URL.toLowerCase());
-                        }
-    
-                        // If the box gets checked and the domain is disabled, remove it from the disabled domains list
-                        else if (document.getElementById('previewOnThisPage').checked && disabledDomains.includes(CURRENT_URL.toLowerCase())) {
-                            disabledDomains = disabledDomains.filter((domains) => { return domains != CURRENT_URL.toLowerCase(); });
-                        }
-    
-                        chrome.storage.local.set({ disabledDomains: disabledDomains });
                     });
                 }
             });
@@ -82,7 +67,7 @@ const bootstrap = (function() {
     }
 
     return {
-        load : load
+        load: load
     }
 
 })();
