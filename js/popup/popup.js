@@ -12,8 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(word).innerText = chrome.i18n.getMessage(word);
     });
 
-    chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
+    chrome.storage.local.get(['disabledDomains', 'disabledSelfReferDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
         let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
+        let disabledSelfReferDomains = res.disabledSelfReferDomains ? res.disabledSelfReferDomains : ['survol.me'];
         let previewMetadata = true;
         let darkTheme = false;
 
@@ -33,6 +34,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (disabledDomains.includes(CURRENT_URL.toLowerCase())) {
                     document.getElementById('previewOnThisPage').checked = false;
+                }
+
+                if (disabledSelfReferDomains.includes(CURRENT_URL.toLowerCase())) {
+                    document.getElementById('disableSelfReferButton').checked = true;
                 }
 
                 document.getElementById('previewMetadata').checked = previewMetadata;
@@ -61,8 +66,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     chrome.storage.local.set({ disabledDomains: disabledDomains });
                 });
+
+                document.getElementById('disableSelfReferButton').addEventListener('click', () => {
+                    // if the box gets unchecked i.e domain self-referencing disabled, and the domain is not already in the list add it
+                    if (document.getElementById('disableSelfReferButton').checked && !disabledSelfReferDomains.includes(CURRENT_URL.toLowerCase())) {
+                        disabledSelfReferDomains.push(CURRENT_URL.toLowerCase());
+                    }
+
+                    // If the box gets checked and the domain self-referencing is disabled, remove it from the disabled domains list
+                    else if (!document.getElementById('disableSelfReferButton').checked && disabledSelfReferDomains.includes(CURRENT_URL.toLowerCase())) {
+                        disabledSelfReferDomains = disabledSelfReferDomains.filter((domains) => { return domains != CURRENT_URL.toLowerCase(); });
+                    }
+
+                    chrome.storage.local.set({ disabledSelfReferDomains: disabledSelfReferDomains });
+                });
             }
         });
     });
+
+    /* w3schools collapsible js */
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        if (this.classList.contains("active")) {
+            this.classList.remove("right");
+            this.classList.add("down");
+        } else {
+            this.classList.remove("down");
+            this.classList.add("right");
+        }
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
 
 });
