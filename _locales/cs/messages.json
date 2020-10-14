@@ -1,0 +1,33 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol zobrazí náhled stránky po najetí myší na libovolný odkaz a šetří Vám tak čas i záložky"
+    },
+
+
+    "pageSettings": {
+        "message": "Nastavení stránky",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "Povolit Survol na této stránce ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "Obecné nastavení",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "Povolit náhled na metadata ? (pokud zakázáno, Survol zvládne zobrazit pouze náhledy youtube, twitter, wikipedia, ...)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Tmavý mód",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    }
+}
