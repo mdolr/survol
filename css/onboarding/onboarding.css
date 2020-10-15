@@ -1,80 +1,40 @@
-.nav {
-    display: inline-block;
-    width: 100%;
+body {
+    text-align: center;
+    margin: 0px;
+    padding: 12px;
+    font-family: "Segoe UI", Tahoma, system-ui, sans-serif
 }
 
-.nav a {
-    text-decoration: none;
-    color: black;
+body.dark-theme {
+    background-color: rgb(24, 26, 27);
+    color: white!important;
 }
 
-body.dark-theme .nav a {
-    color: white;
-}
-
-.nav .logo {
-    float: left;
+.logo {
     transform: scale(0.75);
 }
 
-.nav h1 {
-    font-size: 72px;
-    margin: 10px 0px;
-    float: left;
+.popup .title {
+    margin: 0px;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 10px;
-    margin-bottom: 15px;
-}
-
-.container .title {
-    font-size: 2.5rem;
-    font-weight: normal;
-    margin: 0px 0px 15px 0px;
-}
-
-.container .subtitle {
+.popup .subtitle {
     font-size: 18px;
     margin-top: 16px;
     margin-bottom: 4px;
 }
 
-.center {
-    width: 800px;
-    margin: 0 auto;
-}
-
-.help-logo {
-    max-height: 500px;
-    margin-top: 16px;
-}
-
-/*most of the styles below are common to popup.css*/
-body {
-    text-align: center;
-    margin: 0px;
-    padding: 12px;
-    font-family: "Segoe UI", Tahoma, system-ui, sans-serif;
-}
-
-body.dark-theme {
-    background-color: rgb(24, 26, 27);
-    color: white !important;
-}
-
-.container p {
+.popup p {
     font-size: 18px;
     margin-top: 0px;
     margin-bottom: 12px;
 }
 
-.container .currentURL {
+.popup .currentURL {
     font-size: 18px;
     font-style: italic;
 }
+
 
 /* w3schools switch
 The switch - the box around the slider */
@@ -86,6 +46,7 @@ The switch - the box around the slider */
     height: 34px;
 }
 
+
 /* Hide default HTML checkbox */
 
 .switch input {
@@ -93,6 +54,7 @@ The switch - the box around the slider */
     width: 0;
     height: 0;
 }
+
 
 /* The slider */
 
@@ -104,8 +66,8 @@ The switch - the box around the slider */
     right: 0;
     bottom: 0;
     background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .slider:before {
@@ -116,23 +78,24 @@ The switch - the box around the slider */
     left: 4px;
     bottom: 4px;
     background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-input:checked + .slider {
+input:checked+.slider {
     background-color: #28d431;
 }
 
-input:focus + .slider {
+input:focus+.slider {
     box-shadow: 0 0 1px#28d431;
 }
 
-input:checked + .slider:before {
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
 }
+
 
 /* Rounded sliders */
 
@@ -142,4 +105,17 @@ input:checked + .slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 18px;
 }

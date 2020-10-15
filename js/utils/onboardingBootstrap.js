@@ -1,10 +1,10 @@
-import { bootstrap }   from './bootstrap.js';
+import { bootstrap } from './bootstrap.js';
 
-(function() {
+(function () {
 
     document.addEventListener('DOMContentLoaded', () => {
-        const elementIds = ['helpTitle', 'onboardingTitle', 'pageSettings', 'generalSettings', 'allowMetadata', 'enableOnPage', 'enableDarkTheme'];
+        const elementIds = ['generalSettings', 'allowMetadata', 'enableDarkTheme'];
         bootstrap.load(elementIds);
-    })
+    });
 
 })();
