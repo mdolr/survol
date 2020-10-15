@@ -32,8 +32,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 document.getElementById('currentURL').innerText = CURRENT_URL;
 
                 if (disabledDomains.includes(CURRENT_URL.toLowerCase())) {
-                    document.getElementById('previewOnThisPage').checked = false;
+                    changeBadge("OFF");
+                    document.getElementById('previewOnThisPage').checked = false;                                    
                 }
+                else
+                {
+                    changeBadge("ON");
+                }               
 
                 document.getElementById('previewMetadata').checked = previewMetadata;
 
@@ -52,17 +57,28 @@ document.addEventListener('DOMContentLoaded', () => {
                     // if the box gets unchecked i.e domain disabled, and the domain is not already in the list add it
                     if (!document.getElementById('previewOnThisPage').checked && !disabledDomains.includes(CURRENT_URL.toLowerCase())) {
                         disabledDomains.push(CURRENT_URL.toLowerCase());
+                        changeBadge("OFF");
                     }
 
                     // If the box gets checked and the domain is disabled, remove it from the disabled domains list
                     else if (document.getElementById('previewOnThisPage').checked && disabledDomains.includes(CURRENT_URL.toLowerCase())) {
                         disabledDomains = disabledDomains.filter((domains) => { return domains != CURRENT_URL.toLowerCase(); });
+                        changeBadge("ON");
                     }
-
+                   
                     chrome.storage.local.set({ disabledDomains: disabledDomains });
+                    
                 });
             }
         });
     });
+
+    /* Badge on the extension icon 
+     * Used to display ON/OFF depending on the state of the extension
+     */
+    function changeBadge(status)
+    {
+        chrome.browserAction.setBadgeText({text: status});
+    }
 
 });
