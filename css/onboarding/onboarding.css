@@ -35,6 +35,13 @@ body.dark-theme {
     font-style: italic;
 }
 
+.release-section {
+    text-align: left;
+}
+
+.release-section li {
+    font-size: 15px;
+}
 
 /* w3schools switch
 The switch - the box around the slider */
