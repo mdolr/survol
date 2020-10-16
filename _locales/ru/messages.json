@@ -27,6 +27,6 @@
     },
     "enableDarkTheme": {
         "message": "Темный режим",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "description": "Этот текст отображается во всплывающем окне при щелчке на значок расширения"
     }
 }
