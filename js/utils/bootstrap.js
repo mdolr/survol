@@ -40,7 +40,7 @@ const bootstrap = (function () {
                     let CURRENT_URL = getDomain(tabs[0].url);
                     const previewOnThisPage = !disabledDomains.includes(CURRENT_URL.toLowerCase());
 
-                    updateUIElements(previewMetadata, darkTheme, previewOnThisPage)
+                    updateUIElements(previewMetadata, darkTheme, previewOnThisPage);
 
 
                     document.getElementById('previewMetadata').addEventListener('click', () => {

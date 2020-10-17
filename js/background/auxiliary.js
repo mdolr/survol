@@ -50,6 +50,40 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     return true;
 });
 
-chrome.runtime.onInstalled.addListener(function (object) {
-    chrome.tabs.create({url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html`});
+const DEFAULT_SETTINGS = {
+    version: '0.6.0',
+    disabledDomains: ['survol.me'],
+    previewMetadata: true,
+    darkThemeToggle: false,
+    installationType: 'install'
+};
+
+// When the extension is installed
+chrome.runtime.onInstalled.addListener(() => {
+
+    // Initialize settings
+    chrome.storage.local.get(Object.keys(DEFAULT_SETTINGS), (res) => {
+
+        // In order to chose between "Thanks for installing the extension" and "Survol has been updated"
+        let oldVersion = res.version;
+
+        if (res.installationType) {
+            res.installationType = 'update';
+        }
+
+        res.version = DEFAULT_SETTINGS.version;
+
+        Object.keys(DEFAULT_SETTINGS).forEach((key) => {
+            res[key] = res[key] || DEFAULT_SETTINGS[key];
+        });
+
+        // Save settings then open onboarding page
+        chrome.storage.local.set(res, () => {
+
+            // If there has been an update
+            if (oldVersion != res.version) {
+                chrome.tabs.create({ url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html` });
+            }
+        });
+    });
 });

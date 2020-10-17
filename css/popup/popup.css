@@ -3,7 +3,8 @@ body {
     text-align: center;
     margin: 0px;
     padding: 12px;
-    font-family: "Segoe UI", Tahoma, system-ui, sans-serif
+    font-family: "Segoe UI", Tahoma, system-ui, sans-serif;
+    transition: ease-in-out 0.2s;
 }
 
 body.dark-theme {
