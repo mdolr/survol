@@ -60,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     if (document.querySelectorAll('a:hover')[0] && document.querySelectorAll('a:hover')[0].href) {
                         intentTimeout = setTimeout(() => {
-                            dispatcher(window.lastHovered, window.lastHovered.href, selfReferDisabled);
+                            if (window.lastHovered && window.lastHovered.href) {
+                                dispatcher(window.lastHovered, window.lastHovered.href, selfReferDisabled);
+                            }
                         }, 1000 * intent);
                     } else {
                         clearTimeout(intentTimeout);
