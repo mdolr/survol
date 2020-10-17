@@ -21,8 +21,9 @@ const bootstrap = (function () {
     }
 
     function bindEventListenersAndUpdateUI() {
-        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle', 'installationType'], function (res) {
+        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle', 'installationType', 'selfReferDisabled'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
+            let selfReferDisabled = res.selfReferDisabled ? res.selfReferDisabled : [];
             let previewMetadata = true;
             let darkTheme = false;
 
@@ -34,6 +35,8 @@ const bootstrap = (function () {
                 darkTheme = true;
                 document.getElementById('body').classList.add('dark-theme');
             }
+
+            document.getElementById('innerLinksList').value = selfReferDisabled.join(',');
 
             switch (res.installationType) {
                 case 'install':
@@ -57,7 +60,6 @@ const bootstrap = (function () {
 
                     updateUIElements(previewMetadata, darkTheme, previewOnThisPage);
 
-
                     document.getElementById('previewMetadata').addEventListener('click', () => {
                         chrome.storage.local.set({ previewMetadata: document.getElementById('previewMetadata').checked });
                     });
@@ -65,6 +67,10 @@ const bootstrap = (function () {
                     document.getElementById('darkThemeCheckbox').addEventListener('click', () => {
                         chrome.storage.local.set({ darkThemeToggle: document.getElementById('darkThemeCheckbox').checked });
                         document.getElementById('body').classList.toggle('dark-theme');
+                    });
+
+                    document.getElementById('innerLinksList').addEventListener('keyup', () => {
+                        chrome.storage.local.set({ selfReferDisabled: document.getElementById('innerLinksList').value.toLowerCase().replace(/ /g, '').split(',') });
                     });
                 }
             });

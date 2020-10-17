@@ -12,6 +12,16 @@ body.dark-theme {
     color: white!important;
 }
 
+#generalSettings {
+    color: #007AFF;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+#generalSettings:hover {
+    color: #0065d1;
+}
+
 .logo {
     transform: scale(0.75);
 }
@@ -107,35 +117,4 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
-}
-
-
-/* w3schools collapsible css */
-
-/* Style the collapsible content. Note: hidden by default */
-.advancedSettingsCollapsed {
-  padding: 0 4px;
-  display: none;
-  overflow: hidden;
-  background-color: #f1f1f1;
-}
-
-
-/* w3schools arrow css */
-
-.arrow {
-  border: solid black;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
-}
-
-.down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
 }

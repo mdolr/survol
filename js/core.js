@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     window.lastHovered = document.querySelectorAll('a:hover')[0];
                     container.innerHTML = '';
 
-                    if (document.querySelectorAll('a:hover')[0]) {
+                    if (document.querySelectorAll('a:hover')[0] && document.querySelectorAll('a:hover')[0].href) {
                         intentTimeout = setTimeout(() => {
                             dispatcher(window.lastHovered, window.lastHovered.href, selfReferDisabled);
                         }, 1000 * intent);
@@ -142,9 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function dispatcher(node, link, selfReferDisabled) {
         let domain = getDomain(link);
 
-        let cond = selfReferDisabled && (domain == getDomain(CURRENT_TAB).toLowerCase());
-
-        if (!cond) {
+        // If inner links have not been disabled
+        if (!selfReferDisabled || domain.toLowerCase() != getDomain(CURRENT_TAB).toLowerCase()) {
             let potentialHover = getPotentialHover(node, domain);
             /* If we do not support the domain we might not get anything in return of getPotentialHover */
             if (potentialHover && potentialHover.bindToContainer != null && node.href && node.href.startsWith('http')) {
@@ -160,9 +159,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // If the script is part of the extension
     if ((window.chrome && chrome.runtime && chrome.runtime.id) || chrome) {
-        chrome.storage.local.get(['disabledDomains', 'disabledSelfReferDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
+        chrome.storage.local.get(['disabledDomains', 'selfReferDisabled', 'previewMetadata', 'darkThemeToggle'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
-            let selfReferDisabled = res.disabledSelfReferDomains ? res.disabledSelfReferDomains.includes(getDomain(CURRENT_TAB).toLowerCase()) : false;
+            let selfReferDisabled = res.selfReferDisabled ? res.selfReferDisabled.includes(getDomain(CURRENT_TAB).toLowerCase()) : false;
 
             if (res.previewMetadata === false) {
                 previewMetadata = false;
@@ -173,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase()) && !CURRENT_TAB.includes('/wp-admin')) {
-                insertSurvolDiv();
+                insertSurvolDiv(selfReferDisabled);
             }
         });
     }

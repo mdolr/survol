@@ -53,6 +53,7 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
 const DEFAULT_SETTINGS = {
     version: '0.6.0',
     disabledDomains: ['survol.me'],
+    selfReferDisabled: ['github.com', 'ppy.sh'],
     previewMetadata: true,
     darkThemeToggle: false,
     installationType: 'install'
