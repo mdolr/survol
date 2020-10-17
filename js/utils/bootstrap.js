@@ -37,10 +37,10 @@ const bootstrap = (function () {
 
             switch (res.installationType) {
                 case 'install':
-                    document.getElementById('welcomeMessage').innerText = chrome.i18n.getMessage('thankInstallation');
+                    document.getElementById('welcomeMessage').innerText = chrome.i18n.getMessage('thankInstallation') || 'Survol';
                     break;
                 case 'update':
-                    document.getElementById('welcomeMessage').innerText = chrome.i18n.getMessage('survolUpdated');
+                    document.getElementById('welcomeMessage').innerText = chrome.i18n.getMessage('survolUpdated') || 'Survol';
                     break;
                 case 'none':
                 default:
