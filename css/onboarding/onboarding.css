@@ -1,8 +1,6 @@
 body {
-    width: 300px;
     text-align: center;
     margin: 0px;
-    padding: 12px;
     font-family: "Segoe UI", Tahoma, system-ui, sans-serif;
     transition: ease-in-out 0.2s;
 }
@@ -10,6 +8,43 @@ body {
 body.dark-theme {
     background-color: rgb(24, 26, 27);
     color: white!important;
+}
+
+.extension-container {
+    min-height: 100vh;
+    position: absolute;
+    width: 40vw;
+    border-right: solid lightgray 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.dark-theme .extension-container {
+    border-right: solid gray 1px;
+}
+
+.changelog-container {
+    width: calc(60vw - 48px);
+    margin-left: 40vw;
+    padding: 24px;
+}
+
+.changelog-header h2 {
+    display: inline!important;
+}
+
+.changelog-header a {
+    color: #007AFF;
+    font-size: 22px;
+}
+
+.grid-container {
+    width: 70%;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .logo {
@@ -35,6 +70,21 @@ body.dark-theme {
 .popup .currentURL {
     font-size: 18px;
     font-style: italic;
+}
+
+.release-section {
+    text-align: left;
+}
+
+.release-section li,
+.release-section div {
+    font-size: 16px;
+}
+
+.release-section div {
+    margin-left: -20px;
+    margin-bottom: 12Px;
+    margin-top: 12px;
 }
 
 
@@ -107,4 +157,17 @@ input:checked+.slider:before {
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0px;
+}
+
+h2 {
+    font-size: 24px;
+}
+
+p {
+    font-size: 18px;
 }
