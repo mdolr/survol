@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 darkTheme = true;
             }
 
-            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
+            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase()) && !CURRENT_TAB.includes('/wp-admin')) {
                 insertSurvolDiv();
             }
         });
