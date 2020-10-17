@@ -82,16 +82,7 @@ chrome.runtime.onInstalled.addListener(() => {
 
             // If there has been an update or the extension has just been installed
             if (res.installationType == 'update' || res.installationType == 'install') {
-
-                // On chrome
-                if (chrome && !browser) {
-                    chrome.tabs.create({ url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html` });
-                }
-
-                // On firefox
-                else if (browser) {
-                    chrome.tabs.create({ url: browser.extension.getURL('./html/onboarding.html') });
-                }
+                chrome.tabs.create({ url: chrome.runtime.getURL('./html/onboarding.html') });
             }
         });
     });
