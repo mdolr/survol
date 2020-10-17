@@ -80,9 +80,18 @@ chrome.runtime.onInstalled.addListener(() => {
         // Save settings then open onboarding page
         chrome.storage.local.set(res, () => {
 
-            // If there has been an update
-            if (res.installationType == 'update') {
-                chrome.tabs.create({ url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html` });
+            // If there has been an update or the extension has just been installed
+            if (res.installationType == 'update' || res.installationType == 'install') {
+
+                // On chrome
+                if (chrome && !browser) {
+                    chrome.tabs.create({ url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html` });
+                }
+
+                // On firefox
+                else if (browser) {
+                    chrome.tabs.create({ url: browser.extension.getURL('./html/onboarding.html') });
+                }
             }
         });
     });
