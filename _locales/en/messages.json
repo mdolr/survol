@@ -29,5 +29,14 @@
     "enableDarkTheme": {
         "message": "Dark mode",
         "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+
+    "thankInstallation": {
+        "message": "Thank you for installing Survol",
+        "description": "Text displayed on the onboarding page on installation"
+    },
+    "survolUpdated": {
+        "message": "Survol has been updated",
+        "description": "Text displayed on the onboarding page on update"
     }
 }

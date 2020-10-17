@@ -1,0 +1,32 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "חוסך לך בלשוניות וזמן על ידי תצוגה מקדימה של כל קישור עליו אתה מעביר Survol"
+    },
+
+    "pageSettings": {
+        "message": "הגדרות עמוד",
+        "description": "טקסט זה מוצג בחלון הקופץ כאשר לוחצים על סמל התוסף"
+    },
+    "enableOnPage": {
+        "message": "Survol לאפשר בדף זה?",
+        "description": "טקסט זה מוצג בחלון הקופץ כאשר לוחצים על סמל התוסף"
+    },
+    "generalSettings": {
+        "message": "הגדרות כלליות",
+        "description": "טקסט זה מוצג בחלון הקופץ כאשר לוחצים על סמל התוסף"
+    },
+    "allowMetadata": {
+        "message": "לאפשר תצוגה מקדימה של מטא-נתונים ? ( במצב של כבוי תתאפשר תצוגה מקדימה רק של יוטיוב, טוויטר, ויקפדיה... )",
+        "description": "טקסט זה מוצג בחלון הקופץ כאשר לוחצים על סמל התוסף"
+    },
+    "enableDarkTheme": {
+        "message": "מצב כהה",
+        "description": "טקסט זה מוצג בחלון הקופץ כאשר לוחצים על סמל התוסף"
+    }
+}

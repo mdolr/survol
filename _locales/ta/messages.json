@@ -1,0 +1,33 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "நீங்கள் பார்க்கும் ஒவ்வொரு இணைப்பையும் முன்னோட்டமிடுவதன் மூலம் சர்வோல் தாவலையும் நேரத்தையும் மிச்சப்படுத்துகிறது"
+    },
+
+
+    "pageSettings": {
+        "message": "வலைப்பக்க அமைப்புகள்",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "இந்த பக்கத்தில் சர்வோல் ஐ இயக்கவும் ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "பொது அமைப்புகள்",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "மெட்டா-தரவு முன்னோட்டத்தை அனுமதிக்கவா ? (முடக்கப்பட்டிருந்தால் சர்வோல் இயக்கப்பட்டது யூடியூப், ட்விட்டர், விக்கிபீடியா, ...)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "இருண்ட பயன்முறை",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    }
+}

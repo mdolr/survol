@@ -172,8 +172,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 darkTheme = true;
             }
 
-            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
-                insertSurvolDiv(selfReferDisabled);
+            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase()) && !CURRENT_TAB.includes('/wp-admin')) {
+                insertSurvolDiv();
             }
         });
     }
