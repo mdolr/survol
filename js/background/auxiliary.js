@@ -67,11 +67,11 @@ chrome.runtime.onInstalled.addListener(() => {
         // In order to chose between "Thanks for installing the extension" and "Survol has been updated"
         let oldVersion = res.version;
 
-        if (res.installationType) {
-            res.installationType = 'update';
-        }
-
         res.version = DEFAULT_SETTINGS.version;
+
+        if (res.installationType) {
+            res.installationType = (res.version == oldVersion) ? 'none' : 'update';
+        }
 
         Object.keys(DEFAULT_SETTINGS).forEach((key) => {
             res[key] = res[key] || DEFAULT_SETTINGS[key];
@@ -81,7 +81,7 @@ chrome.runtime.onInstalled.addListener(() => {
         chrome.storage.local.set(res, () => {
 
             // If there has been an update
-            if (oldVersion != res.version) {
+            if (res.installationType == 'update') {
                 chrome.tabs.create({ url: `chrome-extension://${chrome.runtime.id}/html/onboarding.html` });
             }
         });

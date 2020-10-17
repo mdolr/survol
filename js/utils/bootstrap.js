@@ -21,7 +21,7 @@ const bootstrap = (function () {
     }
 
     function bindEventListenersAndUpdateUI() {
-        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
+        chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle', 'installationType'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
             let previewMetadata = true;
             let darkTheme = false;
@@ -34,6 +34,21 @@ const bootstrap = (function () {
                 darkTheme = true;
                 document.getElementById('body').classList.add('dark-theme');
             }
+
+            switch (res.installationType) {
+                case 'install':
+                    document.getElementById('welcomeMessage').innerText = chrome.i18n.getMessage('thankInstallation');
+                    break;
+                case 'update':
+                    document.getElementById('welcomeMessage').innerText = chrome.i18n.getMessage('survolUpdated');
+                    break;
+                case 'none':
+                default:
+                    document.getElementById('welcomeMessage').innerText = 'Survol';
+                    break;
+            }
+
+            chrome.storage.local.set({ installationType: 'none' });
 
             chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
                 if (tabs[0]) { // Sanity check
