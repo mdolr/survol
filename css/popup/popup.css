@@ -12,6 +12,16 @@ body.dark-theme {
     color: white!important;
 }
 
+#generalSettings {
+    color: #007AFF;
+    cursor: pointer;
+    transition: 0.1s ease-in-out;
+}
+
+#generalSettings:hover {
+    color: #0065d1;
+}
+
 .logo {
     transform: scale(0.75);
 }

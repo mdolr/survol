@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    document.getElementById('generalSettings').addEventListener('click', () => {
+        chrome.tabs.create({ url: chrome.runtime.getURL('./html/onboarding.html') });
+    });
+
     /* Takes {String} link
      * Returns {String} link
      * Description: Returns the domain name associated to a full link
@@ -8,21 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
     }
 
-    ['pageSettings', 'generalSettings', 'allowMetadata', 'enableOnPage', 'enableDarkTheme'].forEach(function (word) {
+    ['pageSettings', 'generalSettings', 'enableOnPage'].forEach(function (word) {
         document.getElementById(word).innerText = chrome.i18n.getMessage(word);
     });
 
-    chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
+    chrome.storage.local.get(['disabledDomains', 'darkThemeToggle'], function (res) {
         let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
-        let previewMetadata = true;
-        let darkTheme = false;
-
-        if (res.previewMetadata === false) {
-            previewMetadata = false;
-        }
 
         if (res.darkThemeToggle === true) {
-            darkTheme = true;
             document.getElementById('body').classList.add('dark-theme');
         }
 
@@ -35,18 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('previewOnThisPage').checked = false;
                 }
 
-                document.getElementById('previewMetadata').checked = previewMetadata;
-
-                document.getElementById('previewMetadata').addEventListener('click', () => {
-                    chrome.storage.local.set({ previewMetadata: document.getElementById('previewMetadata').checked });
-                });
-
-                document.getElementById('darkThemeCheckbox').checked = darkTheme;
-
-                document.getElementById('darkThemeCheckbox').addEventListener('click', () => {
-                    chrome.storage.local.set({ darkThemeToggle: document.getElementById('darkThemeCheckbox').checked });
-                    document.getElementById('body').classList.toggle('dark-theme');
-                });
 
                 document.getElementById('previewOnThisPage').addEventListener('click', () => {
                     // if the box gets unchecked i.e domain disabled, and the domain is not already in the list add it
@@ -64,5 +50,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
 });
