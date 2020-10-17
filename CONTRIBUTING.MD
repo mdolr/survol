@@ -14,10 +14,21 @@ Survol is a browser extension, the goal is to provide a preview for every hovera
 We might use "survol-able" to say that a link works with the extension.
 
 ## Main script : `js/core.js`
+It is a content script, injected on each page. 
+The core script injects the "survol-container" div into the DOM, positions the div, and fill it with content.  
+
+It uses the mousemove event to detect when the cursor is hovering an anchor link. It is responsible for checking if this anchor link has an href, if the link should be previewed or not, and which preview template should be used.  
+
 It defines functions like :
-* `insertSurvolDiv` : it injects a div into the DOM which we refer as the "survol container". The div follows the cursor and is displayed only when the cursor hovers an anchor link  
+* `insertSurvolDiv` : This function:
+     * - Inserts the div into the DOM
+     * - Positions the div
+     * - Applies the div theme (light/dark)
+     * - Detects anchor link hovering
+
 * `survolBackgroundRequest` : which sends data to the background, using browser messages, script when we need to make a request in order to avoid CORS. 
-* other simple functions related to finding anchor links and affecting them the correct implemetation.
+
+* `dispatcher` : given a link it returns which template should be used and checks if the link should be previewed
 
 ## Templates
 

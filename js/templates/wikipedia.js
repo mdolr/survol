@@ -22,11 +22,27 @@ class WikipediaHover {
         }
     }
 
+    /* stripHTML
+     * Parameters:
+     * html - {String} - raw HTML as a string that can be parsed
+     * Returns {String} Text without HTML elements
+     */
     stripHTML(html) {
         let doc = new DOMParser().parseFromString(html, 'text/html');
         return doc.body.textContent || '';
     }
 
+    /* bindToContainer
+     * Parameters :
+     * node - {HTMLNodeElement} - An anchor link element
+     * domain - {String} - The domain of the current webpage
+     * container - {HTMLNodeElement} - The survol container
+     * 
+     * This function is called to get the data from the link we
+     * want to preview and then attach it to the container
+     * Note: data is always inserted into textNodes to avoid
+     * malicious script injections.
+     */
     bindToContainer(node, domain, container) {
         if (this.linkType == 'article') {
 

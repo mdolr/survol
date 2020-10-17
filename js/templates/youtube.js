@@ -24,11 +24,18 @@ class YoutubeHover {
         }
     }
 
+    /* bindToContainer
+     * Parameters :
+     * node - {HTMLNodeElement} - An anchor link element
+     * domain - {String} - The domain of the current webpage
+     * container - {HTMLNodeElement} - The survol container
+     * 
+     * This function is called to get the data from the link we
+     * want to preview and then attach it to the container
+     * Note: data is always inserted into textNodes to avoid
+     * malicious script injections.
+     */
     bindToContainer(node, domain, container) {
-
-        /* TODO: 
-         * - Change youtube preview to Thumbnail + title + description
-         */
         if (this.linkType == 'video') {
             window
                 .survolBackgroundRequest(`https://www.youtube.com/oembed?url=${this.redirectLink}&format=json`)
@@ -51,7 +58,7 @@ class YoutubeHover {
                     youtubeImageContainer.className = 'survol-youtube-image-container';
 
                     let image = document.createElement('div');
-                    console.log(res.data.thumbnail_url)
+
                     image.className = 'survol-youtube-image';
                     image.style.backgroundImage = `url(${res.data.thumbnail_url})`;
                     image.style.backgroundPosition = 'center';

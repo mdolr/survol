@@ -50,6 +50,8 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     return true;
 });
 
+
+// Those are the extension default settings
 const DEFAULT_SETTINGS = {
     version: '0.6.0',
     disabledDomains: ['survol.me'],

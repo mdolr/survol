@@ -17,13 +17,24 @@ class SoundCloudHover {
         let profileLinkRegex = /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?soundcloud\.com\/[a-zA-Z0-9_]+\/?$/;
         if (this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(trackLinkRegex)) {
             return 'track';
-        } else if(this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(profileLinkRegex)) {
+        } else if (this.CURRENT_TAB != 'soundcloud.com' && this.redirectLink.match(profileLinkRegex)) {
             return 'profile';
         } else {
             return 'unknown';
         }
     }
 
+    /* bindToContainer
+     * Parameters :
+     * node - {HTMLNodeElement} - An anchor link element
+     * domain - {String} - The domain of the current webpage
+     * container - {HTMLNodeElement} - The survol container
+     * 
+     * This function is called to get the data from the link we
+     * want to preview and then attach it to the container
+     * Note: data is always inserted into textNodes to avoid
+     * malicious script injections.
+     */
     bindToContainer(node, domain, container) {
         if (this.linkType == 'track' || this.linkType == 'profile') {
 

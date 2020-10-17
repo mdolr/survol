@@ -18,14 +18,23 @@ class TwitterHover {
         else if (this.redirectLink.includes('/status/')) return 'tweet';
     }
 
+    /* bindToContainer
+     * Parameters :
+     * node - {HTMLNodeElement} - An anchor link element
+     * domain - {String} - The domain of the current webpage
+     * container - {HTMLNodeElement} - The survol container
+     * 
+     * This function is called to get the data from the link we
+     * want to preview and then attach it to the container
+     * Note: data is always inserted into textNodes to avoid
+     * malicious script injections.
+     */
     bindToContainer(node, domain, container) {
         if (this.linkType == 'tweet') {
 
             /* TODO :
              * - Handle embeds
-             * - Get a way to display profile picture etc (i.e: generate tweet like a normal embed would do)
-             * - Parse and display hashtags correctly
-             * - Add line returns
+             * - Clean the code to use one parser only and make it more readable
              */
 
             window
