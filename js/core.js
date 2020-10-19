@@ -158,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if ((window.chrome && chrome.runtime && chrome.runtime.id) || chrome) {
         chrome.storage.local.get(['disabledDomains', 'previewMetadata', 'darkThemeToggle'], function (res) {
             let disabledDomains = res.disabledDomains ? res.disabledDomains : ['survol.me'];
-
+                        
             if (res.previewMetadata === false) {
                 previewMetadata = false;
             }
@@ -167,9 +167,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 darkTheme = true;
             }
 
-            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) {
+            if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase())) { 
+                chrome.runtime.sendMessage({ action: 'state', data: "ON" });                                
                 insertSurvolDiv();
             }
+            else
+            {
+                chrome.runtime.sendMessage({ action: 'state', data: "OFF" });
+            }   
+           
+
         });
     }
 
@@ -177,4 +184,22 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
         insertSurvolDiv();
     }
+
+
+    
+    chrome.storage.onChanged.addListener(function(changes, namespace) {
+        for (var key in changes) {
+          var storageChange = changes[key];
+          if(storageChange.newValue.includes(getDomain(CURRENT_TAB).toLowerCase()))
+          {                      
+            chrome.runtime.sendMessage({ action: 'state', data: "OFF" })            
+          }
+          else
+          {                          
+            chrome.runtime.sendMessage({ action: 'state', data: "ON" })            
+          }                  
+        }
+      });
+
+    
 });
