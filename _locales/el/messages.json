@@ -1,0 +1,42 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Το Survol σας εξοικονομεί καρτέλες και χρόνο προεπισκόπηση κάθε συνδέσμου που τοποθετείτε"
+    },
+
+
+    "pageSettings": {
+        "message": "Ρυθμίσεις σελίδας",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "Ενεργοποίηση Survol σε αυτήν τη σελίδα;",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "Γενικές Ρυθμίσεις",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "Να επιτρέπεται η προεπισκόπηση μεταδεδομένων; (εάν είναι απενεργοποιημένο το Survol θα κάνει προεπισκόπηση μόνο στο youtube, το twitter, το wikipedia, ...",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Σκοτεινή λειτουργία",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+
+    "thankInstallation": {
+        "message": "Σας ευχαριστούμε που εγκαταστήσατε το Survol",
+        "description": "Text displayed on the onboarding page on installation"
+    },
+    "survolUpdated": {
+        "message": "Το Survol έχει ενημερωθεί",
+        "description": "Text displayed on the onboarding page on update"
+    }
+}
