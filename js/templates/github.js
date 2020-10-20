@@ -61,8 +61,8 @@ class GitHubHover {
                     githubAt.appendChild(document.createTextNode(` @${data.login}`));
                     
                     let bio = document.createElement('span');
-                    bio.className = 'survol-github-bio';
-                    bio.appendChild(document.createTextNode(data.bio));
+                    bio.className = 'survol-github-bio' ;
+                    bio.appendChild(document.createTextNode(data.bio? data.bio : ''));
 
                     profInfo.appendChild(name);
                     profInfo.appendChild(githubAt);
@@ -117,7 +117,6 @@ class GitHubHover {
                     githubProfileContainer.appendChild(profStats);
 
                     githubContainer.appendChild(githubProfileContainer);
-
 
                     if (window.lastHovered == node && container.innerHTML == '') {
                         container.appendChild(githubContainer);

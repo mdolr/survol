@@ -8,35 +8,36 @@
   height: auto;
 }
 
-.survol-github-container > #survol-github-profile {
+#survol-github-profile {
   position: relative;
 }
 
-.survol-github-container > #survol-github-profile > #survol-github-avatar{
+#survol-github-avatar{
     user-select: none;
     display: inline-block;
     vertical-align: top;
     width: 80px;
     border-radius: 5px;
+    margin-right: 10px;
+    margin-top: 5px;
 }
 
-.survol-github-container > #survol-github-profile > #survol-github-user-info {
+#survol-github-user-info {
     width: auto;
-    max-width:300;
+    max-width : 350px;
     display: inline-block;
     overflow: auto;
-    margin-left: 10px;
     display: block;
     text-decoration: inherit;
     color: inherit;
   }
   
-  .survol-github-container > #survol-github-profile > #survol-github-user-info > .survol-github-name {
+  .survol-github-name {
     font-weight: 600;
     font-size: 20px;
   }
   
-  .survol-github-container > #survol-github-profile > #survol-github-user-info > .survol-github-at {
+  .survol-github-at {
     display: block;
     font-size: 16px;
     color: #666;
@@ -44,18 +45,27 @@
     font-weight: 400;
     margin-bottom: 5px;
   }
+
+  .dark-theme .survol-github-at {
+    color: #aab3be;
+  }
   
-  .survol-github-container > #survol-github-profile > #survol-github-user-info > .survol-github-bio {
+  .survol-github-bio {
     font-size: 13px;
     color: #6a737d;
   }
-  
-  .survol-github-container > #survol-github-profile > .survol-github-profile-stats {
+
+  .dark-theme .survol-github-bio {
+    color: #aab3be;
+  }
+
+.survol-github-profile-stats {
     display: block;
     margin-top: 8px;
+    max-width : 500px;
   }
   
-  .survol-github-container > #survol-github-profile >.survol-github-profile-stats > .survol-github-profile-stat {
+ .survol-github-profile-stat {
     text-decoration: none;
     width: 70px;
     border-right: 1px solid #eaecef;
@@ -63,31 +73,35 @@
     display: inline-block;
     padding: 0 6px;
     margin-top: 5px;
+    margin-bottom: 8px;
   }
+
+  .dark-theme .survol-github-profile-stat span, .dark-theme .survol-github-profile-stat b {
+    color: #eaecef;
+  }
+
   
-  .survol-github-container > #survol-github-profile > .survol-github-profile-stats >.survol-github-profile-stat:last-of-type {
+  .survol-github-profile-stat:last-of-type {
     border-right: none;
   }
   
   
-  .survol-github-container > #survol-github-profile > .survol-github-profile-stats >.survol-github-profile-stat >.survol-github-prof-stat-val {
-    color: #586069;
+  .survol-github-prof-stat-val {
     font-size: 19px;
     text-align: center;
     display: block;
   }
-  .survol-github-container > #survol-github-profile > .survol-github-profile-stats >.survol-github-profile-stat >.survol-github-prof-stat-name {
-    color: #7b828a;
+  .survol-github-prof-stat-name {
     font-size: 11px;
     text-align: center;
     display: block;
   }
 
-  .survol-github-container > #survol-github-profile >.survol-github-profile-stats > .survol-github-links{
+  .survol-github-links{
       display: inline-block;
   }
 
-  .survol-github-container > #survol-github-profile >.survol-github-profile-stats > .survol-github-links > .survol-github-link{
+  .survol-github-link{
     display: block;
     position: relative;
     font-size: 15;
