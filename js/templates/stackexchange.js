@@ -30,9 +30,18 @@ class StackExchangeHover {
         }
     }
 
+    /* bindToContainer
+     * Parameters :
+     * node - {HTMLNodeElement} - An anchor link element
+     * domain - {String} - The domain of the current webpage
+     * container - {HTMLNodeElement} - The survol container
+     * 
+     * This function is called to get the data from the link we
+     * want to preview and then attach it to the container
+     * Note: data is always inserted into textNodes to avoid
+     * malicious script injections.
+     */
     bindToContainer(node, domain, container) {
-
-
         if (this.linkType == 'question') {
 
             // Get the question ID and website from the URL

@@ -18,8 +18,6 @@ class RedditHover {
         /* As comments are the only thing implemented for now let's ignore the rest
          * TODO : 
          * - Implement users when on other sites
-         * - Implement discussions (couldn't get discussion embed code from reddit when I tried (bug?))
-         * - Improve link detection for comments
          */
 
         /* Due to lags because of the number of self referencing links on reddit */
@@ -41,9 +39,21 @@ class RedditHover {
         }
     }
 
+    /* bindToContainer
+     * Parameters :
+     * node - {HTMLNodeElement} - An anchor link element
+     * domain - {String} - The domain of the current webpage
+     * container - {HTMLNodeElement} - The survol container
+     * 
+     * This function is called to get the data from the link we
+     * want to preview and then attach it to the container
+     * Note: data is always inserted into textNodes to avoid
+     * malicious script injections.
+     */
     bindToContainer(node, domain, container) {
         if (this.linkType == 'comment') {
-            const commentId = this.redirectLink.split("/").reverse()[1]
+            const commentId = this.redirectLink.split('/').reverse()[1];
+
             window
                 .survolBackgroundRequest(`https://api.reddit.com/api/info/?id=t1_${commentId}`)
                 .then((res) => {
@@ -63,7 +73,6 @@ class RedditHover {
         } else if (this.linkType === 'post') {
             /* We need the specific post ID to get JSON */
             /* Post ID should be 6 character alpha-numeric (base36) */
-            console.log(this.redirectLink);
             const postId = /\/r\/[^\/]+\/comments\/([a-z0-9]{6,})\//.exec(this.redirectLink)[1];
 
             window
