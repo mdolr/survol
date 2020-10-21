@@ -226,8 +226,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // If the extension is not disabled on the currently visited website
             // and the current website is not a wordpress admin panel (have encoutered some problems with the extension there in the past)
             if (!disabledDomains.includes(getDomain(CURRENT_TAB).toLowerCase()) && !CURRENT_TAB.includes('/wp-admin')) {
+                chrome.runtime.sendMessage({ action: 'state', data: 'ON' });
                 insertSurvolDiv(selfReferDisabled);
+            } else {
+                chrome.runtime.sendMessage({ action: 'state', data: 'OFF' });
             }
+
+
         });
     }
 
@@ -235,4 +240,19 @@ document.addEventListener('DOMContentLoaded', () => {
     else {
         insertSurvolDiv();
     }
+
+
+
+    chrome.storage.onChanged.addListener(function (changes, namespace) {
+        for (var key in changes) {
+            var storageChange = changes[key];
+            if (storageChange.newValue.includes(getDomain(CURRENT_TAB).toLowerCase())) {
+                chrome.runtime.sendMessage({ action: 'state', data: "OFF" })
+            } else {
+                chrome.runtime.sendMessage({ action: 'state', data: "ON" })
+            }
+        }
+    });
+
+
 });
