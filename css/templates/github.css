@@ -10,11 +10,12 @@
     display: inline-block;
     vertical-align: top;
     margin-right: 10px;
+    border-radius : 50%;
 }
 
 #survol-github-user-info {
     width: auto;
-    max-width : 350px;
+    max-width : 280px;
     text-decoration: inherit;
     color: inherit;
   }
@@ -49,16 +50,16 @@
 .survol-github-profile-stats {
     display: block;
     margin-top: 8px;
-    max-width : 500px;
+    text-align: center;
+    min-width:330px;
   }
   
  .survol-github-profile-stat {
     text-decoration: none;
-    width: 70px;
+    width: 30%;
     border-right: 1px solid #eaecef;
     color: #586069;
     display: inline-block;
-    padding: 0 6px;
     margin-top: 5px;
     margin-bottom: 8px;
   }
@@ -90,7 +91,16 @@
   }
 
   .survol-github-link{
-    display: block;
+    display: inline;
     font-size: 15;
-    font-weight : 100;
+    font-weight : 400;
+}
+
+.empty{
+  color : rgb(197, 190, 190);
+  font-weight : 100;
+}
+
+.dark-theme .empty{
+  color : rgb(102, 99, 99)
 }
