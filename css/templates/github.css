@@ -97,10 +97,7 @@
 }
 
 .empty{
-  color : rgb(197, 190, 190);
+  opacity : 35%;
   font-weight : 100;
-}
-
-.dark-theme .empty{
-  color : rgb(102, 99, 99)
+  font-style : italic;
 }
