@@ -100,7 +100,7 @@ class GitHubHover {
                     let githubLinksContainer = document.createElement('div');
                     githubLinksContainer.className = 'survol-github-links';
 
-                    let links = [{"name": "Company: ", "link" : data.company? data.company : 'not available'},
+                    let links = [{"name": "Workplace: ", "link" : data.company? data.company : 'not available'},
                                   {"name": "Twitter: ", "link" : data.twitter_username ? '@' + data.twitter_username : 'not available'},
                                   {"name": "Website: ", "link" : data.blog? data.blog : 'not available'}];
 
