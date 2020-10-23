@@ -1,6 +1,6 @@
 {
     "manifest_version": 2,
-    "version": "0.6.0",
+    "version": "0.6.2",
     "name": "__MSG_extensionName__",
     "short_name": "__MSG_extensionShortName__",
     "description": "__MSG_extensionDescription__",
@@ -33,6 +33,7 @@
                 "js/templates/youtube.js",
                 "js/templates/stackexchange.js",
                 "js/templates/soundcloud.js",
+                "js/templates/github.js",
 
                 "js/core.js"
             ],
@@ -43,7 +44,8 @@
                 "css/templates/twitter.css",
                 "css/templates/youtube.css",
                 "css/templates/stackexchange.css",
-                "css/templates/soundcloud.css"
+                "css/templates/soundcloud.css",
+                "css/templates/github.css"
 
             ],
             "run_at": "document_start"

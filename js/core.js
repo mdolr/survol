@@ -161,6 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 return new StackExchangeHover(node, getDomain(CURRENT_TAB));
             case 'soundcloud.com':
                 return new SoundCloudHover(node, getDomain(CURRENT_TAB));
+            case 'github.com':
+                return new GitHubHover(node, getDomain(CURRENT_TAB));
 
                 // If the site has no custom template, it should be previewed using meta-data parsing
             default:
