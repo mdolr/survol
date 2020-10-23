@@ -11,6 +11,13 @@ setInterval(() => {
  * Using the background script to pull data from APIs safely
  */
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+    if (req.action == 'state') {
+        var state = req.data;
+        chrome.browserAction.setBadgeText({
+            text: state,
+            tabId: sender.tab.id
+        });
+    }
     if (req.action == 'request') {
 
         let res = { status: 'error', data: null };

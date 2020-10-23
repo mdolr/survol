@@ -1,0 +1,42 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol tiết kiệm thời gian và tab cho bạn bằng cách xem trước tất cả các link mà bạn rê chuột vào"
+    },
+
+
+    "pageSettings": {
+        "message": "Cài đặt trang",
+        "description": "Đoạn văn bản này sẽ được hiển thị ở phần popup khi biểu tượng tiện ích được click"
+    },
+    "enableOnPage": {
+        "message": "Kích hoạt Survol ở trang này ?",
+        "description": "Đoạn văn bản này sẽ được hiển thị ở phần popup khi biểu tượng tiện ích được click"
+    },
+    "generalSettings": {
+        "message": "Cài đặt tổng quát",
+        "description": "Đoạn văn bản này sẽ được hiển thị ở phần popup khi biểu tượng tiện ích được click"
+    },
+    "allowMetadata": {
+        "message": "Cho phép xem trước siêu dữ liệu (meta-data)? (nếu không được kích hoạt Survol chỉ có thể xem trước youtube, twitter, wikipedia, ...)",
+        "description": "Đoạn văn bản này sẽ được hiển thị ở phần popup khi biểu tượng tiện ích được click"
+    },
+    "enableDarkTheme": {
+        "message": "Chế độ tối",
+        "description": "Đoạn văn bản này sẽ được hiển thị ở phần popup khi biểu tượng tiện ích được click"
+    },
+
+    "thankInstallation": {
+        "message": "Cảm ơn vì đã cài đặt Survol",
+        "description": "Văn bản được hiển thị trên trang hiện tại khi cài đặt"
+    },
+    "survolUpdated": {
+        "message": "Survol đã được cập nhật",
+        "description": "Văn bản được hiển thị trên trang hiện tại khi cập nhật"
+    }
+}

@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.getElementById('previewOnThisPage').checked = false;
                 }
 
-
                 document.getElementById('previewOnThisPage').addEventListener('click', () => {
                     // if the box gets unchecked i.e domain disabled, and the domain is not already in the list add it
                     if (!document.getElementById('previewOnThisPage').checked && !disabledDomains.includes(CURRENT_URL.toLowerCase())) {
@@ -46,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
 
                     chrome.storage.local.set({ disabledDomains: disabledDomains });
+
                 });
             }
         });
