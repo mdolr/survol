@@ -49,20 +49,20 @@ class GitHubHover {
 
                     let profInfo = document.createElement('div');
                     profInfo.id = 'survol-github-user-info';
-                    
+
                     profInfo.style = 'display: inline-block';
 
                     let name = document.createElement('span');
                     name.className = 'survol-github-name';
-                    name.appendChild(document.createTextNode(data.name));
+                    name.appendChild(document.createTextNode(data.name || data.login));
 
                     let githubAt = document.createElement('span');
                     githubAt.className = 'survol-github-at';
                     githubAt.appendChild(document.createTextNode(` @${data.login}`));
-                    
+
                     let bio = document.createElement('span');
-                    bio.className = 'survol-github-bio' ;
-                    bio.appendChild(document.createTextNode(data.bio? data.bio : ''));
+                    bio.className = 'survol-github-bio';
+                    bio.appendChild(document.createTextNode(data.bio ? data.bio : ''));
 
                     profInfo.appendChild(name);
                     profInfo.appendChild(githubAt);
@@ -71,13 +71,13 @@ class GitHubHover {
                     githubProfileContainer.appendChild(profInfo);
 
                     let profStats = document.createElement('div');
-                    profStats.className = "survol-github-profile-stats";
+                    profStats.className = 'survol-github-profile-stats';
 
-                    let statdata = [{'name' : 'Repos', 'stat': data.public_repos},
-                                    {'name' : 'Followers', 'stat': data.followers},
-                                    {'name' : 'Following', 'stat': data.following}];
+                    let statdata = [{ 'name': 'Repos', 'stat': data.public_repos },
+                        { 'name': 'Followers', 'stat': data.followers },
+                        { 'name': 'Following', 'stat': data.following }];
 
-                    statdata.forEach((x)=>{
+                    statdata.forEach((x) => {
                         let stat = document.createElement('a');
                         stat.className = 'survol-github-profile-stat';
 
@@ -94,17 +94,17 @@ class GitHubHover {
                         profStats.appendChild(stat);
                     });
 
-                    
+
                     githubProfileContainer.appendChild(profStats);
 
                     let githubLinksContainer = document.createElement('div');
                     githubLinksContainer.className = 'survol-github-links';
 
-                    let links = [{"name": "Workplace: ", "link" : data.company? data.company : 'not available'},
-                                  {"name": "Twitter: ", "link" : data.twitter_username ? '@' + data.twitter_username : 'not available'},
-                                  {"name": "Website: ", "link" : data.blog? data.blog : 'not available'}];
+                    let links = [{ 'name': 'Workplace: ', 'link': data.company ? data.company : 'not available' },
+                        { 'name': 'Twitter: ', 'link': data.twitter_username ? '@' + data.twitter_username : 'not available' },
+                        { 'name': 'Website: ', 'link': data.blog ? data.blog : 'not available' }];
 
-                    links.forEach((link)=>{
+                    links.forEach((link) => {
                         let linkContainer = document.createElement('div');
 
                         let linkName = document.createElement('span');
@@ -116,9 +116,9 @@ class GitHubHover {
                         let linkText = document.createElement('span');
                         linkText.appendChild(document.createTextNode(link.link));
 
-                        if (link.link.includes('not available')){
+                        if (link.link.includes('not available')) {
                             linkText.className = 'survol-github-link empty';
-                        }else{
+                        } else {
                             linkText.className = 'survol-github-link';
                         }
 
@@ -126,7 +126,7 @@ class GitHubHover {
 
                         githubLinksContainer.appendChild(linkContainer);
                     })
-                    
+
                     githubProfileContainer.appendChild(githubLinksContainer);
 
                     githubContainer.appendChild(githubProfileContainer);
