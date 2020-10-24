@@ -11,8 +11,7 @@ const bootstrap = (function () {
     }
 
     function getDomain(link) {
-        let subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
-        return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
+        return new URL(link).hostname;
     }
 
     function updateUIElements(isPreviewMetadata, isDarkThemeChecked) {
