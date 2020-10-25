@@ -1,0 +1,42 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol menjimatkan tab dan masa dengan melihat pratonton setiap pautan yang anda arahkan"
+    },
+
+
+    "pageSettings": {
+        "message": "Tetapan halaman",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableOnPage": {
+        "message": "Benarkan Survol di halaman ini ?",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "generalSettings": {
+        "message": "Tetapan umum",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "allowMetadata": {
+        "message": "Benarkan pratonton data meta ? (jika dimatikan Survol hanya akan melihat pratonton youtube, twitter, wikipedia, ...)",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+    "enableDarkTheme": {
+        "message": "Mod gelap",
+        "description": "This text is displayed in the popup when the extension icon is clicked"
+    },
+
+    "thankInstallation": {
+        "message": "Terima kasih kerana memasang Survol",
+        "description": "Text displayed on the onboarding page on installation"
+    },
+    "survolUpdated": {
+        "message": "Survol telah dikemas kini",
+        "description": "Text displayed on the onboarding page on update"
+    }
+}
