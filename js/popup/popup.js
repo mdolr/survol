@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Description: Returns the domain name associated to a full link
      */
     function getDomain(link) {
-        return new URL(link).hostname;
+        return new URL(link).host;
     }
 
     ['pageSettings', 'generalSettings', 'enableOnPage'].forEach(function (word) {

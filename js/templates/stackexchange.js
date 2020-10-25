@@ -13,7 +13,7 @@ class StackExchangeHover {
      * Description: Returns the domain name associated to a full link
      */
     getDomain(link) {
-        return new URL(link).hostname;
+        return new URL(link).host;
     }
 
     /* Description: This function is unique to every Hover class,

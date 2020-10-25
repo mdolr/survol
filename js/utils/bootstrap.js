@@ -11,7 +11,7 @@ const bootstrap = (function () {
     }
 
     function getDomain(link) {
-        return new URL(link).hostname;
+        return new URL(link).host;
     }
 
     function updateUIElements(isPreviewMetadata, isDarkThemeChecked) {
