@@ -23,7 +23,7 @@
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "allowMetadata": {
-        "message": "Benarkan pratonton data meta ? (jika dimatikan Survol hanya akan melihat pratonton youtube, twitter, wikipedia, ...) ",
+        "message": "Benarkan pratonton data meta ? (jika dimatikan Survol hanya akan melihat pratonton youtube, twitter, wikipedia, ...)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableDarkTheme": {
