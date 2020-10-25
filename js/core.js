@@ -104,10 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         container.innerHTML = '';
                     }
                 }
-                //get the popup dimensions or set a default value if dimensions are initially null
-                let popupWidth = container.clientWidth || 320;
-                //sets min-height of 320 if height is < 320px
-                let popupHeight = container.clientHeight > 320 ? container.clientHeight : 320;
+                //get the popup width
+                let popupWidth = container.clientWidth;
 
                 //get the current scroll distance
                 let scrolled = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
@@ -116,19 +114,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 //if the current mouse X position plus the popup width is greater than the width of the viewport set the popup to the left, else right
                 let leftPosition = (e.pageX + popupWidth + buffer >= window.innerWidth) ? `${e.pageX - (popupWidth + buffer)}px` : `${e.pageX + buffer}px`;
                 //if the current mouse Y position is in the bottom half of the screen, set the popup above mouse, else below
-                let topPosition = ((e.pageY - scrolled) >= window.innerHeight / 2) ? `${e.pageY - (popupHeight + buffer)}px` : `${e.pageY + buffer}px`;
+                let topPosition = ((e.pageY - scrolled) >= window.innerHeight / 2) ? 0 : `${e.pageY + buffer}px`;
+                let bottomPosition = ((e.pageY - scrolled) >= window.innerHeight / 2) ? `${window.innerHeight - e.pageY + buffer}px` : 0;
 
                 //update the popup with the calculated values
                 container.style.left = leftPosition;
-                container.style.top = topPosition;
-                //sets min-height of popup
-                container.style.minHeight = '320px';
+                container.style.top = topPosition ? topPosition : 'auto';
+                container.style.bottom = bottomPosition ? bottomPosition : 'auto';
                 //sets max-height of popup to half height of window - buffer
                 container.style.maxHeight = `${(window.innerHeight / 2) - buffer}px`;
-
-                //only show the popup if there's content inside the container (stops box shadow from showing if there isn't)
-                container.style.display = container.innerHTML ? 'block' : 'none';
-                // setPopupPosition(container, e, buffer);
             });
 
             // Insert the container into the DOM
