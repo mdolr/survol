@@ -6,37 +6,28 @@
         "message": "Survol"
     },
     "extensionDescription": {
-        "message": "Survol saves you tabs and time by previewing every link you hover"
+        "message": "Survol zobrazí náhled stránky po najetí myší na libovolný odkaz a šetří Vám tak čas i záložky"
     },
 
 
     "pageSettings": {
-        "message": "Page settings",
+        "message": "Nastavení stránky",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableOnPage": {
-        "message": "Enable Survol on this page ?",
+        "message": "Povolit Survol na této stránce ?",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "generalSettings": {
-        "message": "General settings",
+        "message": "Obecné nastavení",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "allowMetadata": {
-        "message": "Allow meta-data preview ? (if disabled Survol will only preview youtube, twitter, wikipedia, ...)",
+        "message": "Povolit náhled na metadata ? (pokud zakázáno, Survol zvládne zobrazit pouze náhledy youtube, twitter, wikipedia, ...)",
         "description": "This text is displayed in the popup when the extension icon is clicked"
     },
     "enableDarkTheme": {
-        "message": "Dark mode",
+        "message": "Tmavý mód",
         "description": "This text is displayed in the popup when the extension icon is clicked"
-    },
-
-    "thankInstallation": {
-        "message": "Thank you for installing Survol",
-        "description": "Text displayed on the onboarding page on installation"
-    },
-    "survolUpdated": {
-        "message": "Survol has been updated",
-        "description": "Text displayed on the onboarding page on update"
     }
 }

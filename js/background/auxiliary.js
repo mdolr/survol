@@ -11,6 +11,13 @@ setInterval(() => {
  * Using the background script to pull data from APIs safely
  */
 chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
+    if (req.action == 'state') {
+        var state = req.data;
+        chrome.browserAction.setBadgeText({
+            text: state,
+            tabId: sender.tab.id
+        });
+    }
     if (req.action == 'request') {
 
         let res = { status: 'error', data: null };
@@ -48,4 +55,45 @@ chrome.runtime.onMessage.addListener((req, sender, sendResponse) => {
     }
 
     return true;
+});
+
+
+// Those are the extension default settings
+const DEFAULT_SETTINGS = {
+    version: '0.6.0',
+    disabledDomains: ['survol.me'],
+    selfReferDisabled: ['github.com', 'ppy.sh'],
+    previewMetadata: true,
+    darkThemeToggle: false,
+    installationType: 'install'
+};
+
+// When the extension is installed
+chrome.runtime.onInstalled.addListener(() => {
+
+    // Initialize settings
+    chrome.storage.local.get(Object.keys(DEFAULT_SETTINGS), (res) => {
+
+        // In order to chose between "Thanks for installing the extension" and "Survol has been updated"
+        let oldVersion = res.version;
+
+        res.version = DEFAULT_SETTINGS.version;
+
+        if (res.installationType) {
+            res.installationType = (res.version == oldVersion) ? 'none' : 'update';
+        }
+
+        Object.keys(DEFAULT_SETTINGS).forEach((key) => {
+            res[key] = res[key] || DEFAULT_SETTINGS[key];
+        });
+
+        // Save settings then open onboarding page
+        chrome.storage.local.set(res, () => {
+
+            // If there has been an update or the extension has just been installed
+            if (res.installationType == 'update' || res.installationType == 'install') {
+                chrome.tabs.create({ url: chrome.runtime.getURL('./html/onboarding.html') });
+            }
+        });
+    });
 });
