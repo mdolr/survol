@@ -1,60 +1,63 @@
-:root {
-    --primary-color: #007aff;
-    --secondary-color: #4A4A4A;
-}
-
 @font-face {
     font-family: 'Nunito';
     src: url('/NunitoRegular.ttf') format('ttf');
 }
 
-body, html {
-    margin: 0;
-    padding: 0;
-
-    background-color: var(--primary-color);
-    color: white;
+.nunito {
     font-family: 'Nunito', sans-serif !important;
 }
 
-/* Background */
-
-.airplane {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    background-image: url(../images/airplane.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.03;
+#section1 {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-/* Links */
-
-.links .fa-github {
-    color: white;
+#icon {
+    transform: scaleX(-1);
 }
 
-/* Hero */
-
-.hero {
-    background-color: white;
-    border-radius: 10px;
-    padding: 2rem;
-    max-width: 50rem;
-    margin: auto;
-    margin-top: 1rem;
+.text-column,
+.logo-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+.text-column button,
+#installSection .buttons .button {
+    display: inline!important;
+}
 
-/* Utilities */
+#installSection .buttons .button {
+    margin-left: auto;
+    margin-right: auto;
+}
 
-.hidden {
-    display: none!important;
+.chrome {
+    margin-right: 6px!important;
+}
+
+.firefox {
+    margin-left: 6px!important;
+}
+
+.logo-column {
+    align-items: center;
+}
+
+.buttons {
+    margin-top: -12px;
+}
+
+.links {
+    text-align: center;
+}
+
+.links .link {
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .contributor-image {
@@ -76,6 +79,26 @@ body, html {
     overflow-wrap: anywhere;
 }
 
-.link {
-    color: var(--secondary-color);
+@media screen and (max-width: 1023px) {
+    #section1 .columns {
+        margin-top: 72px!important;
+    }
+    .container {
+        padding-right: 32px;
+        padding-left: 32px;
+        text-align: center;
+    }
+    #install {
+        margin-top: 24px;
+    }
+    .buttons,
+    .button {
+        display: block;
+    }
+    #installSection .buttons .button {
+        display: block!important;
+    }
+    .links {
+        flex-direction: column;
+    }
 }

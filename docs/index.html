@@ -1,139 +1,130 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Survol - A browser extension to preview any link you hover</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="A browser extension to preview any link you hover. Stop wasting time managing too many tabs and discover a new way of navigating on the internet.">
 
-        <link rel="stylesheet" href="style/style.css">
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
-        <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
-        <link rel="icon" type="image/png" href="https://rawcdn.githack.com/mdolr/survol/68a3e7d0117bbc84293f41c85aa70d53cc0d430d/images/icon128.png" />
-
-        <link rel="stylesheet" href="style/style.css">
-        <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/base.css">
-        <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/templates/twitter.css">
-        <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/templates/wikipedia.css">
+<head>
+    <meta charset="utf-8">
+    <title>Survol - A browser extension to preview any link you hover</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A browser extension to preview any link you hover. Stop wasting time managing too many tabs and discover a new way of navigating on the internet.">
 
 
-        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-        <script src="https://rawcdn.githack.com/mdolr/survol/59b4ad56f1b72859a928841cf571a5311377251b/js/core.js"></script>
-        <script src="scripts/contributors.js"></script>
-        <script src="scripts/survolBackgroundRequest.js"></script>
-        <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/base.js"></script>
-        <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/twitter.js"></script>
-        <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/wikipedia.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.1/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="https://rawcdn.githack.com/mdolr/survol/68a3e7d0117bbc84293f41c85aa70d53cc0d430d/images/icon128.png" />
 
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const START = 1602226800000;
-                const END = 1602313200000;
-                let now = new Date().getTime();
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/base.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/templates/twitter.css">
+    <link rel="stylesheet" href="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/css/templates/wikipedia.css">
 
-                if (now >= START && now <= END) {
-                    document.getElementById('producthunt').classList.remove('is-hidden');
-                }
-            });
-        </script>
-        <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
 
-    </head>
-    <body>
-        <a id="producthunt" class="is-hidden" style="position:fixed; left:24px; bottom:24px; z-index:15000!important;" href="https://www.producthunt.com/posts/survol?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-survol" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=269855&theme=dark" alt="Survol - Preview any link you hover, save time and tabs. | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/59b4ad56f1b72859a928841cf571a5311377251b/js/core.js"></script>
+    <script src="scripts/contributors.js"></script>
+    <script src="scripts/survolBackgroundRequest.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/base.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/twitter.js"></script>
+    <script src="https://rawcdn.githack.com/mdolr/survol/ed6ea6c6b786df352c105f00da6e9572f99add49/js/templates/wikipedia.js"></script>
 
-        <nav class="navbar" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
-                <a class="navbar-item" href="https://survol.me/">
-                    <img src="images/logo.svg">
-                    <div class="navbar-item title is-4">Survol</div>
-                </a>
-            </div>
-            <div class="navbar-menu is-active">
-                <div class="navbar-end">
-                    <div class="navbar-item has-text-centered">
-                        A browser extension to preview any link you hover
-                    </div>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/reddit.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/mdolr/survol@master/js/templates/youtube.js"></script>
+
+</head>
+
+<body>
+    <div class="container" id="section1">
+        <div class="columns">
+            <div class="column is-two-thirds text-column">
+                <h1 class="is-1 title nunito">Too many tabs opened ?<br>Survol solves this</h1>
+                <h2 class="is-2 subtitle nunito">Survol is a <a href="https://en.wikipedia.org/wiki/Browser_extension">browser extension</a> that helps you choose which links are worth clicking.</h2>
+                <div class="buttons">
+                    <a href="#install"><button class="button chrome is-info is-large">
+                        <span class="icon">
+                            <i class="fa fa-download"></i>
+                        </span>
+                        <span>Install the extension</span>
+                    </button></a>
+                    <a href="https://github.com/mdolr/survol"><button class="button firefox is-outlined is-large">
+                        <span class="icon">
+                            <i class="fab fa-github"></i>
+                        </span>
+                        <span>GitHub repository</span>
+                    </button></a>
                 </div>
             </div>
-        </nav>
-
-        <!-- <img src="images/airplane3.gif" alt=""> -->
-
-        <div class="airplane"></div>
-
-        <div class="container px-2">
-            <h2 class="title has-text-centered has-text-white is-2 mt-5">Tired of having too many tabs opened? <br><strong>Survol</strong> solves this.</h2>
-            <div class="hero">
-                <h3 class="subtitle has-text-centered is-3">Try it out! Just hover any link below</h3>
-                <div class="is-flex is-justify-content-space-around">
-                    <a target="_blank" href="https://twitter.com/hacktoberfest/status/1295752863986196480">A tweet</a>
-                    <a target="_blank" href="https://www.producthunt.com/">A website</a>
-                    <a target="_blank" href="https://en.wikipedia.org/wiki/Product_Hunt">A wikipedia article</a>
-                </div>
-            </div>
-
-            <div class="columns mt-5">
-                <div class="column">
-                    <h2 class="subtitle is-3 has-text-white mb-2 has-text-centered">
-                        Download the extension on your favourite browser:
-                    </h2>
-                    <div class="is-flex is-flex-wrap-wrap">
-                        <div class="is-flex is-justify-content-center mt-1" style="flex-basis: 100%; flex: 1">
-                            <a href="https://chrome.google.com/webstore/detail/survol/fdnnmbmkgfdjclkgimonnimokhnndalk"
-                                class="button is-medium">
-                                <span class="icon">
-                                    <i class="fab fa-chrome"></i>
-                                </span>
-                                <span>Download on Chrome</span>
-                            </a>
-                        </div>
-                        <div class="is-flex is-justify-content-center  mt-1" style="flex-basis: 100%; flex: 1">
-                            <a href="https://addons.mozilla.org/en-US/firefox/addon/survol/"
-                                class="button is-medium">
-                                <span class="icon">
-                                    <i class="fab fa-firefox"></i>
-                                </span>
-                                <span>Download on Firefox</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="is-flex is-align-items-center is-justify-content-center">
-                        <i class="fab fa-3x fa-github"></i>
-                        <h2 class="subtitle is-3 has-text-white ml-2">Survol is the product of</h2>
-                    </div>
-                    <div class="is-flex is-justify-content-center">
-                        <a class="link subtitle is-3" href="https://github.com/mdolr/survol" target="_blank">open-source</a>
-                    </div>
-                    <div class="is-flex is-justify-content-center">
-                        <h3 class="subtitle has-text-white is-3">List of contributors</h3>
-                    </div>
-
-                    <div class="is-flex is-align-content-center is-justify-content-center mt-4">
-                        <table class="table is-hoverable contributor-table">
-                            <thead>
-                                <td></td>
-                                <td>Github login</td>
-                                <td>Role</td>
-                                <td>Contributions</td>
-                            </thead>
-                            <tbody id="contributors">
-                                <tr>
-                                    <td><img src="https://avatars2.githubusercontent.com/u/19026937?v=4" class="contributor-image"
-                                            alt="Author avatar" /></td>
-                                    <td><a class="link" href="https://github.com/mdolr" target="_blank" rel="nofollow">@mdolr</td>
-                                    <td>Author of Survol and CEO of <a class="link" href="https://kaen.fr">Kaen</a></td>
-                                    <td id="mdolr-contributions"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+            <div class="column logo-column">
+                <img id="icon" src="file:///D:/survol/docs/images/airplane.gif" width="356" height="356" />
             </div>
         </div>
-    </body>
+        <br/><br/><br/><br/><br/>
+        <h2 class="is-2 title nunito has-text-centered">Try it</h2>
+        <div class="columns links">
+            <div class="column">
+                <a class="link content is-large" href="https://twitter.com/hacktoberfest/status/1295752863986196480">Hover to preview</a>
+            </div>
+            <div class="column">
+                <a class="link content is-large" href="https://www.producthunt.com/posts/survol">Hover to preview</a>
+            </div>
+            <div class="column">
+                <a class="link content is-large" href="https://www.youtube.com/watch?v=jNQXAC9IVRw">Hover to preview</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container has-text-centered" id="installSection">
+        <h2 class="title is-2 nunito has-text-centered" id="install">Quotes</h2>
+        <br>
+        <div class="columns" style="display:inline-block; margin-left:auto; margin-right:auto; text-align:center;">
+            <div class="column" style="display:inline; width:96px!important; max-width:96px; min-width:96px; margin: 24px 0px 24px 24px!important;">
+                <img src="https://unavatar.now.sh/twitter/rrhoover" style="border-radius:50%;" height="96" width="96">
+            </div>
+            <div class="column" style="display:inline; margin-top:24px; margin-bottom:24px; min-width: none!important;">
+                <h3 class="is-3 subtitle nunito" style="margin-bottom:0px;">"Clever idea"</h3>
+                <!--https://www.producthunt.com/posts/survol#comment-1160813 -->
+                <p style="font-style:italic;" class="content is-medium">Ryan HOOVER, <a href="https://producthunt.com">Product Hunt</a> founder</p>
+            </div>
+        </div>
+        <br/><br/><br/><br/>
+        <h2 class="title nunito has-text-centered is-2" style="margin-left:16px;">Install</h2>
+        <h3 class="subtitle nunito has-text-centered is-3" style="margin-left:16px;">It's free, just choose your favorite browser</h3>
+        <div class="buttons has-text-centered">
+            <a href="https://chrome.google.com/webstore/detail/survol/fdnnmbmkgfdjclkgimonnimokhnndalk" class="button chrome is-success is-large">
+                <span class="icon">
+                  <i class="fab fa-chrome"></i>
+                </span>
+                <span>Download on Chrome</span>
+            </a><br>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/survol/" class="button firefox is-success is-large">
+                <span class="icon">
+                  <i class="fab fa-firefox"></i>
+                </span>
+                <span>Download on Firefox</span>
+            </a><br>
+        </div>
+        <br/><br/><br/><br/><br/>
+        <div style="display:flex; justify-content:center;" class="has-text-centered">
+            <i class="fab fa-3x fa-github"></i>
+            <h2 class="title nunito has-text-centered is-3" style="margin-left:16px;">Survol is the product of <a class="link" href="https://github.com/mdolr/survol" target="_blank">open-source</a></h2>
+        </div>
+        <br>
+        <div style="display:flex; align-items:center; justify-content:center;">
+            <table class="table is-hoverable contributor-table">
+                <thead>
+                    <td></td>
+                    <td>Github login</td>
+                    <td>Role</td>
+                    <td>Contributions</td>
+                </thead>
+                <tbody id="contributors">
+                    <tr>
+                        <td><img src="https://avatars2.githubusercontent.com/u/19026937?v=4" class="contributor-image" alt="Author avatar" /></td>
+                        <td><a class="link" href="https://github.com/mdolr" target="_blank" rel="nofollow">@mdolr</td>
+                        <td>Author of Survol<br>CEO of <a class="link" href="https://kaen.fr/en">Kaen</a></td>
+                        <td id="mdolr-contributions"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+</body>
+
 </html>
