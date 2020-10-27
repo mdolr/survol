@@ -1,0 +1,42 @@
+{
+    "extensionName": {
+        "message": "Survol"
+    },
+    "extensionShortName": {
+        "message": "Survol"
+    },
+    "extensionDescription": {
+        "message": "Survol us estalvia pestanyes i temps previsualitzant tots els enllaços que passeu"
+    },
+
+
+    "pageSettings": {
+        "message": "Configuració de la pàgina",
+        "description": "Aquest text es mostra a la finestra emergent quan es fa clic a la icona de l'extensió"
+    },
+    "enableOnPage": {
+        "message": "Vols activar Survol en aquesta pàgina?",
+        "description": "Aquest text es mostra a la finestra emergent quan es fa clic a la icona de l'extensió"
+    },
+    "generalSettings": {
+        "message": "Configuració general",
+        "description": "Aquest text es mostra a la finestra emergent quan es fa clic a la icona de l'extensió"
+    },
+    "allowMetadata": {
+        "message": "Voleu permetre la previsualització de metadades? (si està desactivat, Survol només previsualitzarà youtube, twitter, wikipedia, ...) ",
+        "description": "Aquest text es mostra a la finestra emergent quan es fa clic a la icona de l'extensió"
+    },
+    "enableDarkTheme": {
+        "message": "Mode fosc",
+        "description": "Aquest text es mostra a la finestra emergent quan es fa clic a la icona de l'extensió"
+    },
+
+    "thankInstallation": {
+        "message": "Gràcies per instal·lar Survol",
+        "description": "Text que es mostra a la pàgina integrada a la instal·lació"
+    },
+    "survolUpdated": {
+        "message": "Survol s'ha actualitzat",
+        "description": "Text que es mostra a la pàgina d’incorporació a l’actualització"
+    }
+}
