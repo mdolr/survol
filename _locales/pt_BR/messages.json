@@ -11,23 +11,32 @@
 
 
     "pageSettings": {
-        "message": "Configurações de página",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "message": "Configurações da página",
+        "description": "Esse texto é exibido no popup quando o ícone da extensão é clicado"
     },
     "enableOnPage": {
-        "message": "Habilitar Survol nesta página ?",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "message": "Habilitar Survol nesta página?",
+        "description": "Esse texto é exibido no popup quando o ícone da extensão é clicado"
     },
     "generalSettings": {
-        "message": "Configurações Gerais",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "message": "Configurações gerais",
+        "description": "Esse texto é exibido no popup quando o ícone da extensão é clicado"
     },
     "allowMetadata": {
-        "message": "Permitir pré-visualização de meta-data ? (se desabilitado Survol irá apenas pré-visualizar youtube, twitter, wikipedia, ...)",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "message": "Permitir pré-visualização de meta-data? (se desabilitado Survol irá apenas pré-visualizar youtube, twitter, wikipedia, ...)",
+        "description": "Esse texto é exibido no popup quando o ícone da extensão é clicado"
     },
     "enableDarkTheme": {
         "message": "Modo Escuro",
-        "description": "This text is displayed in the popup when the extension icon is clicked"
+        "description": "Esse texto é exibido no popup quando o ícone da extensão é clicado"
+    },
+
+    "thankInstallation": {
+        "message": "Obrigado por instalar Survol",
+        "description": "Texto exibido na página de integração na instalação"
+    },
+    "survolUpdated": {
+        "message": "Survol foi atualizado",
+        "description": "Texto exibido na página de integração na atualização"
     }
 }
