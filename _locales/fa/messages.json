@@ -1,0 +1,42 @@
+{
+  "extensionName": {
+      "message": "Survol"
+  },
+  "extensionShortName": {
+      "message": "Survol"
+  },
+  "extensionDescription": {
+      "message": "Survol با پیش‌نمایش صفحه هنگام نگه داشتن موس روی یک پیوند در زمان شما صرفه جویی می کند! "
+  },
+
+
+  "pageSettings": {
+      "message": "تنظیمات صفحه",
+      "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "enableOnPage": {
+      "message": "فعال کردن افزونه برای این صفحه؟",
+      "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "generalSettings": {
+      "message": "تنظیمات کلّی",
+      "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "allowMetadata": {
+      "message": "اجازه دادن برای پیش‌نمایش متادیتا؟ (بدون این اجازه فقط یوتیوب، ویکی پدیا، توییتر و ... پیش‌نمایش داده می شوند) ",
+      "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+  "enableDarkTheme": {
+      "message": "حالت تاریک",
+      "description": "This text is displayed in the popup when the extension icon is clicked"
+  },
+
+  "thankInstallation": {
+      "message": "از شما برای تصب Survol متشکریم!",
+      "description": "Text displayed on the onboarding page on installation"
+  },
+  "survolUpdated": {
+      "message": "Survol به زور رسانی شد.",
+      "description": "Text displayed on the onboarding page on update"
+  }
+}
