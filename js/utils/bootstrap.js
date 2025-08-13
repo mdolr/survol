@@ -11,8 +11,7 @@ const bootstrap = (function () {
     }
 
     function getDomain(link) {
-        let subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
-        return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
+        return new URL(link).host;
     }
 
     function updateUIElements(isPreviewMetadata, isDarkThemeChecked) {
@@ -36,6 +35,7 @@ const bootstrap = (function () {
                 document.getElementById('body').classList.add('dark-theme');
             }
 
+            document.getElementById('disabledList').value = disabledDomains.join(',');
             document.getElementById('innerLinksList').value = selfReferDisabled.join(',');
 
             switch (res.installationType) {
@@ -67,6 +67,10 @@ const bootstrap = (function () {
                     document.getElementById('darkThemeCheckbox').addEventListener('click', () => {
                         chrome.storage.local.set({ darkThemeToggle: document.getElementById('darkThemeCheckbox').checked });
                         document.getElementById('body').classList.toggle('dark-theme');
+                    });
+
+                    document.getElementById('disabledList').addEventListener('keyup', () => {
+                        chrome.storage.local.set({ disabledDomains: document.getElementById('disabledList').value.toLowerCase().replace(/ /g, '').split(',') });
                     });
 
                     document.getElementById('innerLinksList').addEventListener('keyup', () => {
