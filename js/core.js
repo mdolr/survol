@@ -1,9 +1,9 @@
 /* core.js is the heart of the extension.
  * It is a content script, injected on each page.
- * 
+ *
  * The core script injects the "survol-container" div into the DOM,
  * positions the div, and fill it with content.
- * 
+ *
  * It uses the mousemove event to detect when the cursor is hovering an anchor link (<a href>)
  * It is responsible for checking if this anchor link has an href, if the link should be
  * previewed or not, and which preview template should be used.
@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* <https://www.chromium.org/Home/chromium-security/extension-content-script-fetches>
      * "Later in 2019, Extension Manifest V3 will become available, requiring cross-origin requests to occur in background pages rather than content scripts.  This new manifest version will have its own migration period, before support for Extension Manifest V2 is eventually removed from Chrome."
-     * 
+     *
      * Using the background script to pull data from APIs safely, i.e forwarding request from the content script to the background script
      * Direct asynchronous messaging, making it as a function to avoid having some request code across every file
      *
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     /* insertSurvolDiv
-     * Parameters: 
+     * Parameters:
      * selfReferDisabled - {Boolean} - A setting to disable preview of inner links on a list of websites.
      *
      * This function:
@@ -104,23 +104,25 @@ document.addEventListener('DOMContentLoaded', () => {
                         container.innerHTML = '';
                     }
                 }
-
-                //get the popup dims
+                //get the popup width
                 let popupWidth = container.clientWidth;
-                let popupHeight = container.clientHeight;
+
                 //get the current scroll distance
                 let scrolled = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop;
 
                 //calculate the popup positions
                 //if the current mouse X position plus the popup width is greater than the width of the viewport set the popup to the left, else right
                 let leftPosition = (e.pageX + popupWidth + buffer >= window.innerWidth) ? `${e.pageX - (popupWidth + buffer)}px` : `${e.pageX + buffer}px`;
-                //if the current mouse Y position (mius scroll distance) plus the popup height is greater than viewport height, set the popup above mouse, else below
-                let topPosition = ((e.pageY - scrolled) + popupHeight + buffer >= window.innerHeight) ? `${e.pageY - (popupHeight + buffer)}px` : `${e.pageY + buffer}px`;
+                //if the current mouse Y position is in the bottom half of the screen, set the popup above mouse, else below
+                let topPosition = ((e.pageY - scrolled) >= window.innerHeight / 2) ? 0 : `${e.pageY + buffer}px`;
+                let bottomPosition = ((e.pageY - scrolled) >= window.innerHeight / 2) ? `${window.innerHeight - e.pageY + buffer}px` : 0;
 
                 //update the popup with the calculated values
                 container.style.left = leftPosition;
-                container.style.top = topPosition;
-
+                container.style.top = topPosition ? topPosition : 'auto';
+                container.style.bottom = bottomPosition ? bottomPosition : 'auto';
+                //sets max-height of popup to half height of window - buffer
+                container.style.maxHeight = `${(window.innerHeight / 2) - buffer}px`;
             });
 
             // Insert the container into the DOM

@@ -13,6 +13,7 @@
     z-index: 16777271!important;
     position: absolute!important;
     word-wrap: break-word;
+    overflow: hidden;
 }
 
 .survol-container.dark-theme {
