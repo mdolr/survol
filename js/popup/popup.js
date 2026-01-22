@@ -9,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
      * Description: Returns the domain name associated to a full link
      */
     function getDomain(link) {
-        let subdomains = link.replace('http://', '').replace('https://', '').split('/')[0].split('.').length;
-        return link.replace('http://', '').replace('https://', '').split('/')[0].split('.').slice(subdomains - 2, subdomains).join('.');
+        return new URL(link).host;
     }
 
     ['pageSettings', 'generalSettings', 'enableOnPage'].forEach(function (word) {
