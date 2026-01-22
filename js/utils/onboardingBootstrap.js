@@ -1,13 +1,8 @@
 import { bootstrap } from './bootstrap.js';
 
 (function () {
-
-    async function getReleaseLog() {
-        return fetch('https://api.github.com/repos/mdolr/survol/releases?page=1&per_page=5')
-            .then(function (res) {
-                return res.json();
-            });
-    }
+    
+    const url = 'https://api.github.com/repos/mdolr/survol/releases?page=1&per_page=5'
 
     function getReleaseSectionHTMLTemplate(releaseName, releaseNotes) {
         const releaseSection = document.createElement('section');
@@ -29,7 +24,14 @@ import { bootstrap } from './bootstrap.js';
     }
 
     async function renderReleaseLog() {
-        const releaseCollection = await getReleaseLog();
+        const changeLogCache = await caches.open('changeLog');
+
+        let response = await changeLogCache.match(url)
+
+        if (!response)
+            await changeLogCache.add(url);
+
+        const releaseCollection = await changeLogCache.match(url).then(res => res.json())
         const section = document.getElementById('releaseSection');
         for (var i = 0; i < releaseCollection.length; i++) {
             if (releaseCollection[i].prerelease) {
